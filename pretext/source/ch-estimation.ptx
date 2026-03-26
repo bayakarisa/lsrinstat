@@ -665,7 +665,7 @@ from 1987 to 2010. This graph was drawn using the <c>bargraph.CI()</c> function.
 Means and 95% confidence intervals for AFL <c>attendance</c>, plotted separately for each year
 from 1987 to 2010. This graph was drawn using the <c>lineplot.CI()</c> function.
 </caption>
-  <image source="images/cilineplot.png"/>
+  <image source="generated/CI_lineplot.png"/>
 </figure>
 
 <p>Finally, here's how you would do it using <c>plotmeans()</c>:</p>
@@ -683,7 +683,7 @@ from 1987 to 2010. This graph was drawn using the <c>lineplot.CI()</c> function.
 Means and 95% confidence intervals for AFL <c>attendance</c>, plotted separately for each year
 from 1987 to 2010. This graph was drawn using the <c>plotmeans()</c> function.
 </caption>
-  <image source="images/ciplotmeans.png"/>
+  <image source="generated/CI_plotmeans.png"/>
 </figure>
 </subsection>
 

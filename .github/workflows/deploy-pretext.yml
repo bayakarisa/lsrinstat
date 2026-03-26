@@ -1,12 +1,8 @@
-name: Build and Deploy PreTeXt Book
+name: Deploy PreTeXt Book
 
 on:
   # Trigger on pushes to main branch
   push:
-    branches:
-      - main
-  # Trigger on pull request events
-  pull_request:
     branches:
       - main
   # Allow manual trigger from Actions tab
@@ -18,7 +14,7 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment
+# Allow only one concurrent deployment, do not cancel in-progress deployments
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -38,19 +34,9 @@ jobs:
       
       - name: Install PreTeXt CLI
         run: |
-          pip install pretextbook
-          
-      - name: Install ImageMagick for image conversion
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y imagemagick
-      
-      - name: Copy and convert images for PreTeXt
-        run: |
-          python3 copy_images.py
+          pip install -r pretext/requirements.txt
           
       - name: Build PreTeXt book (HTML)
-        id: build
         run: |
           cd pretext
           pretext build web
@@ -68,8 +54,6 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    # Only deploy on pushes to main, not on PRs
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     
     environment:
       name: github-pages

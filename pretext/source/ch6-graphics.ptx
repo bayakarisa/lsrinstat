@@ -218,7 +218,7 @@
       </ul>
       <figure xml:id="fig-pch">
         <caption>Changing the <c>pch</c> parameter (panel a) or the <c>lty</c> parameter (panel b).</caption>
-        <image source="pchimages.png"/>
+        <image source="generated/pchvalues.png"/>
       </figure>
       <ul>
         <li>
