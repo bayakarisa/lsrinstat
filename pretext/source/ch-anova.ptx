@@ -895,7 +895,7 @@ summary( my.anova )]]></input>
 ]]></output>
     </console>
     </remark>
-    <p>... we get all of the key numbers that we calculated earlier. We get the sums of squares, the degrees of freedom, the mean squares, the <m><![CDATA[F]]></m>-statistic, and the <m><![CDATA[p]]></m>-value itself. These are all identical to the numbers that we calculated ourselves when doing it the long and tedious way, and it's even organised into the same kind of ANOVA table that I showed in <xref ref="table-chanova-43"/>, and then filled out by hand in <xref ref="anovacalc"/>. The only things that are even slightly different is that some of the row and column names are a bit different.</p>
+    <p>... we get all of the key numbers that we calculated earlier. We get the sums of squares, the degrees of freedom, the mean squares, the <m><![CDATA[F]]></m>-statistic, and the <m><![CDATA[p]]></m>-value itself. These are all identical to the numbers that we calculated ourselves when doing it the long and tedious way, and it's even organised into the same kind of ANOVA table that I showed in <xref ref="tab-anovatable"/>, and then filled out by hand in <xref ref="anovacalc"/>. The only things that are even slightly different is that some of the row and column names are a bit different.</p>
     </subsection>
   </section>
   <section xml:id="etasquared">
