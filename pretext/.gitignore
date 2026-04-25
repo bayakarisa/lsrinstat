@@ -19,6 +19,7 @@ __pycache__/
 # don't track error logs
 .error_schema.log
 cli.log
+logs/
 
 assets/generated/
 logs/

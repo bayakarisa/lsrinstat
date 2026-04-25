@@ -3322,7 +3322,7 @@ BLAH BLAH BLAH
       <p>
         Because I told R to expect <c>*</c> to be used as the quoting character instead of <c>"</c>; to look for tabs (which we write like this: <c>\t</c>) instead of commas, and to skip the first 8 lines of the file, it's basically loaded the right data. However, since <c>booksales2.csv</c> doesn't contain the column names, R has made them up. Showing the kind of imagination I expect from insentient software, R decided to call them <c>V1</c>, <c>V2</c>, <c>V3</c> and <c>V4</c>. Finally, because I told it that the file uses "NFI" to denote missing data, R correctly figures out that the sales data for May are actually missing.
       </p>
-      <figure>
+      <figure xml:id="fig-booksales2csv">
         <caption>The <c>booksales2.csv</c> data file. It contains more or less the same data as the original <c>booksales.csv</c> data file, but has a lot of very quirky features.</caption>
         <image source="generated/booksales2csv.jpg"/>
       </figure>
@@ -3948,7 +3948,7 @@ In x + y : longer object length is not a multiple of shorter object length
     </subsection>
     <subsection xml:id="environments">
       <title>An introduction to environments</title>
-      <figure>
+      <figure xml:id="fig-envs">
         <caption>The environment panel in Rstudio can actually show you the contents of any loaded package: each package defines a separate environment, so you can select the one you want to look at in this panel.</caption>
         <image source="generated/environments.png"/>
       </figure>
