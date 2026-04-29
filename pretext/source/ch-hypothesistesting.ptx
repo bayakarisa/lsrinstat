@@ -219,6 +219,44 @@
         And given that the researcher is trying desperately to prove it to be false, <em>someone</em> has to protect it.
       </p>
     </subsection>
+    <subsection xml:id="subsec_Using_R_Instat_Specifying_hypothesis">
+      <title>Using R-Instat: Specifying hypotheses</title>
+      <p>
+          In R-Instat, the null and alternative hypotheses are specified through dialog boxes rather than written symbolically.
+      </p>
+      <p>
+        For example, when using the One Variable Fit Model:
+        <ul>
+          <li>
+            <p>
+              The null hypothesis is entered directly in the “Null Hypothesis” field.
+            </p>
+          </li>
+          <li>
+            <p>
+              The alternative hypothesis is determined by the type of test selected (e.g., two-sided or one-sided).
+            </p>
+          </li>
+        </ul>
+      </p>
+      <p>
+        The software then automatically constructs the appropriate statistical test based on these inputs.
+      </p>
+      <figure xml:id="fig-specifyhypotheses">
+        <caption> The One Variable Fit Model dialog in R-Instat. </caption>
+        <image source="images/HypothesisTesting/One Variable Model steps to dialogue.png"/>
+      </figure>
+      <figure xml:id="OneVariableTestOptions">
+        <caption>The user specifies the variable, selects the test type</caption>
+        <image source="images/HypothesisTesting/One Variable Test Options.png"/>
+      </figure>
+
+      <figure xml:id="OneVariableDialoguetTest">
+        <caption>The user enters the null hypothesis value. The confidence level determines the significance level of the test.</caption>
+        <image source="images/HypothesisTesting/One Variable dialogue t test.png"/>
+      </figure>
+
+    </subsection>
   </section>
 
   <section xml:id="errortypes">
@@ -334,6 +372,24 @@
       To be honest, I don't know that I agree with this philosophy -- there are situations where I think it makes sense, and situations where I think it doesn't -- but that's neither here nor there.
       It's how the tests are built.
     </p>
+    <p> <m>\textbf{Using R-Instat: Significance level and decisions} </m></p>
+    <p>
+      In R-Instat, the significance level is controlled through the confidence level option.
+
+    </p>
+    <p>
+      For example:
+      <ul>
+        <li>
+          <p>
+            A 95% confidence level corresponds to a significance level of <m>α = 0.05</m>.
+          </p>
+        </li>
+      </ul>
+    </p>
+    <p>
+      When a test is run, R-Instat calculates the p-value and compares it implicitly to this level. The user then interprets whether to reject or retain the null hypothesis based on this comparison.
+    </p>     
   </section>
 
   <section xml:id="teststatistics">
@@ -382,6 +438,33 @@
         Since the null hypothesis states that <m>\theta = 0.5</m> and our experiment has <m>N=100</m> people, we have the sampling distribution we need.
         This sampling distribution is plotted in <xref ref="fig-samplingdist"/>.
         No surprises really: the null hypothesis says that <m>X=50</m> is the most likely outcome, and it says that we're almost certain to see somewhere between 40 and 60 correct responses.
+      </p>
+      <p> <m>\textbf{Using R-Instat: Test statistics} </m></p>
+      <p>
+        In R-Instat, the test statistic is calculated automatically when a statistical test is selected.
+      </p>
+      <p>
+        For instance:
+        <ol>
+          <li>
+            <p>
+              Selecting a t-test produces a t-statistic.
+            </p>
+          </li>
+          <li>
+            <p>
+              Selecting a binomial test uses a binomial distribution.
+            </p>
+          </li>
+          <li>
+            <p>
+              Non-parametric tests such as the Wilcoxon test use rank-based statistics.
+            </p>
+          </li>
+        </ol>
+      </p>
+      <p>
+        The user does not need to compute these manually; instead, R-Instat displays them in the output window along with the corresponding p-value.
       </p>
     </section>
 
@@ -524,6 +607,85 @@
             <image source="images/crit1.png"/>
             </figure>
           </subsection>
+          <subsection xml:id="subsec-Using_RInstat_Running_a_hypothesis_test">
+            <title>Using R-Instat: Running a hypothesis test</title>
+            <p>
+              To run a hypothesis test in R-Instat:
+            </p>
+            <p>
+              <ol>
+                <li>
+                  <p>
+                    Open the appropriate dialog Got to Model <m>&gt;</m> Fit Models then select the appropriate model:
+                    <ul>
+                      <li>One Variable Fit Model for a single variable</li>
+                      <li>Two Variable Fit Model for comparing variables</li>
+                      <li>Hypothesis Tests for direct access to statistical tests</li>
+                    </ul>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Select the variable(s)
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Choose the test (e.g., t-test, binomial, Wilcoxon)
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Specify:
+                    <ul>
+                      <li>
+                        <p>
+                          Null hypothesis
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Confidence Level
+                        </p>
+                      </li>
+                    </ul>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Click OK to run the test
+                  </p>
+                </li>
+              </ol>
+            </p>
+            <p>
+              The output window then displays:
+              <ul>
+                <li>
+                  <p>
+                    the test statistic
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    the p-value
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    confidence intervals
+                  </p>
+                </li>
+              </ul>
+            </p>
+            <p>
+              These results are used to decide whether to reject or retain the null hypothesis.
+            </p>
+            <figure xml:id="Two_Variable_Fit_Model_dialog">
+              <caption>Two Variable Fit Model in R-Instat used for comparing two variables or testing relationships such as correlation or differences between groups.</caption>
+              <image source="images/Two_Variable_Fit_Model_dialog.png"/>
+            </figure>
+          </subsection>
     </section>
 
     <section xml:id="pvalue">
@@ -656,6 +818,35 @@
         Put bluntly, despite the intuitive appeal of thinking this way, there is <em>no</em> justification for interpreting a <m>p</m> value this way.
         Never do it.
         </p>
+      </subsection>
+            <subsection xml:id="subsec-Using_RInstat_Interpreting_pvalues">
+        <title>Using R-Instat: Interpreting p-values</title>
+        <p>
+           In R-Instat, the p-value is displayed directly in the output.
+        </p>
+        <p>
+          To interpret it:
+          <ul>
+            <li>
+              <p>
+                If p <m> &lt; 0.05 </m> , the result is statistically significant and the null hypothesis is rejected.
+              </p>
+            </li>
+            <li>
+              <p>
+                If p <m>\ge 0.05</m>, the result is not statistically significant and the null hypothesis is retained.
+              </p>
+            </li>
+          </ul>
+        </p>
+        <p>
+          It is important to remember that the p-value does not measure the probability that the null hypothesis is true. Instead, it measures how extreme the observed data are under the assumption that the null hypothesis is correct.
+        </p>
+        <figure xml:id="General_Hypothesis_Tests_dialog">
+          <caption>The Hypothesis Tests dialog in R-Instat providing direct access to a range of statistical tests including t-tests, chi-square tests, and non-parametric tests.</caption>
+          <image source="images/General_Hypothesis_Tests_dialog.png"/>
+        </figure>
+        
       </subsection>
       <conclusion>
         <table xml:id="tab-pvaltable">
@@ -804,6 +995,28 @@
   </p>
 
   <remark>
+  <title>Using R-Instat</title>
+  <p>
+  This test can be performed directly in R-Instat without writing any code.
+  </p>
+
+  <p><em>Steps:</em>
+  <ol>
+  <li>Enter your data into a column (e.g. 1 = correct, 0 = incorrect)</li>
+  <li>Go to <em>model → fit model</em></li>
+  <li>Select the variable</li>
+  <li>Enter hypothesised proportion = 0.5</li>
+  <li>Click <em>OK</em></li>
+  </ol>
+  </p>
+
+  <p>
+  The output will include the p-value and confidence interval, which you use
+  to decide whether to reject the null hypothesis.
+  </p>
+  </remark>
+
+  <remark>
   <title>R Code</title>
 
   <!-- <program language="r">
@@ -843,12 +1056,61 @@
   For now, however, I just wanted to make the point that R contains a whole lot of functions corresponding to different kinds of hypothesis test.
   And while I'll usually spend quite a lot of time explaining the logic behind how the tests are built, every time I discuss a hypothesis test the discussion will end with me showing you a fairly simple R command that you can use to run the test in practice.
   </p>
+  <p>
+    <m>\textbf{Running the binomial test in R-Instat}</m>
+  </p>
+  <p>
+    To perform the binomial test in R-Instat:
+    <ol>
+      <li>
+        <p>
+           Open the One Variable Fit Model dialog
+        </p>
+      </li>
+      <li>
+        <p>
+          Select the variable of interest
+        </p>
+      </li>
+      <li>
+        <p>
+          Under Test, choose “binomial”
+        </p>
+      </li>
+      <li>
+        <p>
+          Enter the null hypothesis value (e.g., 0.5)
+        </p>
+      </li>
+      <li>
+        <p>
+          Click OK
+        </p>
+      </li>
+    </ol>
+  </p>
+  <p>
+    The output displays the p-value and confidence interval.
+  </p>
+  <p>
+    For example, a p-value of 0.02 indicates that the result is statistically significant at the 5% level, leading to rejection of the null hypothesis.
+  </p>
+  <figure xml:id="fig-binomial-test">
+    <caption>Binomial test configuration in R-Instat, including confidence interval methods such as Clopper-Pearson and Wilson. These options control how the interval estimates are computed.</caption>
+    <image source="images/binomial-test.png"/>
+  </figure>
+  
   </section>
 
   <section xml:id="effectsize">
   <title>Effect size, sample size and power</title>
 
+
   <introduction>
+    <figure xml:id="Multi_variable_modelling_dialogue">
+    <caption>Three and four variable modelling dialogs in R-Instat used for more complex analyses such as ANOVA and regression.</caption>
+    <image source="images/Multi variable modelling dialog.png"/>
+  </figure>
   <p>
   In previous sections I've emphasised the fact that the major design principle behind statistical hypothesis testing is that we try to control our Type I error rate.
   When we fix <m>\alpha = .05</m> we are attempting to ensure that only 5% of true null hypotheses are incorrectly rejected.
@@ -1154,7 +1416,6 @@
 
   <section>
     <title>Summary</title>
-
     <p>
       Null hypothesis testing is one of the most ubiquitous elements to statistical theory.
       The vast majority of scientific papers report the results of some hypothesis test or another.
@@ -1216,6 +1477,42 @@
     <p>
       Later in the book, in <xref ref="bayes"/>, I'll revisit the theory of null hypothesis tests from a Bayesian perspective, and introduce a number of new tools that you can use if you aren't particularly fond of the orthodox approach.
       But for now, though, we're done with the abstract statistical theory, and we can start discussing specific data analysis tools.
+    </p>
+    <p>
+      R-Instat provides a structured way to perform hypothesis testing without requiring direct coding.
+    </p>
+    <p>
+      The process follows the same logic as statistical theory:
+      <ul>
+        <li>
+          <p>
+            Define hypotheses
+          </p>
+        </li>
+        <li>
+          <p>
+            Choose a test
+          </p>
+        </li>
+        <li>
+          <p>
+            Compute a test statistic
+          </p>
+        </li>
+        <li>
+          <p>
+            Obtain a p-value
+          </p>
+        </li>
+        <li>
+          <p>
+            Make a decision
+          </p>
+        </li>
+      </ul>
+    </p>
+    <p>
+      By using dialog-based interfaces, R-Instat makes hypothesis testing accessible while still maintaining the underlying statistical principles.
     </p>
   </section>
 </chapter>
