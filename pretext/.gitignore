@@ -13,9 +13,9 @@ node_modules
 
 # don't track local Python environments/caches
 .venv/
-.cache/
 __pycache__/
 *.py[cod]
+.cache/
 
 # don't track error logs
 .error_schema.log
@@ -99,4 +99,3 @@ GitHub.sublime-settings
 .dropbox
 .dropbox.attr
 .dropbox.cache
-
