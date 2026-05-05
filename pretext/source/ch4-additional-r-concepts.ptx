@@ -1533,4 +1533,1450 @@ we get the "title" information, and a short "description" of what the function d
     </ul>
     <p>Taken together, <xref ref="introR"/> and <xref ref="mechanics"/> provide enough of a background that you can finally get started doing some statistics! Yes, there's a lot more R concepts that you ought to know (and we'll talk about some of them in Chapters<xref ref="datahandling"/> and<xref ref="scripting"/>), but I think that we've talked quite enough about programming for the moment. It's time to see how your experience with programming can be used to do some data analysis...</p>
   </section>
+
+
+  <!-- The following sections were moved from Chapter 3 (old base R content) to preserve cross-references -->
+  <section xml:id="assign">
+    <title>Storing a number as a variable</title>
+    <p>
+      One of the most important things to be able to do in R (or any programming language, for that matter) is to store information in <term>variables</term>. Variables in R aren't exactly the same thing as the variables we talked about in the last chapter on research methods, but they are similar. At a conceptual level you can think of a variable as <em>label</em> for a certain piece of information, or even several different pieces of information. When doing statistical analysis in R all of your data (the variables you measured in your study) will be stored as variables in R, but as well see later in the book you'll find that you end up creating variables for other things too. However, before we delve into all the messy details of data sets and statistical analysis, let's look at the very basics for how we create variables and work with them.
+    </p>
+    <subsection>
+      <title>Variable assignment using <c>&lt;-</c> and <c>-&gt;</c></title>
+      <p>
+        Since we've been working with numbers so far, let's start by creating variables to store our numbers. And since most people like concrete examples, let's invent one. Suppose I'm trying to calculate how much money I'm going to make from this book. There's several different numbers I might want to store. Firstly, I need to figure out how many copies I'll sell. This isn't exactly <em>Harry Potter</em>, so let's assume I'm only going to sell one copy per student in my class. That's 350 sales, so let's create a variable called <c>sales</c>. What I want to do is assign a <term>value</term> to my variable <c>sales</c>, and that value should be <c>350</c>. We do this by using the <term>assignment operator</term>, which is <c>&lt;-</c>. Here's how we do it:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          sales &lt;- 350
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 350
+]]></output>
+    </console>
+      </remark>
+      <p>
+        When you hit enter, R doesn't print out any output.<fn>If you are using RStudio, and the "environment" panel (formerly known as the "workspace" panel) is visible when you typed the command, then you probably saw something happening there. That's to be expected, and is quite helpful. However, there's two things to note here (1) I haven't yet explained what that panel does, so for now just ignore it, and (2) this is one of the helpful things RStudio does, not a part of R itself.</fn> It just gives you another command prompt. However, behind the scenes R has created a variable called <c>sales</c> and given it a value of <c>350</c>. You can check that this has happened by asking R to print the variable on screen. And the simplest way to do <em>that</em> is to type the name of the variable and hit enter<fn>As we'll discuss later, by doing this we are implicitly using the <c>print()</c> function</fn>.
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          sales
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 350
+]]></output>
+    </console>
+      </remark>
+      <p>
+        So that's nice to know. Anytime you can't remember what R has got stored in a particular variable, you can just type the name of the variable and hit enter.
+      </p>
+      <p>
+        Okay, so now we know how to assign variables. Actually, there's a bit more you should know. Firstly, one of the curious features of R is that there are several different ways of making assignments. In addition to the <c>&lt;-</c> operator, we can also use <c>-&gt;</c> and <c>=</c>, and it's pretty important to understand the differences between them.<fn>Actually, in keeping with the R tradition of providing you with a billion different screwdrivers (even when you're actually looking for a hammer) these aren't the only options. There's also the<c>assign()</c> function, and the <c>&lt;&lt;-</c> and <c>->></c> operators. However, we won't be using these at all in this book.</fn> Let's start by considering <c>-&gt;</c>, since that's the easy one (we'll discuss the use of <c>=</c> in <xref ref="functionarguments" />. As you might expect from just looking at the symbol, it's almost identical to <c>&lt;-</c>. It's just that the arrow (i.e., the assignment) goes from left to right. So if I wanted to define my <c>sales</c> variable using <c>-&gt;</c>, I would write it like this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          350 -&gt; sales
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 350
+]]></output>
+    </console>
+      </remark>
+      <p>
+        This has the same effect: and it <em>still</em> means that I'm only going to sell <c>350</c> copies. Sigh. Apart from this superficial difference, <c>&lt;-</c> and <c>-&gt;</c> are identical. In fact, as far as R is concerned, they're actually the same operator, just in a "left form" and a "right form".<fn>A quick reminder: when using operators like <c>&lt;-</c> and <c>-&gt;</c> that span multiple characters, you can't insert spaces in the middle. That is, if you type <c>- &gt;</c> or <c>&lt; -</c>, R will interpret your command the wrong way. And I will cry.</fn>
+      </p>
+    </subsection>
+    <subsection>
+      <title>Doing calculations using variables</title>
+      <p>
+        Okay, let's get back to my original story. In my quest to become rich, I've written this textbook. To figure out how good a strategy is, I've started creating some variables in R. In addition to defining a <c>sales</c> variable that counts the number of copies I'm going to sell, I can also create a variable called <c>royalty</c>, indicating how much money I get per copy. Let's say that my royalties are about $7 per book:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          sales &lt;- 350
+          royalty &lt;- 7
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 350
+]]></output>
+    </console>
+      </remark>
+      <p>
+        The nice thing about variables (in fact, the whole point of having variables) is that we can do anything with a variable that we ought to be able to do with the information that it stores. That is, since R allows me to multiply <c>350</c> by <c>7</c>
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          350 * 7
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 2450
+]]></output>
+    </console>
+      </remark>
+      <p>
+        it also allows me to multiply <c>sales</c> by <c>royalty</c>
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          sales * royalty
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 2450
+]]></output>
+    </console>
+      </remark>
+      <p>
+        As far as R is concerned, the <c>sales * royalty</c> command is the same as the <c>350 * 7</c> command. Not surprisingly, I can assign the output of this calculation to a new variable, which I'll call <c>revenue</c>. And when we do this, the new variable <c>revenue</c> gets the value <c>2450</c>. So let's do that, and then get R to print out the value of <c>revenue</c> so that we can verify that it's done what we asked:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          revenue &lt;- sales * royalty
+          revenue
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 2450
+]]></output>
+    </console>
+      </remark>
+      <p>
+        That's fairly straightforward. A slightly more subtle thing we can do is reassign the value of my variable, based on its current value. For instance, suppose that one of my students (no doubt under the influence of psychotropic drugs) loves the book so much that he or she donates me an extra $550. The simplest way to capture this is by a command like this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          revenue &lt;- revenue + 550
+          revenue
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 3000
+]]></output>
+    </console>
+      </remark>
+      <p>
+        In this calculation, R has taken the old value of <c>revenue</c> (i.e., 2450) and added 550 to that value, producing a value of 3000. This new value is assigned to the <c>revenue</c> variable, overwriting its previous value. In any case, we now know that I'm expecting to make $3000 off this. Pretty sweet, I thinks to myself. Or at least, that's what I thinks until I do a few more calculation and work out what the implied hourly wage I'm making off this looks like.
+      </p>
+    </subsection>
+    <subsection>
+      <title>Rules and conventions for naming variables</title>
+      <p>
+        In the examples that we've seen so far, my variable names (<c>sales</c> and <c>revenue</c>) have just been English-language words written using lowercase letters. However, R allows a lot more flexibility when it comes to naming your variables, as the following list of rules<fn>Actually, you can override any of these rules if you want to, and quite easily. All you have to do is add quote marks or backticks around your non-standard variable name. For instance <c><c>my sales</c> &lt;- 350</c> would work just fine, but it's almost never a good idea to do this.</fn> illustrates:
+      </p>
+      <ul>
+        <li>
+          <p>Variable names can only use the upper case alphabetic characters <c>A</c>-<c>Z</c> as well as the lower case characters <c>a</c>-<c>z</c>. You can also include numeric characters <c>0</c>-<c>9</c> in the variable name, as well as the period <c>.</c> or underscore <c>_</c> character. In other words, you can use <c>SaL.e_s</c> as a variable name (though I can't think why you would want to), but you can't use <c>Sales?</c>.</p>
+        </li>
+        <li>
+          <p>Variable names cannot include spaces: therefore <c>my sales</c> is not a valid name, but <c>my.sales</c> is.</p>
+        </li>
+        <li>
+          <p>Variable names are case sensitive: that is, <c>Sales</c> and <c>sales</c> are <em>different</em> variable names.</p>
+        </li>
+        <li>
+          <p>Variable names must start with a letter or a period. You can't use something like <c>_sales</c> or <c>1sales</c> as a variable name. You can use <c>.sales</c> as a variable name if you want, but it's not usually a good idea. By convention, variables starting with a <c>.</c> are used for special purposes, so you should avoid doing so.</p>
+        </li>
+        <li>
+          <p>Variable names cannot be one of the reserved keywords. These are special names that R needs to keep "safe" from us mere users, so you can't use them as the names of variables. The keywords are: <c>if</c>, <c>else</c>, <c>repeat</c>, <c>while</c>, <c>function</c>, <c>for</c>, <c>in</c>, <c>next</c>, <c>break</c>, <c>TRUE</c>, <c>FALSE</c>, <c>NULL</c>, <c>Inf</c>, <c>NaN</c>, <c>NA</c>, <c>NA_integer_</c>, <c>NA_real_</c>, <c>NA_complex_</c>, and finally,  <c>NA_character_</c>. Don't feel especially obliged to memorise these: if you make a mistake and try to use one of the keywords as a variable name, R will complain about it like the whiny little automaton it is.</p>
+        </li>
+      </ul>
+      <p>
+        In addition to those rules that R enforces, there are some informal conventions that people tend to follow when naming variables. One of them you've already seen: i.e., don't use variables that start with a period. But there are several others. You aren't obliged to follow these conventions, and there are many situations in which it's advisable to ignore them, but it's generally a good idea to follow them when you can:
+      </p>
+      <ul>
+        <li>
+          <p>Use informative variable names. As a general rule, using meaningful names like <c>sales</c> and <c>revenue</c> is preferred over arbitrary ones like <c>variable1</c> and <c>variable2</c>. Otherwise it's very hard to remember what the contents of different variables are, and it becomes hard to understand what your commands actually do.</p>
+        </li>
+        <li>
+          <p>Use short variable names. Typing is a pain and no-one likes doing it. So we much prefer to use a name like <c>sales</c> over a name like <c>sales.for.this.book.that.you.are.reading</c>. Obviously there's a bit of a tension between using informative names (which tend to be long) and using short names (which tend to be meaningless), so use a bit of common sense when trading off these two conventions.</p>
+        </li>
+        <li>
+          <p>Use one of the conventional naming styles for multi-word variable names. Suppose I want to name a variable that stores "my new salary". Obviously I can't include spaces in the variable name, so how should I do this? There are three different conventions that you sometimes see R users employing. Firstly, you can separate the words using periods, which would give you <c>my.new.salary</c> as the variable name. Alternatively, you could separate words using underscores, as in <c>my_new_salary</c>. Finally, you could use capital letters at the beginning of each word (except the first one), which gives you <c>myNewSalary</c> as the variable name. I don't think there's any strong reason to prefer one over the other,<fn>For very advanced users: there is one exception to this. If you're naming a function, don't use <c>.</c> in the name unless you are intending to make use of the S3 object oriented programming system in R. If you don't know what S3 is, then you definitely don't want to be using it! For function naming, there's been a trend among R users to prefer <c>myFunctionName</c>.</fn> but it's important to be consistent.</p>
+        </li>
+      </ul>
+    </subsection>
+  </section>
+
+  <section xml:id="vectors">
+    <title>Storing many numbers as a vector</title>
+    <p>
+      At this point we've covered functions in enough detail to get us safely through the next couple of chapters (with one small exception: see <xref ref="generics" />, so let's return to our discussion of variables. When I introduced variables in <xref ref="assign" /> I showed you how we can use variables to store a single number. In this section, we'll extend this idea and look at how to store multiple numbers within the one variable. In R, the name for a variable that can store multiple values is a <term>vector</term>. So let's create one.
+    </p>
+    <subsection>
+      <title>Creating a vector</title>
+      <p>
+        Let's stick to my silly "get rich quick by textbook writing" example. Suppose the textbook company (if I actually had one, that is) sends me sales data on a monthly basis. Since my class start in late February, we might expect most of the sales to occur towards the start of the year. Let's suppose that I have 100 sales in February, 200 sales in March and 50 sales in April, and no other sales for the rest of the year. What I would like to do is have a variable <mdash /> let's call it <c>sales.by.month</c> <mdash /> that stores all this sales data. The first number stored should be <c>0</c> since I had no sales in January, the second should be <c>100</c>, and so on. The simplest way to do this in R is to use the <term>combine</term> function, <c>c()</c>. To do so, all we have to do is type all the numbers you want to store in a comma separated list, like this:<fn>Notice that I didn't specify any argument names here. The <c>c()</c> function is one of those cases where we don't use names. We just type all the numbers, and R just dumps them all in a single variable.</fn>
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          sales.by.month &lt;- c(0, 100, 200, 50, 0, 0, 0, 0, 0, 0, 0, 0)
+          sales.by.month
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 0 100 200 50 0 0 0 0 0 0 0 0
+]]></output>
+    </console>
+      </remark>
+      <p>
+        To use the correct terminology here, we have a single variable here called <c>sales.by.month</c>: this variable is a vector that consists of 12 <term>elements</term>.
+      </p>
+    </subsection>
+    <subsection>
+      <title>A handy digression</title>
+      <p>
+        Now that we've learned how to put information into a vector, the next  thing to understand is how to pull that information back out again. However, before I do so it's worth taking a slight detour. If you've been following along, typing all the commands into R yourself, it's possible that the output that you saw when we printed out the <c>sales.by.month</c> vector was slightly different to what I showed above. This would have happened if the window (or the RStudio panel) that contains the R console is really, really narrow. If that were the case, you might have seen output that looks something like this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          sales.by.month
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 0 100 200 50 0 0 0 0
+## [9] 0 0 0 0
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Because there wasn't much room on the screen, R has printed out the results over three lines. But that's not the important thing to notice. The important point is that the first line has a <c>[1]</c> in front of it, whereas the second line starts with <c>[5]</c> and the third with <c>[9]</c>. It's pretty clear what's happening here. For the first row, R has printed out the 1st element through to the 4th element, so it starts that row with a <c>[1]</c>. For the second row, R has printed out the 5th element of the vector through to the 8th one, and so it begins that row with a <c>[5]</c> so that you can tell where it's up to at a glance. It might seem a bit odd to you that R does this, but in some ways it's a kindness, especially when dealing with larger data sets!
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          options(width = 75)
+        </input>
+      </program>
+      </remark>
+    </subsection>
+    <subsection xml:id="vectorsubset">
+      <title>Getting information out of vectors</title>
+      <p>
+        To get back to the main story, let's consider the problem of how to get information out of a vector. At this point, you might have a sneaking suspicion that the answer has something to do with the <c>[1]</c> and <c>[9]</c> things that R has been printing out. And of course you are correct. Suppose I want to pull out the February sales data only. February is the second month of the year, so let's try this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          sales.by.month[2]
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 100
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Yep, that's the February sales all right. But there's a subtle detail to be aware of here: notice that R outputs <c>[1] 100</c>, <em>not</em> <c>[2] 100</c>. This is because R is being extremely literal. When we typed in <c>sales.by.month[2]</c>, we asked R to find exactly <em>one</em> thing, and that one thing happens to be the second element of our <c>sales.by.month</c> vector. So, when it outputs <c>[1] 100</c> what R is saying is that the first number <em>that we just asked for</em> is <c>100</c>. This behaviour makes more sense when you realise that we can use this trick to create new variables. For example, I could create a <c>february.sales</c> variable like this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          february.sales &lt;- sales.by.month[2]
+          february.sales
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 100
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Obviously, the new variable <c>february.sales</c> should only have one element and so when I print it out this new variable, the R output begins with a <c>[1]</c> because <c>100</c> is the value of the first (and only) element of <c>february.sales</c>. The fact that this also happens to be the value of the second element of <c>sales.by.month</c> is irrelevant. We'll pick this topic up again shortly (<xref ref="indexing" />).
+      </p>
+    </subsection>
+    <subsection>
+      <title>Altering the elements of a vector</title>
+      <p>
+        Sometimes you'll want to change the values stored in a vector. Imagine my surprise when the publisher rings me up to tell me that the sales data for May are wrong. There were actually an additional 25 books sold in May, but there was an error or something so they hadn't told me about it. How can I fix my <c>sales.by.month</c> variable? One possibility would be to assign the whole vector again from the beginning, using <c>c()</c>. But that's a lot of typing. Also, it's a little wasteful: why should R have to redefine the sales figures for all 12 months, when only the 5th one is wrong? Fortunately, we can tell R to change only the 5th element, using this trick:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          sales.by.month[5] &lt;- 25
+          sales.by.month
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 0 100 200 50 25 0 0 0 0 0 0 0
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Another way to edit variables is to use the <c>edit()</c> or <c>fix()</c> functions. I won't discuss them in detail right now, but you can check them out on your own.
+      </p>
+    </subsection>
+    <subsection xml:id="veclength">
+      <title>Useful things to know about vectors</title>
+      <p>
+        Before moving on, I want to mention a couple of other things about vectors. Firstly, you often find yourself wanting to know how many elements there are in a vector (usually because you've forgotten). You can use the <c>length()</c> function to do this. It's quite straightforward:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          length( x = sales.by.month )
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 12
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Secondly, you often want to alter all of the elements of a vector at once. For instance, suppose I wanted to figure out how much money I made in each month. Since I'm earning an exciting $7 per book (no seriously, that's actually pretty close to what authors get on the very expensive textbooks that you're expected to purchase), what I want to do is multiply each element in the <c>sales.by.month</c> vector by <c>7</c>. R makes this pretty easy, as the following example shows:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          sales.by.month * 7
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 0 700 1400 350 0 0 0 0 0 0 0 0
+]]></output>
+    </console>
+      </remark>
+      <p>
+        In other words, when you multiply a vector by a single number, all elements in the vector get multiplied. The same is true for addition, subtraction, division and taking powers. So that's neat. On the other hand, suppose I wanted to know how much money I was making per day, rather than per month. Since not every month has the same number of days, I need to do something slightly different. Firstly, I'll create two new vectors:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          days.per.month &lt;- c(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+          profit &lt;- sales.by.month * 7
+        </input>
+      </program>
+      </remark>
+      <p>
+        Obviously, the <c>profit</c> variable is the same one we created earlier, and the <c>days.per.month</c> variable is pretty straightforward. What I want to do is divide every element of <c>profit</c> by the <em>corresponding</em> element of <c>days.per.month</c>. Again, R makes this pretty easy:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          profit / days.per.month
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+##  [1]  0.000000 25.000000 45.161290 11.666667  5.645161  0.000000  0.000000
+##  [8]  0.000000  0.000000  0.000000  0.000000  0.000000
+]]></output>
+    </console>
+      </remark>
+      <p>
+        I still don't like all those zeros, but that's not what matters here. Notice that the second element of the output is 25, because R has divided the second element of <c>profit</c> (i.e. 700) by the second element of <c>days.per.month</c> (i.e. 28). Similarly, the third element of the output is equal to 1400 divided by 31, and so on. We'll talk more about calculations involving vectors later on (and in particular a thing called the "recycling rule"; <xref ref="recycling" />), but that's enough detail for now.
+      </p>
+    </subsection>
+  </section>
+
+
+  <section xml:id="usingfunctions">
+    <title>Using functions to do calculations</title>
+    <p>
+      The symbols <c>+</c>, <c>-</c>, <c>*</c> and so on are examples of operators. As we've seen, you can do quite a lot of calculations just by using these operators. However, in order to do more advanced calculations (and later on, to do actual statistics), you're going to need to start using <term>functions</term>.<fn>A side note for students with a programming background. Technically speaking, operators <em>are</em> functions in R: the addition operator <c>+</c> is actually a convenient way of calling the addition function <c>+()</c>. Thus <c>10+20</c> is equivalent to the function call <c>+(20, 30)</c>. Not surprisingly, no-one ever uses this version. Because that would be stupid.</fn> I'll talk in more detail about functions and how they work in <xref ref="functions" />, but for now let's just dive in and use a few. To get started, suppose I wanted to take the square root of 225. The  square root, in case your high school maths is a bit rusty, is just the opposite of squaring a number. So, for instance, since "5 squared is 25" I can say that "5 is the square root of 25". The usual notation for this is
+    </p>
+    <p>
+      <me> \sqrt{25} = 5 </me>
+    </p>
+    <p>
+      though sometimes you'll also see it written like this <m>25^{0.5} = 5.</m> This second way of writing it is kind of useful to "remind" you of the mathematical fact that "square root of <m>x</m>" is actually the same as "raising <m>x</m> to the power of 0.5". Personally, I've never found this to be terribly meaningful psychologically, though I have to admit it's quite convenient mathematically. Anyway, it's not important. What is important is that you remember what a square root is, since we're going to need it later on.
+    </p>
+    <p>
+      To calculate the square root of 25, I can do it in my head pretty easily, since I memorised my multiplication tables when I was a kid. It gets harder when the numbers get bigger, and pretty much impossible if they're not whole numbers. This is where something like R comes in very handy. Let's say I wanted to calculate <m>\sqrt{225}</m>, the square root of 225. There's two ways I could do this using R. Firstly, since the square root of 255 is the same thing as raising 225 to the power of 0.5, I could use the power operator <c>^</c>, just like we did earlier:
+    </p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+      <input>
+        225 ^ 0.5
+      </input>
+    </program>
+    <console>
+      <output><![CDATA[
+## [1] 15
+]]></output>
+    </console>
+    </remark>
+    <p>
+      However, there's a second way that we can do this, since R also provides a <term>square root function</term>, <c>sqrt()</c>. To calculate the square root of 255 using this function, what I do is insert the number <c>225</c> in the parentheses. That is, the command I type is this:
+    </p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+      <input>
+        sqrt( 225 )
+      </input>
+    </program>
+    <console>
+      <output><![CDATA[
+## [1] 15
+]]></output>
+    </console>
+    </remark>
+    <p>
+      and as you might expect from our previous discussion, the spaces in between the parentheses are purely cosmetic. I could have typed <c>sqrt(225)</c> or <c>sqrt( 225   )</c> and gotten the same result. When we use a function to do something, we generally refer to this as <term>calling</term> the function, and the values that we type into the function (there can be more than one) are referred to as the <term>arguments</term> of that function.
+    </p>
+    <p>
+      Obviously, the <c>sqrt()</c> function doesn't really give us any new functionality, since we already knew how to do square root calculations by using the power operator <c>^</c>, though I do think it looks nicer when we use <c>sqrt()</c>. However, there are lots of other functions in R: in fact, almost everything of interest that I'll talk about in this book is an R function of some kind. For example, one function that we will need to use in this book is the <term>absolute value function</term>. Compared to the square root function, it's extremely simple: it just converts negative numbers to positive numbers, and leaves positive numbers alone. Mathematically, the absolute value of <m>x</m> is written <m>|x|</m> or sometimes <m>\mbox{abs}(x)</m>. Calculating absolute values in R is pretty easy, since R provides the <c>abs()</c> function that you can use for this purpose. When you feed it a positive number...
+    </p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+      <input>
+        abs( 21 )
+      </input>
+    </program>
+    <console>
+      <output><![CDATA[
+## [1] 21
+]]></output>
+    </console>
+    </remark>
+    <p>
+      the absolute value function does nothing to it at all. But when you feed it a negative number, it spits out the positive version of the same number, like this:
+    </p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+      <input>
+        abs( -13 )
+      </input>
+    </program>
+    <console>
+      <output><![CDATA[
+## [1] 13
+]]></output>
+    </console>
+    </remark>
+    <p>
+      In all honesty, there's nothing that the absolute value function does that you couldn't do just by looking at the number and erasing the minus sign if there is one. However, there's a few places later in the book where we have to use absolute values, so I thought it might be a good idea to explain the meaning of the term early on.
+    </p>
+    <p>
+      Before moving on, it's worth noting that <mdash /> in the same way that R allows us to put multiple operations together into a longer command, like <c>1 + 2*4</c> for instance <mdash /> it also lets us put functions together and even combine functions with operators if we so desire. For example, the following is a perfectly legitimate command:
+    </p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+      <input>
+        sqrt( 1 + abs(-8) )
+      </input>
+    </program>
+    <console>
+      <output><![CDATA[
+## [1] 3
+]]></output>
+    </console>
+    </remark>
+    <p>
+      When R executes this command, starts out by calculating the value of <c>abs(-8)</c>, which produces an intermediate value of <c>8</c>. Having done so, the command simplifies to <c>sqrt( 1 + 8 )</c>. To solve the square root<fn>A note for the mathematically inclined: R does support complex numbers, but unless you explicitly specify that you want them it assumes all calculations must be real valued. By default, the square root of a negative number is treated as undefined: <c>sqrt(-9)</c> will produce <c>NaN</c> (not a number) as its output. To get complex numbers, you would type <c>sqrt(-9+0i)</c>  and R would now return <c>0+3i</c>. However, since we won't have any need for complex numbers in this book, I won't refer to them again.</fn> it first needs to add <c>1 + 8</c> to get <c>9</c>, at which point it evaluates <c>sqrt(9)</c>, and so it finally outputs a value of <c>3</c>.
+    </p>
+    <subsection xml:id="functionarguments">
+      <title>Function arguments, their names and their defaults</title>
+      <p>
+        There's two more fairly important things that you need to understand about how functions work in R, and that's the use of "named" arguments, and default values" for arguments. Not surprisingly, that's not to say that this is the last we'll hear about how functions work, but they are the last things we desperately need to discuss in order to get you started. To understand what these two concepts are all about, I'll introduce another function. The <c>round()</c> function can be used to round some value to the nearest whole number. For example, I could type this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          round( 3.1415 )
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 3
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Pretty straightforward, really. However, suppose I only wanted to round it to two decimal places: that is, I want to get <c>3.14</c> as the output. The <c>round()</c> function supports this, by allowing you to input a second argument to the function that specifies the number of decimal places that you want to round the number to. In other words, I could do this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          round( 3.14165, 2 )
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 3.14
+]]></output>
+    </console>
+      </remark>
+      <p>
+        What's happening here is that I've specified <em>two</em> arguments: the first argument is the number that needs to be rounded (i.e., <c>3.1415</c>), the second argument is the number of decimal places that it should be rounded to (i.e., <c>2</c>), and the two arguments are separated by a comma. In this simple example, it's quite easy to remember which one argument comes first and which one comes second, but for more complicated functions this is not easy. Fortunately, most R functions make use of <term>argument names</term>. For the <c>round()</c> function, for example the number that needs to be rounded is specified using the <c>x</c> argument, and the number of decimal points that you want it rounded to is specified using the <c>digits</c> argument. Because we have these names available to us, we can specify the arguments to the function by name. We do so like this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          round( x = 3.1415, digits = 2 )
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 3.14
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Notice that this is kind of similar in spirit to variable assignment (<xref ref="assign" />), except that I used <c>=</c> here, rather than <c>&lt;-</c>. In both cases we're specifying specific values to be associated with a label. However, there are some differences between what I was doing earlier on when creating variables, and what I'm doing here when specifying arguments, and so as a consequence it's important that you use <c>=</c> in this context.
+      </p>
+      <p>
+        As you can see, specifying the arguments by name involves a lot more typing, but it's also a lot easier to read. Because of this, the commands in this book will usually specify arguments by name,<fn>The two functions discussed previously, <c>sqrt()</c> and <c>abs()</c>, both only have a single argument, <c>x</c>. So I could have typed something like <c>sqrt(x = 225)</c> or <c>abs(x = -13)</c> earlier. The fact that all these functions use <c>x</c> as the name of the argument that corresponds the "main" variable that you're working with is no coincidence. That's a fairly widely used convention. Quite often, the writers of R functions will try to use conventional names like this to make your life easier. Or at least that's the theory. In practice it doesn't always work as well as you'd hope.</fn> since that makes it clearer to you what I'm doing. However, one important thing to note is that when specifying the arguments using their names, it doesn't matter what order you type them in. But if you don't use the argument names, then you have to input the arguments in the correct order. In other words, these three commands all produce the same output...
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          round( 3.14165, 2 )
+          round( x = 3.1415, digits = 2 )
+          round( digits = 2, x = 3.1415 )
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 3.14
+]]></output>
+    </console>
+      </remark>
+      <p>
+        but this one does not...
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          round( 2, 3.14165 )
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 2
+]]></output>
+    </console>
+      </remark>
+      <p>
+        How do you find out what the correct order is? There's a few different ways, but the easiest one is to look at the help documentation for the function (see <xref ref="help" />. However, if you're ever unsure, it's probably best to actually type in the argument name.
+      </p>
+      <p>
+        Okay, so that's the first thing I said you'd need to know: argument names. The second thing you need to know about is default values. Notice that the first time I called the <c>round()</c> function I didn't actually specify the <c>digits</c> argument at all, and yet R somehow knew that this meant it should round to the nearest whole number. How did that happen? The answer is that the <c>digits</c> argument has a <term>default value</term> of <c>0</c>, meaning that if you decide not to specify a value for <c>digits</c> then R will act as if you had typed <c>digits = 0</c>. This is quite handy: the vast majority of the time when you want to round a number you want to round it to the nearest whole number, and it would be pretty annoying to have to specify the <c>digits</c> argument every single time. On the other hand, sometimes you actually do want to round to something other than the nearest whole number, and it would be even more annoying if R didn't allow this! Thus, by having <c>digits = 0</c> as the default value, we get the best of both worlds.
+      </p>
+    </subsection>
+  </section>
+  <section xml:id="text">
+    <title>Storing text data</title>
+    <p>
+      A lot of the time your data will be numeric in nature, but not always. Sometimes your data really needs to be described using text, not using numbers. To address this, we need to consider the situation where our variables store text. To create a variable that stores the word "hello", we can type this:
+    </p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+      <input>
+        greeting &lt;- "hello"
+        greeting
+      </input>
+    </program>
+    </remark>
+    <p>
+      When interpreting this, it's important to recognise that the quote marks here <em>aren't</em> part of the string itself. They're just something that we use to make sure that R knows to treat the characters that they enclose as a piece of text data, known as a <term>character string</term>. In other words, R treats <c>"hello"</c> as a string containing the word "hello"; but if I had typed <c>hello</c> instead, R would go looking for a variable by that name! You can also use <c>'hello'</c> to specify a character string.
+    </p>
+    <p>
+      Okay, so that's how we store the text. Next, it's important to recognise that when we do this, R stores the entire word <c>"hello"</c> as a <em>single</em> element: our <c>greeting</c> variable is <em>not</em> a vector of five different letters. Rather, it has only the one element, and that element corresponds to the entire character string <c>"hello"</c>. To illustrate this, if I actually ask R to find the first element of <c>greeting</c>, it prints the whole string:
+    </p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+      <input>
+        greeting[1]
+      </input>
+    </program>
+    <console>
+      <output><![CDATA[
+## [1] "hello"
+]]></output>
+    </console>
+    </remark>
+    <p>
+      Of course, there's no reason why I can't create a vector of character strings. For instance, if we were to continue with the example of my attempts to look at the monthly sales data for my book, one variable I might want would include the names of all 12 <c>months</c>.<fn>Though actually there's no real need to do this, since R has an inbuilt variable called <c>month.name</c> that you can use for this purpose.</fn> To do so, I could type in a command like this
+    </p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+      <input>
+        months &lt;- c("January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November",
+                    "December")
+      </input>
+    </program>
+    </remark>
+    <p>
+      This is a <term>character vector</term> containing 12 elements, each of which is the name of a month. So if I wanted R to tell me the name of the fourth month, all I would do is this:
+    </p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+      <input>
+        months[4]
+      </input>
+    </program>
+    <console>
+      <output><![CDATA[
+## [1] "April"
+]]></output>
+    </console>
+    </remark>
+    <subsection xml:id="simpletext">
+      <title>Working with text</title>
+      <p>
+        Working with text data is somewhat more complicated than working with numeric data, and I discuss some of the basic ideas in <xref ref="textprocessing" />, but for purposes of the current chapter we only need this bare bones sketch. The only other thing I want to do before moving on is show you an example of a function that can be applied to text data. So far, most of the functions that we have seen (i.e., <c>sqrt()</c>, <c>abs()</c> and <c>round()</c>) only make sense when applied to numeric data (e.g., you can't calculate the square root of "hello"), and we've seen one function that can be applied to pretty much any variable or vector (i.e., <c>length()</c>). So it might be nice to see an example of a function that can be applied to text.
+      </p>
+      <p>
+        The function I'm going to introduce you to is called <c>nchar()</c>, and what it does is count the number of individual characters that make up a string. Recall earlier that when we tried to calculate the <c>length()</c> of our <c>greeting</c> variable it returned a value of <c>1</c>: the <c>greeting</c> variable contains only the one string, which happens to be <c>"hello"</c>. But what if I want to know how many letters there are in the word? Sure, I could <em>count</em> them, but that's boring, and more to the point it's a terrible strategy if what I wanted to know was the number of letters in <em>War and Peace</em>. That's where the <c>nchar()</c> function is helpful:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          nchar( x = greeting )
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 5
+]]></output>
+    </console>
+      </remark>
+      <p>
+        That makes sense, since there are in fact 5 letters in the string <c>"hello"</c>. Better yet, you can apply <c>nchar()</c> to whole vectors. So, for instance, if I want R to tell me how many letters there are in the names of each of the 12 months, I can do this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          nchar( x = months )
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+##  [1] 7 8 5 5 3 4 4 6 9 7 8 8
+]]></output>
+    </console>
+      </remark>
+      <p>
+        So that's nice to know. The <c>nchar()</c> function can do a bit more than this, and there's a lot of other functions that you can do to extract more information from text or do all sorts of fancy things. However, the goal here is not to teach any of that! The goal right now is just to see an example of a function that actually does work when applied to text.
+      </p>
+    </subsection>
+  </section>
+  <section xml:id="logicals">
+    <title>Storing "true or false" data</title>
+    <p>
+      Time to move onto a third kind of data. A key concept in that a lot of R relies on is the idea of a <term>logical value</term>. A logical value is an assertion about whether something is true or false. This is implemented in R in a pretty straightforward way. There are two logical values, namely <c>TRUE</c> and <c>FALSE</c>. Despite the simplicity, a logical values are very useful things. Let's see how they work.
+    </p>
+    <subsection>
+      <title>Assessing mathematical truths</title>
+      <p>
+        In George Orwell's classic book <em>1984</em>, one of the slogans used by the totalitarian Party was "two plus two equals five", the idea being that the political domination of human freedom becomes complete when it is possible to subvert even the most basic of truths. It's a terrifying thought, especially when the protagonist Winston Smith finally breaks down under torture and agrees to the proposition. "Man is infinitely malleable", the book says. I'm pretty sure that this isn't true of humans<fn>I offer up my teenage attempts to be "cool" as evidence that some things just can't be done.</fn> but it's definitely not true of R. R is not infinitely malleable. It has rather firm opinions on the topic of what is and isn't true, at least as regards basic mathematics. If I ask it to calculate <c>2 + 2</c>, it always gives the same answer, and it's not bloody 5:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          2 + 2
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 4
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Of course, so far R is just doing the calculations. I haven't asked it to explicitly assert that <m>2+2 = 4</m> is a true statement. If I want R to make an explicit judgement, I can use a command like this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          2 + 2 == 4
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 4
+]]></output>
+    </console>
+      </remark>
+      <p>
+        What I've done here is use the <term>equality operator</term>, <c>==</c>, to force R to make a "true or false" judgement.<fn>Note that this is a very different operator to the assignment operator <c>=</c> that I talked about in <xref ref="assign"/>. A common typo that people make when trying to write logical commands in R (or other languages, since the "<c>=</c> versus <c>==</c>" distinction is important in most programming languages) is to accidentally type <c>=</c> when you really mean <c>==</c>. Be especially cautious with this <mdash /> I've been programming in various languages since I was a teenager, and I <em>still</em> screw this up a lot. Hm. I think I see why I wasn't cool as a teenager. And why I'm still not cool.</fn> Okay, let's see what R thinks of the Party slogan:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          2+2 == 5
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] FALSE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Booyah! Freedom and ponies for all! Or something like that. Anyway, it's worth having a look at what happens if I try to <em>force</em> R to believe that two plus two is five by making an assignment statement like  <c>2 + 2 = 5</c> or <c>2 + 2 &lt;- 5</c>. When I do this, here's what happens:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          2 + 2 = 5
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 4
+]]></output>
+    </console>
+      </remark>
+      <p>
+        R doesn't like this very much. It recognises that <c>2 + 2</c> is <em>not</em> a variable (that's what the "non-language object" part is saying), and it won't let you try to "reassign" it. While R is pretty flexible, and actually does let you do some quite remarkable things to redefine parts of R itself, there are just some basic, primitive truths that it refuses to give up. It won't change the laws of addition, and it won't change the definition of the number <c>2</c>.
+      </p>
+      <p>
+        That's probably for the best.
+      </p>
+    </subsection>
+    <subsection>
+      <title>Logical operations</title>
+      <p>
+        So now we've seen logical operations at work, but so far we've only seen the simplest possible example. You probably won't be surprised to discover that we can combine logical operations with other operations and functions in a more complicated way, like this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          3*3 + 4*4 == 5*5
+          
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] TRUE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        or this
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          sqrt( 25 ) == 5
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] TRUE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Not only that, but as <xref ref="table-logicals" /> illustrates, there are several other logical operators that you can use, corresponding to some basic mathematical concepts.
+      </p>
+      <table xml:id="table-logicals">
+        <title>Some logical operators. Technically I should be calling these "binary relational operators", but quite frankly I don't want to. It's my book so no-one can make me.</title>
+        <tabular halign="center">
+          <row header="yes" bottom="minor">
+            <cell halign="left">operation</cell>
+            <cell>operator</cell>
+            <cell>example input</cell>
+            <cell>answer</cell>
+          </row>
+          <row>
+            <cell halign="left">less than</cell>
+            <cell><c>&lt;</c></cell>
+            <cell><c>2 &lt; 3</c></cell>
+            <cell><c>TRUE</c></cell>
+          </row>
+          <row>
+            <cell halign="left">less than or equal to</cell>
+            <cell><c>&lt;=</c></cell>
+            <cell><c>2 &lt;= 2</c></cell>
+            <cell><c>TRUE</c></cell>
+          </row>
+          <row>
+            <cell halign="left">greater than</cell>
+            <cell><c>&gt;</c></cell>
+            <cell><c>2 &gt; 3</c></cell>
+            <cell><c>FALSE</c></cell>
+          </row>
+          <row>
+            <cell halign="left">greater than or equal to</cell>
+            <cell><c>&gt;=</c></cell>
+            <cell><c>2 &gt;= 2</c></cell>
+            <cell><c>TRUE</c></cell>
+          </row>
+          <row>
+            <cell halign="left">equal to</cell>
+            <cell><c>==</c></cell>
+            <cell><c>2 == 3</c></cell>
+            <cell><c>FALSE</c></cell>
+          </row>
+          <row>
+            <cell halign="left">not equal to</cell>
+            <cell><c>!=</c></cell>
+            <cell><c>2 != 3</c></cell>
+            <cell><c>TRUE</c></cell>
+          </row>
+        </tabular>
+      </table>
+      <p>
+        Hopefully these are all pretty self-explanatory: for example, the <term>less than</term> operator <c>&lt;</c> checks to see if the number on the left is less than the number on the right. If it's less, then R returns an answer of <c>TRUE</c>:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          99 &lt; 100
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+##  [1]  TRUE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        but if the two numbers are equal, or if the one on the right is larger, then R returns an answer of <c>FALSE</c>, as the following two examples illustrate:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          100 &lt; 100
+          
+          100 &lt; 99
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+##  [1]  FALSE
+]]></output>
+    </console>
+      </remark>
+    <console>
+      <output><![CDATA[
+##  [1]  FALSE
+]]></output>
+    </console>
+      <p>
+        In contrast, the <term>less than or equal to</term> operator <c>&lt;=</c> will do exactly what it says. It returns a value of <c>TRUE</c> if the number of the left hand side is less than or equal to the number on the right hand side. So if we repeat the previous two examples using <c>&lt;=</c>, here's what we get:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          100 &lt;= 100
+          
+          100 &lt;= 99
+          
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+##  [1]  TRUE
+]]></output>
+    </console>
+      </remark>
+    <console>
+      <output><![CDATA[
+##  [1]  FALSE
+]]></output>
+    </console>
+      <p>
+        And at this point I hope it's pretty obvious what the <term>greater than</term> operator <c>&gt;</c> and the <term>greater than or equal to</term> operator <c>&gt;=</c> do! Next on the list of logical operators is the <term>not equal to</term> operator <c>!=</c> which <mdash /> as with all the others <mdash /> does what it says it does. It returns a value of <c>TRUE</c> when things on either side are not identical to each other. Therefore, since <m>2+2</m> isn't equal to <m>5</m>, we get:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          2 + 2 != 5
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+##  [1]  TRUE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        We're not quite done yet. There are three more logical operations that are worth knowing about, listed in <xref ref="table-logicals2" />.
+      </p>
+      <table xml:id="table-logicals2">
+        <title>Some more logical operators.</title>
+        <tabular halign="center">
+          <row header="yes" bottom="minor">
+            <cell halign="left">operation</cell>
+            <cell>operator</cell>
+            <cell>example input</cell>
+            <cell>answer</cell>
+          </row>
+          <row>
+            <cell halign="left">not</cell>
+            <cell><c>!</c></cell>
+            <cell><c>!(1==1)</c></cell>
+            <cell><c>FALSE</c></cell>
+          </row>
+          <row>
+            <cell halign="left">or</cell>
+            <cell><c>|</c></cell>
+            <cell><c>(1==1) | (2==3)</c></cell>
+            <cell><c>TRUE</c></cell>
+          </row>
+          <row>
+            <cell halign="left">and</cell>
+            <cell><c>&amp;</c></cell>
+            <cell><c>(1==1) &amp; (2==3)</c></cell>
+            <cell><c>FALSE</c></cell>
+          </row>
+        </tabular>
+      </table>
+      <p>
+        These are the <term>not</term> operator <c>!</c>, the <term>and</term> operator <c>&amp;</c>, and the <term>or</term> operator <c>|</c>. Like the other logical operators, their behaviour is more or less exactly what you'd expect given their names. For instance, if I ask you to assess the claim that "either <m>2+2 = 4</m> <em>or</em> <m>2+2 = 5</m>" you'd say that it's true. Since it's an "either-or" statement, all we need is for one of the two parts to be true. That's what the <c>|</c> operator does:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          (2+2 == 4) | (2+2 == 5)
+          
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] TRUE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        On the other hand, if I ask you to assess the claim that "both <m>2+2 = 4</m> <em>and</em> <m>2+2 = 5</m>" you'd say that it's false. Since this is an <em>and</em> statement we need both parts to be true. And that's what the <c>&amp;</c> operator does:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          (2+2 == 4) &amp; (2+2 == 5)
+          
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] FALSE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Finally, there's the <em>not</em> operator, which is simple but annoying to describe in English. If I ask you to assess my claim that "it is not true that <m>2+2 = 5</m>" then you would say that my claim is true; because my claim is that "<m>2+2 = 5</m> is false". And I'm right. If we write this as an R command we get this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          ! (2+2 == 5)
+          
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] TRUE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        In other words, since <c>2+2 == 5</c> is a <c>FALSE</c> statement, it must be the case that <c>!(2+2 == 5)</c> is a <c>TRUE</c> one. Essentially, what we've really done is claim that "not false" is the same thing as "true". Obviously, this isn't really quite right in real life. But R lives in a much more black or white world: for R everything is either true or false. No shades of gray are allowed. We can actually see this much more explicitly, like this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          ! FALSE
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] TRUE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Of course, in our <m>2+2 = 5</m> example, we didn't really need to use "not" <c>!</c> and "equals to" <c>==</c> as two separate operators. We could have just used the "not equals to" operator <c>!=</c> like this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          2+2 != 5
+          
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] TRUE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        But there are many situations where you really do need to use the <c>!</c> operator. We'll see some later on.<fn>A note for those of you who have taken a computer science class: yes, R does have a function for exclusive-or, namely <c>xor()</c>. Also worth noting is the fact that R makes the distinction between element-wise operators <c>&amp;</c> and <c>|</c> and operators that look only at the first element of the vector, namely <c>&amp;&amp;</c> and <c>||</c>. To see the distinction, compare the behaviour of a command like <c>c(FALSE,TRUE) &amp; c(TRUE,TRUE)</c> to the behaviour of something like <c>c(FALSE,TRUE) &amp;&amp; c(TRUE,TRUE)</c>. If this doesn't mean anything to you, ignore this footnote entirely. It's not important for the content of this book.</fn>
+      </p>
+    </subsection>
+    <subsection>
+      <title>Storing and using logical data</title>
+      <p>
+        Up to this point, I've introduced <em>numeric data</em> (in Sections <xref ref="assign" /> and <xref ref="vectors" />) and <em>character data</em> (in <xref ref="text" />). So you might not be surprised to discover that these <c>TRUE</c> and <c>FALSE</c> values that R has been producing are actually a third kind of data, called <em>logical data</em>. That is, when I asked R if <c>2 + 2 == 5</c> and it said <c>[1] FALSE</c> in reply, it was actually producing information that we can store in variables. For instance, I could create a variable called <c>is.the.Party.correct</c>, which would store R's opinion:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          is.the.Party.correct &lt;- 2 + 2 == 5
+          is.the.Party.correct
+          
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] FALSE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Alternatively, you can assign the value directly, by typing <c>TRUE</c> or <c>FALSE</c> in your command. Like this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          is.the.Party.correct &lt;- FALSE
+          is.the.Party.correct
+          
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] FALSE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Better yet, because it's kind of tedious to type <c>TRUE</c> or <c>FALSE</c> over and over again, R provides you with a shortcut: you can use <c>T</c> and <c>F</c> instead (but it's case sensitive: <c>t</c> and <c>f</c> won't work).<fn>Warning! <c>TRUE</c> and <c>FALSE</c> are reserved keywords in R, so you can trust that they always mean what they say they do. Unfortunately, the shortcut versions <c>T</c> and <c>F</c> do not have this property. It's even possible to create variables that set up the reverse meanings, by typing commands like <c>T &lt;- FALSE</c> and <c>F &lt;- TRUE</c>. This is kind of insane, and something that is generally thought to be a design flaw in R. Anyway, the long and short of it is that it's safer to use <c>TRUE</c> and <c>FALSE</c>.</fn> So this works:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          is.the.Party.correct &lt;- F
+          is.the.Party.correct
+        </input>
+      </program>
+      </remark>
+      <p>
+        but this doesn't:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          is.the.Party.correct &lt;- f
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+Error: object 'f' not found
+]]></output>
+    </console>
+      </remark>
+    </subsection>
+    <subsection>
+      <title>Vectors of logicals</title>
+      <p>
+        The next thing to mention is that you can store vectors of logical values in exactly the same way that you can store vectors of numbers (<xref ref="vectors" />) and vectors of text data (<xref ref="text" />). Again, we can define them directly via the <c>c()</c> function, like this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          x &lt;- c(TRUE, TRUE, FALSE)
+          x
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] TRUE TRUE FALSE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        or you can produce a vector of logicals by applying a logical operator to a vector. This might not make a lot of sense to you, so let's unpack it slowly. First, let's suppose we have a vector of numbers (i.e., a "non-logical vector"). For instance, we could use the <c>sales.by.month</c> vector that we were using in <xref ref="vectors" />. Suppose I wanted R to tell me, for each month of the year, whether I actually sold a book in that month. I can do that by typing this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          sales.by.month &gt; 0
+          
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] FALSE TRUE TRUE TRUE TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        and again, I can store this in a vector if I want, as the example below illustrates:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          any.sales.this.month &lt;- sales.by.month &gt; 0
+          any.sales.this.month
+          
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] FALSE TRUE TRUE TRUE TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        In other words, <c>any.sales.this.month</c> is a logical vector whose elements are <c>TRUE</c> only if the corresponding element of <c>sales.by.month</c> is greater than zero. For instance, since I sold zero books in January, the first element is <c>FALSE</c>.
+      </p>
+    </subsection>
+    <subsection xml:id="logictext">
+      <title>Applying logical operation to text</title>
+      <p>
+        In a moment (<xref ref="indexing" />) I'll show you why these logical operations and logical vectors are so handy, but before I do so I want to very briefly point out that you can apply them to text as well as to logical data. It's just that we need to be a bit more careful in understanding how R interprets the different operations. In this section I'll talk about how the equal to operator <c>==</c> applies to text, since this is the most important one. Obviously, the not equal to operator <c>!=</c> gives the exact opposite answers to <c>==</c> so I'm implicitly talking about that one too, but I won't give specific commands showing the use of <c>!=</c>. As for the other operators, I'll defer a more detailed discussion of this topic to <xref ref="logictext2" />.
+      </p>
+      <p>
+        Okay, let's see how it works. In one sense, it's very simple. For instance, I can ask R if the word <c>"cat"</c> is the same as the word <c>"dog"</c>, like this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          "cat" == "dog"
+          
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] FALSE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        That's pretty obvious, and it's good to know that even R can figure that out. Similarly, R does recognise that a <c>"cat"</c> is a <c>"cat"</c>:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          "cat" == "cat"
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] TRUE
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Again, that's exactly what we'd expect. However, what you need to keep in mind is that R is not at all tolerant when it comes to grammar and spacing. If two strings differ in any way whatsoever, R will say that they're not equal to each other, as the following examples indicate:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          " cat" == "cat"
+          
+          "cat" == "CAT"
+          
+          "cat" == "c a t"
+          
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] FALSE
+## [1] FALSE
+## [1] FALSE
+]]></output>
+    </console>
+      </remark>
+    </subsection>
+  </section>
+  <section xml:id="indexing">
+    <title>Indexing vectors</title>
+    <p>
+      One last thing to add before finishing up this chapter. So far, whenever I've had to get information out of a vector, all I've done is typed something like <c>months[4]</c>; and when I do this R prints out the fourth element of the <c>months</c> vector. In this section, I'll show you two additional tricks for getting information out of the vector.
+    </p>
+    <subsection>
+      <title>Extracting multiple elements</title>
+      <p>
+        One very useful thing we can do is pull out more than one element at a time. In the previous example, we only used a single number (i.e., <c>2</c>) to indicate which element we wanted. Alternatively, we can use a vector. So, suppose I wanted the data for February, March and April. What I could do is use the vector <c>c(2,3,4)</c> to indicate which elements I want R to pull out. That is, I'd type this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          sales.by.month[ c(2,3,4) ]
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 100 200 50
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Notice that the order matters here. If I asked for the data in the reverse order (i.e., April first, then March, then February) by using the vector <c>c(4,3,2)</c>, then R outputs the data in the reverse order:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          sales.by.month[ c(4,3,2) ]
+          
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 50 200 100
+]]></output>
+    </console>
+      </remark>
+      <p>
+        A second thing to be aware of is that R provides you with handy shortcuts for very common situations. For instance, suppose that I wanted to extract everything from the 2nd month through to the 8th month. One way to do this is to do the same thing I did above, and use the vector <c>c(2,3,4,5,6,7,8)</c> to indicate the elements that I want. That works just fine
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          sales.by.month[ c(2,3,4,5,6,7,8) ]
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 100 200 50 0 0 0 0
+]]></output>
+    </console>
+      </remark>
+      <p>
+        but it's kind of a lot of typing. To help make this easier, R lets you use <c>2:8</c> as shorthand for <c>c(2,3,4,5,6,7,8)</c>, which makes things a lot simpler. First, let's just check that this is true:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          2:8
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 2 3 4 5 6 7 8
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Next, let's check that we can use the <c>2:8</c> shorthand as a way to pull out the 2nd through 8th elements of <c>sales.by.months</c>:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          sales.by.month[2:8]
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 100 200 50 0 0 0 0
+]]></output>
+    </console>
+      </remark>
+      <p>
+        So that's kind of neat.
+      </p>
+    </subsection>
+    <subsection>
+      <title>Logical indexing</title>
+      <p>
+        At this point, I can introduce an extremely useful tool called <term>logical indexing</term>. In the last section, I created a logical vector <c>any.sales.this.month</c>, whose elements are <c>TRUE</c> for any month in which I sold at least one book, and <c>FALSE</c> for all the others. However, that big long list of <c>TRUE</c>s and <c>FALSE</c>s is a little bit hard to read, so what I'd like to do is to have R select the names of the <c>months</c> for which I sold any books. Earlier on, I created a vector <c>months</c> that contains the names of each of the months. This is where logical indexing is handy. What I need to do is this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          months[ sales.by.month &gt; 0 ]
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] "February" "March" "April" "May"
+]]></output>
+    </console>
+      </remark>
+      <p>
+        To understand what's happening here, it's helpful to notice that <c>sales.by.month &gt; 0</c> is the same logical expression that we used to create the <c>any.sales.this.month</c> vector in the last section. In fact, I could have just done this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          months[ any.sales.this.month ]
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] "February" "March" "April" "May"
+]]></output>
+    </console>
+      </remark>
+      <p>
+        and gotten exactly the same result. In order to figure out which elements of <c>months</c> to include in the output, what R does is look to see if the corresponding element in <c>any.sales.this.month</c> is <c>TRUE</c>. Thus, since element 1 of <c>any.sales.this.month</c> is <c>FALSE</c>, R does not include <c>"January"</c> as part of the output; but since element 2 of <c>any.sales.this.month</c> is <c>TRUE</c>, R does include <c>"February"</c> in the output. Note that there's no reason why I can't use the same trick to find the actual sales numbers for those months. The command to do that would just be this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          sales.by.month [ sales.by.month &gt; 0 ]
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] 100 200 50 25
+]]></output>
+    </console>
+      </remark>
+      <p>
+        In fact, we can do the same thing with text. Here's an example. Suppose that <mdash /> to continue the saga of the textbook sales <mdash /> I later find out that the bookshop only had sufficient stocks for a few months of the year. They tell me that early in the year they had <c>"high"</c> stocks, which then dropped to <c>"low"</c> levels, and in fact for one month they were <c>"out"</c> of copies of the book for a while before they were able to replenish them. Thus I might have a variable called <c>stock.levels</c> which looks like this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          stock.levels&lt;-c("high", "high", "low", "out", "out", "high",
+                          "high", "high", "high", "high", "high", "high")
+          
+          stock.levels
+        </input>
+      </program>
+      </remark>
+      <p>
+        Thus, if I want to know the months for which the bookshop was out of my book, I could apply the logical indexing trick, but with the character vector <c>stock.levels</c>, like this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          months[stock.levels == "out"]
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] "April" "May"
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Alternatively, if I want to know when the bookshop was either low on copies or out of copies, I could do this:
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          months[stock.levels == "out" | stock.levels == "low"]
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] "March" "April" "May"
+]]></output>
+    </console>
+      </remark>
+      <p>
+        or this
+      </p>
+      <remark>
+        <title>R Code</title>
+      <program language="r">
+        <input>
+          months[stock.levels != "high" ]
+        </input>
+      </program>
+    <console>
+      <output><![CDATA[
+## [1] "March" "April" "May"
+]]></output>
+    </console>
+      </remark>
+      <p>
+        Either way, I get the answer I want.
+      </p>
+      <p>
+        At this point, I hope you can see why logical indexing is such a useful thing. It's a very basic, yet very powerful way to manipulate data. We'll talk a lot more about how to manipulate data in <xref ref="datahandling"/>, since it's a critical skill for real world research that is often overlooked in introductory research methods classes (or at least, that's been my experience). It does take a bit of practice to become completely comfortable using logical indexing, so it's a good idea to play around with these sorts of commands. Try creating a few different variables of your own, and then ask yourself questions like "how do I get R to spit out all the elements that are [blah]". Practice makes perfect, and it's only by practicing logical indexing that you'll perfect the art of yelling frustrated insults at your computer.<fn>Well, I say that... but in my personal experience it wasn't until I started learning "regular expressions" that my loathing of computers reached its peak.</fn>
+      </p>
+    </subsection>
+  </section>
+
 </chapter>
