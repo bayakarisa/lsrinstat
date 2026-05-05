@@ -98,7 +98,7 @@
     </figure>
     <p>Now you really are back to where you started before.  Notice also that the Ok button has become disabled.</p>
     <aside>
-      <p>The Ok button is automatically enabled when R-Instat considers the dialog is completed fully enough for its task.If you are an R-fan, you may have noticed, and been encouraged by the last button, which says To Script.  This shows that each dialog produces an R-script, but it usually remains hidden.  So R-shy never need worry about scripts.  But R-fan could later work with these scripts.  We return to this in Chapter xxx.</p>
+      <p>The Ok button is automatically enabled when R-Instat considers the dialog is completed fully enough for its task. If you are an R-fan, you may have noticed, and been encouraged by the last button, which says To Script.  This shows that each dialog produces an R-script, but it usually remains hidden.  So R-shy never need worry about scripts.  But R-fan could later work with these scripts.  We return to this in Chapter xxx.</p>
     </aside>
     <p>Every dialog also has the ordinary Help button.  A few, including this one, have a second button, called R-Help.  Notice that is currently also disabled.</p>
     <ul>
@@ -483,7 +483,6 @@
       <li><p>Then press Ok</p></li>
     </ul>
     <figure xml:id="fig-ch3-rinstat-22">
-      <caption>hxxxxof</caption>
       <sidebyside widths="48% 48%">
         <image source="images/ch3-rinstat/image40.png">
           <description>R-Instat screenshot</description>
@@ -502,7 +501,6 @@
       <li><p>Choose the 3rd option, to swap the Data with Dataframe Metadata</p></li>
     </ul>
     <figure xml:id="fig-ch3-rinstat-23">
-      <caption>Not this sheet, but the new first one</caption>
       <sidebyside widths="48% 48%">
         <image source="images/ch3-rinstat/image42.png">
           <description>R-Instat screenshot</description>
