@@ -524,8 +524,8 @@
         Interpreting standard deviations is slightly more complex. A simple rule of thumb is that in a normal ("bell-shaped") distribution, you should expect about 68% of the data to fall within 1 standard deviation of the mean, 95% of the data to fall within 2 standard deviations, and 99.7% of the data to fall within 3 standard deviations. This rule tends to work pretty well most of the time, even if it's not exact. As it turns out, 65.3% of the AFL margins data fall within one standard deviation of the mean, as shown in <xref ref="fig-aflsd" />.
       </p>
       <figure xml:id="fig-aflsd">
-        <caption>An illustration of the standard deviation applied to the AFL winning margins data. The shaded bars show data within one standard deviation of the mean.</caption>
-        <image source="images/afl_sd_plot.png"/>
+        <caption>An illustration of the standard deviation, applied to the AFL winning margins data. The shaded bars in the histogram show how much of the data fall within one standard deviation of the mean. In this case, 65.3% of the data set lies within this range, which is pretty consistent with the <q>approximately 68% rule</q> discussed in the main text.</caption>
+        <image source="images/descriptives2/aflsd.png"/>
       </figure>
     </subsection>
     <subsection xml:id="mad">
