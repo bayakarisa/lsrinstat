@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="probability-distributions-intro">
+    <title>Introducing probability distributions</title>
+    <p>
+      One of the disturbing truths about my life is that I only own 5 pairs of pants: three pairs of jeans, the bottom half of a suit, 
+      and a pair of tracksuit pants. Even sadder, I've given them names: I call them <m>X_1</m>, <m>X_2</m>, <m>X_3</m>, <m>X_4</m> and <m>X_5</m>. 
+      I really do: that's why they call me Mister Imaginative. Now, on any given day, I pick out exactly one of pair of pants to wear. 
+      Not even I'm so stupid as to try to wear two pairs of pants, and thanks to years of training I never go outside without wearing pants anymore. 
+      If I were to describe this situation using the language of probability theory, I would refer to each pair of pants (i.e., each <m>X</m>) as an <em>elementary event</em>. 
+      The key characteristic of elementary events is that every time we make an observation (e.g., every time I put on a pair of pants), 
+      then the outcome will be one and only one of these events. Like I said, these days I always wear exactly one pair of pants, so my pants satisfy this constraint. Similarly, 
+      the set of all possible events is called a <em>sample space</em>. Granted, some people would call it a "wardrobe", 
+      but that's because they're refusing to think about my pants in probabilistic terms. Sad.
+    </p>
+    <p>
+      Okay, now that we have a sample space (a wardrobe), which is built from lots of possible elementary events (pants), 
+      what we want to do is assign a <em>probability</em> of one of these elementary events. For an event <m>X</m>, 
+      the probability of that event <m>P(X)</m> is a number that lies between 0 and 1. The bigger the value of <m>P(X)</m>, the more likely the event is to occur. 
+      So, for example, if <m>P(X) = 0</m>, it means the event <m>X</m> is impossible (i.e., I never wear those pants). 
+      On the other hand, if <m>P(X) = 1</m> it means that event <m>X</m> is certain to occur (i.e., I always wear those pants). For probability values in the middle, 
+      it means that I sometimes wear those pants. For instance, if <m>P(X) = 0.5</m> it means that I wear those pants half of the time.
+    </p>
+    <p>
+      At this point, we're almost done. The last thing we need to recognise is that "something always happens". Every time I put on pants, 
+      I really do end up wearing pants (crazy, right?). What this somewhat trite statement means, in probabilistic terms, 
+      is that the probabilities of the elementary events need to add up to 1. This is known as the <em>law of total probability</em>, not that any of us really care. 
+      More importantly, if these requirements are satisfied, then what we have is a <em>probability distribution</em>. For example, this is an example of a probability distribution
+    </p>
+    <table xml:id="table-probability-pants">
+      <title>An example probability distribution</title>
+      <tabular halign="center">
+        <row header="yes" bottom="minor">
+          <cell halign="left">Which pants</cell>
+          <cell>Blue jeans</cell>
+          <cell>Grey jeans</cell>
+          <cell>Black jeans</cell>
+          <cell>Black suit</cell>
+          <cell>Blue tracksuit</cell>
+        </row>
+        <row>
+          <cell halign="left">Label</cell>
+          <cell><m>X_1</m></cell>
+          <cell><m>X_2</m></cell>
+          <cell><m>X_3</m></cell>
+          <cell><m>X_4</m></cell>
+          <cell><m>X_5</m></cell>
+        </row>
+        <row>
+          <cell halign="left">Probability</cell>
+          <cell><m>P(X_1) = .5</m></cell>
+          <cell><m>P(X_2) = .3</m></cell>
+          <cell><m>P(X_3) = .1</m></cell>
+          <cell><m>P(X_4) = 0</m></cell>
+          <cell><m>P(X_5) = .1</m></cell>
+        </row>
+      </tabular>
+    </table>
+    <p>
+      Each of the events has a probability that lies between 0 and 1, and if we add up the probability of all events, they sum to 1. 
+      Awesome. We can even draw a nice bar graph (see <xref ref="bargraph"/>) to visualise this distribution, as shown in <xref ref="fig-pantsprob"/>. 
+      And at this point, we've all achieved something. You've learned what a probability distribution is, 
+      and I've finally managed to find a way to create a graph that focuses entirely on my pants. Everyone wins!
+    </p>
+    <console>
+      <output><![CDATA[
+
+      probabilities <- c( .5, .3, .1, 0, .1)
+        eventNames <- c( "Blue jeans", "Grey jeans", "Black jeans", 
+                "Black suit", "Blue track" )
+        
+        # draw the plot
+        barplot( 
+          height= probabilities, 
+          xlab = "Event",
+          ylab = "Probability of event",
+          names.arg = eventNames,
+          density = 10,
+          col = ifelse(colour,emphCol,emphGrey)
+        )]]></output>
+    </console>
+    <figure xml:id="fig-pantsprob">
+      <caption>A visual depiction of the probability distribution over pants preference for the population of students in the introductory statistics class.</caption>
+      <image source="images/pantsprob.png"/>
+    </figure>
+    <p>
+      The only other thing that I need to point out is that probability theory allows you to talk about <em>non elementary events</em> as well as elementary ones. 
+      The easiest way to illustrate the concept is with an example. 
+      In the pants example, it's perfectly legitimate to refer to the probability that I wear jeans. 
+      In this scenario, the "Dan wears jeans" event said to have happened as long as the elementary event that actually did occur is one of the appropriate ones; 
+      in this case "blue jeans", "black jeans" or "grey jeans". In mathematical terms, we defined the "jeans" event <m>E</m> to correspond to the set of elementary events 
+      <m>(X_1, X_2, X_3)</m>. If any of these elementary events occurs, then <m>E</m> is also said to have occurred. 
+      Having decided to write down the definition of the <m>E</m> this way, it's pretty straightforward to state what the probability <m>P(E)</m> is: we just add everything up. 
+      In this particular case <me>P(E) = P(X_1) + P(X_2) + P(X_3)</me> and, since the probabilities of blue, grey and black jeans respectively are .5, .3 and .1, 
+      the probability that I wear jeans is equal to .9.
+    </p>
+    <p>
+      At this point you might be thinking that this is all terribly obvious and simple and you'd be right. 
+      All we've really done is wrap some basic mathematics around a few common sense intuitions. However, 
+      from these simple beginnings it's possible to construct some extremely powerful mathematical tools. I'm definitely not going to go into the details in this book, 
+      but what I will do is list -- in  Table <xref ref="table-basic-prob-rules"/> -- some of the other rules that probabilities satisfy. 
+      These rules can be derived from the simple assumptions that I've outlined above, but since we don't actually use these rules for anything in this book, 
+      I won't do so here.
+    </p>
+    <table xml:id="table-basic-prob-rules">
+      <title>Basic Probability Rules</title>
+      <tabular halign="center">
+        <row header="yes" bottom="minor">
+          <cell halign="left">English</cell>
+          <cell>Notation</cell>
+          <cell>Formula</cell>
+        </row>
+
+        <row>
+          <cell halign="left">not A</cell>
+          <cell><m>P(\neg A)</m></cell>
+          <cell><m>= 1 - P(A)</m></cell>
+        </row>
+
+        <row>
+          <cell halign="left">A or B</cell>
+          <cell><m>P(A \cup B)</m></cell>
+          <cell><m>= P(A) + P(B) - P(A \cap B)</m></cell>
+        </row>
+
+        <row>
+          <cell halign="left">A and B</cell>
+          <cell><m>P(A \cap B)</m></cell>
+          <cell><m>= P(A\mid B)P(B)</m></cell>
+        </row>
+
+      </tabular>
+    </table>
+    </subsection>

@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="otherdists">
+    <title>Other useful distributions</title>
+    <p>
+      The normal distribution is the distribution that statistics makes most use of (for reasons to be discussed shortly), 
+      and the binomial distribution is a very useful one for lots of purposes. But the world of statistics is filled with probability distributions, 
+      some of which we'll run into in passing. In particular, the three that will appear in this book are the <m>t</m> distribution, the <m>\chi^2</m> distribution and the <m>F</m> 
+      distribution. I won't give formulas for any of these, or talk about them in too much detail, but I will show you some pictures.
+      <ul>
+        <li>
+            <p>
+                The <em><m>t</m> distribution</em> is a continuous distribution that looks very similar to a normal distribution, but has heavier tails: see <xref ref="fig-tdist"/>. 
+                This distribution tends to arise in situations where you think that the data actually follow a normal distribution, but you don't know the mean or standard deviation. 
+                As you might expect, the relevant R functions are <c>dt()</c>, <c>pt()</c>, <c>qt()</c> and <c>rt()</c>, and we'll run into this distribution again in <xref ref="ttest"/>. 
+            </p>
+        </li>
+    </ul>
+    </p>
+    
+    <console>
+      <output><![CDATA[xval <- seq(-5,5,.01)
+        yval <- dt( xval, df=3)
+        plot( 	xval, yval, lwd=3, ylab="Probability Density", xlab="Observed Value",
+            frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l", ylim=c(0,.4)
+        )
+        lines( xval, dnorm(xval,0,1), lty=2, col=emphGrey)
+      ]]></output>
+    </console>
+    <figure xml:id="fig-tdist">
+      <caption>
+        A <m>t</m> distribution with 3 degrees of freedom (solid line). It looks similar to a normal distribution,
+        but it's not quite the same. For comparison purposes, I've plotted a standard normal distribution
+        as the dashed line. Note that the "tails" of the <m>t</m> distribution are "heavier" (i.e., extend further outwards)
+        than the tails of the normal distribution? That's the important difference between the two.
+      </caption>
+      <image source="images/tdist.png"/>
+    </figure>
+    <p>
+        <ul>
+            <li>
+                <p>
+                    The <em><m>\chi^2</m> distribution</em> is another distribution that turns up in lots of different places. 
+                    The situation in which we'll see it is when doing categorical data analysis (<xref ref="chisquare"/>), but it's one of those things that actually pops up all over the place. 
+                    When you dig into the maths (and who doesn't love doing that?), it turns out that the main reason why the <m>\chi^2</m> distribution turns up all over the place is that, 
+                    if you have a bunch of variables that are normally distributed, square their values and then add them up (a procedure referred to as taking a "sum of squares"), 
+                    this sum has a <m>\chi^2</m> distribution. You'd be amazed how often this fact turns out to be useful. 
+                    Anyway, here's what a <m>\chi^2</m> distribution looks like: <xref ref="fig-chisqdist"/>.  Once again, the R commands for this one are pretty predictable: <c>dchisq()</c>,  
+                    <c>pchisq()</c>,  <c>qchisq()</c>, <c>rchisq()</c>.
+                </p>
+            </li>
+        </ul>
+    </p>
+    <console>
+      <output><![CDATA[	xval <- seq(0,10,.01)
+        yval <- dchisq( xval, df=3)
+        plot( 	xval, yval, lwd=3, ylab="Probability Density", xlab="Observed Value",
+            frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
+        )
+      ]]></output>
+    </console>
+    <figure xml:id="fig-chisqdist">
+      <caption>
+        Chi-squared distributions with 3 degrees of freedom. Notice that the observed values must always be greater than zero, 
+        and the distribution is pretty skewed. These are key features of a chi-square distribution.
+      </caption>
+      <image source="images/chisqdist.png"/>
+    </figure>
+    <p>
+        <ul>
+            <li>
+                <p>
+                    The <em><m>F</m> distribution</em> looks a bit like a <m>\chi^2</m> distribution, and it arises whenever you need to compare two <m>\chi^2</m> distributions to one another. 
+                    Admittedly, this doesn't exactly sound like something that any sane person would want to do, but it turns out to be very important in real world data analysis. 
+                    Remember when I said that <m>\chi^2</m> turns out to be the key distribution when we're taking a "sum of squares"? Well, 
+                    what that means is if you want to compare two different "sums of squares", you're probably talking about something that has an <m>F</m> distribution. Of course, 
+                    as yet I still haven't given you an example of anything that involves a sum of squares, but I will... in <xref ref="anova"/>. 
+                    And that's where we'll run into the <m>F</m> distribution. Oh, and here's a picture: <xref ref="fig-Fdist"/>. 
+                    And of course we can get R to do things with <m>F</m> distributions just by using the commands <c>df()</c>, <c>pf()</c>, <c>qf()</c> and <c>rf()</c>.
+                </p>
+            </li>
+        </ul>
+    </p>
+    <console>
+      <output><![CDATA[	# draw the plot
+        xval <- seq(0,10,.01)
+        yval <- df( xval, df1=3, df2=5)
+        plot( 	xval, yval, lwd=3, ylab="Probability Density", xlab="Observed Value",
+            frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
+        )
+      ]]></output>
+    </console>
+    <figure xml:id="fig-Fdist">
+      <caption>
+        The F distribution with 3 and 5 degrees of freedom. Qualitatively speaking, it looks pretty similar to a chi-square distribution, 
+        but they're not quite the same in general.
+      </caption>
+      <image source="images/Fdist.png"/>
+    </figure>
+    <p>
+      Because these distributions are all tightly related to the normal distribution and to each other, 
+      and because they are will turn out to be the important distributions when doing inferential statistics later in this book, 
+      I think it's useful to do a little demonstration using R, just to "convince ourselves" that these distributions really are related to each other in the way that they're supposed to be. 
+      First, we'll use the <c>rnorm()</c> function to generate 1000 normally-distributed observations:
+    </p>
+    <remark>
+      <title>R Code</title>
+      <program language="r">
+      <input><![CDATA[normal.a <- rnorm( n=1000, mean=0, sd=1 )  
+      print(head(normal.a))]]></input>
+      </program>
+      <console>
+        <output><![CDATA[
+        ## [1]  0.002520116 -1.759249354 -0.055968257  0.879791922  1.166488549
+        ## [6]  0.789723465
+        ]]></output>
+      </console>
+    </remark>
+    <p>
+      So the <c>normal.a</c> variable contains 1000 numbers that are normally distributed, and have mean 0 and standard deviation 1, 
+      and the actual print out of these numbers goes on for rather a long time. Note that, because the default parameters of the <c>rnorm()</c> function are <c>mean=0</c> and <c>sd=1</c>, 
+      I could have shortened the command to <c>rnorm( n=1000 )</c>. In any case, what we can do is use the <c>hist()</c> function to draw a histogram of the data, like so:
+    </p>
+    <remark>
+      <title>R Code</title>
+      <program language="r">
+        <input><![CDATA[hist( normal.a ) ]]></input>
+      </program>
+    </remark>
+    <p>
+      If you do this, you should see something similar to <xref ref="fig-variaterelations"/>. Your plot won't look quite as pretty as the one in the figure, of course, 
+      because I've played around with all the formatting (see <xref ref="graphics"/>), and I've also plotted the true distribution of the data as a solid black line (i.e., 
+      a normal distribution with mean 0 and standard deviation 1) so that you can compare the data that we just generated to the true distribution.
+    </p>
+    <console>
+      <output><![CDATA[old_par<-par()
+      par(mfrow=c(2,2))
+        # generate the data 
+        n <- 1000
+        normal.a <- rnorm( n )
+        normal.b <- rnorm( n )
+        normal.c <- rnorm( n )
+        chi.sq.3 <- (normal.a)^2 + (normal.b)^2 + (normal.c)^2	
+        normal.d <- rnorm( n )
+        t.3 <- normal.d / sqrt( chi.sq.3 / 3 )
+        chi.sq.20 <- rchisq( n, 20)
+        F.3.20 <- (chi.sq.3 / 3) / (chi.sq.20 / 20)
+        
+        # histogram for the normal data
+        bw <- .25
+        hist( 	normal.a, seq(min(normal.a)-bw,max(normal.a)+bw,bw),
+            freq=FALSE, xlim=c(-4,4), 
+            col=ifelse(colour,emphColLight,emphGrey),
+            border="white", ylim=c(0,.45), axes=FALSE,
+            xlab="",ylab="", main="Simulated Normal Data",
+            font.main = 1
+            )
+        lines( x<-seq(-4,4,.1), dnorm(x), lwd=3, col="black"  )
+        axis(1)
+        
+        bw<- .5
+        hist( 	chi.sq.3, seq(0,max(chi.sq.3)+bw,bw),
+            freq=FALSE, xlim=c(0,16), 
+            col=ifelse(colour,emphColLight,emphGrey),
+            border="white", axes=FALSE, ylim=c(0,.25),
+            xlab="",ylab="", main="Simulated Chi-Square Data",
+            font.main=1
+            )
+        lines( x<-seq(0,16,.1), dchisq(x,3), lwd=3, col="black"  )	
+        axis(1)
+        # histogram for the t data
+        bw <- .3
+        hist( 	t.3, seq(min(t.3)-bw,max(t.3)+bw,bw),
+            freq=FALSE, xlim=c(-5,5), 
+            col=ifelse(colour,emphColLight,emphGrey),
+            border="white", axes=FALSE, ylim=c(0,.4),
+            xlab="",ylab="", main="Simulated t Data",
+            font.main = 1
+            )
+        lines( x<-seq(-4,4,.1), dt(x,3), lwd=3, col="black"  )
+        axis(1)	
+        
+        # histogram for the F dist data
+        bw <- .2
+        hist( 	F.3.20, seq(0,max(F.3.20)+bw,bw),
+            freq=FALSE, xlim=c(0,6), 
+            col=ifelse(colour,emphColLight,emphGrey),
+            border="white", axes=FALSE, ylim=c(0,.7),
+            xlab="",ylab="", main="Simulated F Data",
+            font.main=1
+            )
+        lines( x<-seq(0,6,.01), df(x,3,20), lwd=3, col="black"  )	
+        axis(1)
+
+      par(mfrow=c(1,1))]]></output>
+    </console>
+    <figure xml:id="fig-variaterelations">
+      <caption>Sampling distributions obtained by simulation. Each panel shows a histogram of the values obtained from the simulation, overlaid with the theoretical distribution.</caption>
+      <image source="images/variaterelations.png"/>
+    </figure>
+    <p>
+      In the previous example all I did was generate lots of normally distributed observations using <c>rnorm()</c> and then compared those to the true probability 
+      distribution in the figure (using <c>dnorm()</c> to generate the black line in the figure, but I didn't show the commmands for that). 
+      Now let's try something trickier. We'll try to generate some observations that follow a chi-square distribution with 3 degrees of freedom, 
+      but instead of using <c>rchisq()</c>, we'll start with variables that are normally distributed, 
+      and see if we can exploit the known relationships between normal and chi-square distributions to do the work. As I mentioned earlier, 
+      a chi-square distribution with <m>k</m> degrees of freedom is what you get when you take <m>k</m> normally-distributed variables (with mean 0 and standard deviation 1), square them, 
+      and add them up. Since we want a chi-square distribution with 3 degrees of freedom, 
+      we'll need to supplement our <c>normal.a</c> data with two more sets of normally-distributed observations, imaginatively named <c>normal.b</c> and <c>normal.c</c>:
+    </p>
+    <remark>
+      <title>R Code</title>
+      <program language="r">
+        <input><![CDATA[normal.b <- rnorm( n=1000 )  # another set of normally distributed data
+        normal.c <- rnorm( n=1000 )  # and another!]]></input>
+      </program>
+    </remark>
+    <p>
+      Now that we've done that, the theory says we should square these and add them together, like this
+    </p>
+    <remark>
+      <title>R Code</title>
+      <program language="r">
+        <input><![CDATA[chi.sq.3 <- (normal.a)^2 + (normal.b)^2 + (normal.c)^2	]]></input>
+      </program>
+    </remark>
+    <p>
+      and the resulting <c>chi.sq.3</c> variable should contain 1000 observations that follow a chi-square distribution with 3 degrees of freedom. 
+      You can use the <c>hist()</c> function to have a look at these observations yourself, using a command like this,
+    </p>
+    <remark>
+      <title>R Code</title>
+      <program language="r">
+        <input><![CDATA[hist( chi.sq.3 )  ]]></input>
+      </program>
+    </remark>
+    <p>
+      and you should obtain a result that looks pretty similar to the chi-square plot in <xref ref="fig-variaterelations"/>. 
+      Once again, the plot that I've drawn is a little fancier: in addition to the histogram of <c>chi.sq.3</c>, I've also plotted a chi-square distribution with 3 degrees of freedom. 
+      It's pretty clear that -- even though I used <c>rnorm()</c> to do all the work rather than <c>rchisq()</c> -- the observations stored in the <c>chi.sq.3</c> 
+      variable really do follow a chi-square distribution. Admittedly, this probably doesn't seem all that interesting right now, 
+      but later on when we start encountering the chi-square distribution in <xref ref="chisquare"/>, 
+      it will be useful to understand the fact that these distributions are related to one another.
+    </p>
+    <p>
+      We can extend this demonstration to the <m>t</m> distribution and the <m>F</m> distribution. Earlier, 
+      I implied that the <m>t</m> distribution is related to the normal distribution when the standard deviation is unknown. 
+      That's certainly true, and that's the what we'll see later on in  <xref ref="ttest"/>, but there's a somewhat more precise relationship between the normal, 
+      chi-square and <m>t</m> distributions. Suppose we "scale" our chi-square data by dividing it by the degrees of freedom, like so
+    </p>
+    <remark>
+      <title>R Code</title>
+      <program language="r">
+        <input><![CDATA[scaled.chi.sq.3 <- chi.sq.3 / 3]]></input>
+      </program>
+    </remark>
+    <p>
+      We then take a set of normally distributed variables and divide them by (the square root of) our scaled chi-square variable which had <m>df=3</m>, 
+      and the result is a <m>t</m> distribution with 3 degrees of freedom. If we plot the histogram of <c>t.3</c>, 
+      we end up with something that looks very similar to the t distribution in <xref ref="fig-variaterelations"/>.
+    </p>
+    <remark>
+      <title>R Code</title>
+      <program language="r">
+        <input><![CDATA[normal.d <- rnorm( n=1000 )                # yet another set of normally distributed data
+        t.3 <- normal.d / sqrt( scaled.chi.sq.3 )  # divide by square root of scaled chi-square to get t
+        hist (t.3)]]></input>
+      </program>
+    </remark>
+    <p>
+      Similarly, we can obtain an <m>F</m> distribution by taking the ratio between two scaled chi-square distributions. Suppose, 
+      for instance, we wanted to generate data from an <m>F</m> distribution with 3 and 20 degrees of freedom. We could do this using <c>df()</c>, 
+      but we could also do the same thing by generating two chi-square variables, one with 3 degrees of freedom, and the other with 20 degrees of freedom. 
+      As the example with <c>chi.sq.3</c> illustrates, we can actually do this using <c>rnorm()</c> if we really want to, but this time I'll take a short cut:
+    </p>
+    <remark>
+      <title>R Code</title>
+      <program language="r">
+        <input><![CDATA[chi.sq.20 <- rchisq( 1000, 20)                 # generate chi square data with df = 20...
+        scaled.chi.sq.20 <- chi.sq.20 / 20             # scale the chi square variable...
+        F.3.20 <-  scaled.chi.sq.3  / scaled.chi.sq.20 # take the ratio of the two chi squares...
+        hist( F.3.20 )                                 # ... and draw a picture]]></input>
+      </program>
+    </remark>
+    <p>
+      The resulting <c>F.3.20</c> variable does in fact store variables that follow an <m>F</m> distribution with 3 and 20 degrees of freedom. 
+      This is illustrated in <xref ref="fig-variaterelations"/>, which plots the histgram of the observations stored in <c>F.3.20</c> against 
+      the true <m>F</m> distribution with <m>df_1 = 3</m> and <m>df_2 = 20</m>. Again, they match.
+    </p>
+    <p>
+      Okay, time to wrap this section up. We've seen three new distributions: <m>\chi^2</m>, <m>t</m> and <m>F</m>. 
+      They're all continuous distributions, and they're all closely related to the normal distribution. I've talked a little bit about the precise nature of this relationship, 
+      and shown you some R commands that illustrate this relationship. The key thing for our purposes, however, 
+      is not that you have a deep understanding of all these different distributions, nor that you remember the precise relationships between them. 
+      The main thing is that you grasp the basic idea that these distributions are all deeply related to one another, and to the normal distribution. 
+      Later on in this book, we're going to run into data that are normally distributed, or at least assumed to be normally distributed. 
+      What I want you to understand right now is that, if you make the assumption that your data are normally distributed, you shouldn't be surprised to see <m>\chi^2</m>, 
+      <m>t</m> and <m>F</m> distributions popping up all over the place when you start trying to do your data analysis.
+    </p>
+  </section>

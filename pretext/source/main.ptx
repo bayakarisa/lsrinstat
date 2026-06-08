@@ -70,7 +70,7 @@
       <xi:include href="./part4-intro.ptx" />
 
       <!-- Probability -->
-      <xi:include href="./ch-probability.ptx" />
+      <xi:include href="./intro-to_probability/ch-probability.ptx" />
 
       <!-- Estimation -->
       <xi:include href="./ch-estimation.ptx" />

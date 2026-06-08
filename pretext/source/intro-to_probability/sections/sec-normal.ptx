@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="normal" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>The normal distribution</title>
+    <introduction>
+        <p>
+            
+        </p>
+    </introduction>
+    <p>
+      While the binomial distribution is conceptually the simplest distribution to understand, it's not the most important one. 
+      That particular honour goes to the <em>normal distribution</em>, which is also referred to as "the bell curve" or a "Gaussian distribution". 
+      A normal distribution is described using two parameters, the mean of the distribution <m>\mu</m> and the standard deviation of the distribution <m>\sigma</m>. 
+      The notation that we sometimes use to say that a variable <m>X</m> is normally distributed is as follows: <me>X \sim \mbox{Normal}(\mu,\sigma)</me> Of course, 
+      that's just notation. It doesn't tell us anything interesting about the normal distribution itself. As was the case with the binomial distribution, 
+      I have included the formula for the normal distribution in this book, because I think it's important enough that everyone who learns statistics should at least look at it, 
+      but since this is an introductory text I don't want to focus on it, so I've tucked it away in Table <xref ref="table-distribution-formulas"/>. Similarly, 
+      the R functions for the normal distribution are <c>dnorm()</c>, <c>pnorm()</c>, <c>qnorm()</c> and <c>rnorm()</c>. 
+      However, they behave in pretty much exactly the same way as the corresponding functions for the binomial distribution, so there's not a lot that you need to know. 
+      The only thing that I should point out is that the argument names for the parameters are <c>mean</c> and <c>sd</c>. 
+      In pretty much every other respect, there's nothing else to add.
+    </p>
+    <p>
+      Instead of focusing on the maths, let's try to get a sense for what it means for a variable to be normally distributed. 
+      To that end, have a look at <xref ref="fig-normdist"/>, which plots a normal distribution with mean <m>\mu = 0</m> and standard deviation <m>\sigma = 1</m>. 
+      You can see where the name "bell curve" comes from: it looks a bit like a bell. Notice that, unlike the plots that I drew to illustrate the binomial distribution, 
+      the picture of the normal distribution in <xref ref="fig-normdist"/> shows a smooth curve instead of "histogram-like" bars. 
+      This isn't an arbitrary choice: the normal distribution is continuous, whereas the binomial is discrete. For instance, in the die rolling example from the last section, 
+      it was possible to get 3 skulls or 4 skulls, but impossible to get 3.9 skulls. The figures that I drew in the previous section reflected this fact: in <xref ref="fig-binomial1"/>, 
+      for instance, there's a bar located at <m>X=3</m> and another one at <m>X=4</m>, but there's nothing in between. Continuous quantities don't have this constraint. 
+      For instance, suppose we're talking about the weather. The temperature on a pleasant Spring day could be 23 degrees, 24 degrees, 23.9 degrees, 
+      or anything in between since temperature is a continuous variable, and so a normal distribution might be quite appropriate for describing Spring temperatures.<fn>
+        In practice, the normal distribution is so handy that people tend to use it even when the variable isn't actually continuous. 
+        As long as there are enough categories (e.g., Likert scale responses to a questionnaire), it's pretty standard practice to use the normal distribution as an approximation. 
+        This works out much better in practice than you'd think.</fn>
+      </p>
+    <console>
+    <output><![CDATA[# plots the standard normal
+      
+      # needed for printing
+      width <- 8
+      height <- 6
+      fileName <- "standardNormal.eps"	
+      
+      # draw the plot
+      xval <- seq(-3,3,.01)
+      yval <- dnorm( xval, 0, 1)
+      plot( 	xval, yval, lwd=3, ylab="Probability Density", xlab="Observed Value",
+          frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
+      )
+    ]]></output>
+    </console>
+    <figure xml:id="fig-normdist">
+      <caption>The normal distribution with mean 0 and standard deviation 1.</caption>
+      <image source="images/normdist.png"/>
+    </figure>
+    <p>
+      With this in mind, let's see if we can't get an intuition for how the normal distribution works. 
+      Firstly, let's have a look at what happens when we play around with the parameters of the distribution. To that end, 
+      <xref ref="fig-normmean"/> plots normal distributions that have different means, but have the same standard deviation. 
+      As you might expect, all of these distributions have the same "width". The only difference between them is that they've been shifted to the left or to the right. 
+      In every other respect they're identical. In contrast, if we increase the standard deviation while keeping the mean constant, 
+      the peak of the distribution stays in the same place, but the distribution gets wider, as you can see in <xref ref="fig-normsd"/>. 
+      Notice, though, that when we widen the distribution, the height of the peak shrinks. This has to happen: 
+      in the same way that the heights of the bars that we used to draw a discrete binomial distribution have to <em>sum</em> to 1, 
+      the total <em>area under the curve</em> for the normal distribution must equal 1.
+    </p>
+    <console>
+      <output><![CDATA[	# draw the plot
+        xval <- seq(0,11,.01)
+        yval.1 <- dnorm( xval, 4, 1)
+        yval.2 <- dnorm( xval, 7, 1)
+        plot( 	xval, yval.1, lwd=3, ylab="Probability Density", xlab="Observed Value",
+            frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
+        )
+        lines(	xval, yval.2, lwd=3, col=ifelse(colour,emphCol,"black"), lty=2 )
+      ]]></output>
+    </console>
+    <figure xml:id="fig-normmean">
+      <caption>Normal distributions with different means but the same standard deviation.</caption>
+      <image source="images/normmean.png"/>
+    </figure>
+    <console>
+    <output><![CDATA[# draw the plot
+      xval <- seq(0,10,.01)
+      yval.1 <- dnorm( xval, 5, 1)
+      yval.2 <- dnorm( xval, 5, 2)
+      plot( 	xval, yval.1, lwd=3, ylab="Probability Density", xlab="Observed Value",
+          frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
+      )
+      lines(	xval, yval.2, lwd=3, col=ifelse(colour,emphCol,"black"), lty=2 )
+    ]]></output>
+    </console>
+    <figure xml:id="fig-normsd">
+      <caption>Normal distributions with the same mean but different standard deviations.</caption>
+      <image source="images/normsd.png"/>
+    </figure>
+    <p>
+      Before moving on, I want to point out one important characteristic of the normal distribution. Irrespective of what the actual mean and standard deviation are, 
+      68.3% of the area falls within 1 standard deviation of the mean. Similarly, 95.4% of the distribution falls within 2 standard deviations of the mean, 
+      and 99.7% of the distribution is within 3 standard deviations. This idea is illustrated in Figures <xref ref="fig-sdnorm1"/> and <xref ref="fig-sdnorm2"/>.
+    </p>
+    <console>
+      <output><![CDATA[
+        par(mfrow=c(1,2))
+
+        plotOne <- function( a,b ) {
+          plot.new()
+          w<-4
+          plot.window( xlim = c(-w,w), ylim = c(0,.4))
+          xval <- seq( max(a,-w),min(b,w),.01)
+          yval <- dnorm(xval,0,1)
+          end <- length(xval)
+          polygon( c(xval[1],xval,xval[end]), 
+              c(0,yval,0),
+              col=ifelse(colour,emphCol,"black"),
+              density = 10 
+              )
+          xval <- seq(-w,w,.01)
+          yval <- dnorm( xval, 0, 1)				
+          lines( xval,yval, lwd=2, col="black" )
+          axis( side=1, at=-w:w )
+          area <- abs(pnorm(b,0,1)-pnorm(a,0,1))
+          title( main= paste("Shaded Area = ",round(area*100,1),"%", sep=""), font.main=1 )
+          
+        }
+        
+
+        plotOne(-1,1)
+        plotOne(-2,2)
+
+        par(mfrow=c(1,1))
+        ]]>
+      </output>
+    </console>
+    <figure xml:id="fig-sdnorm1">
+      <caption>Illustration of the 68-95-99.7 rule: the shaded area shows the probability of falling within 1 standard deviation of the mean.</caption>
+      <image source="images/sdnorm1.png"/>
+    </figure>
+    <console>
+    <output><![CDATA[
+    par(mfrow=c(1,2))
+    plotOne(-1,0)
+    plotOne(-50,-1)
+    par(mfrow=c(1,1))]]></output>
+    </console>
+    <figure xml:id="fig-sdnorm2">
+      <caption>Illustration of the 68-95-99.7 rule: the shaded area shows the probability of falling within 2 standard deviations of the mean.</caption>
+      <image source="images/sdnorm2.png"/>
+    </figure>
+
+    <xi:include href="subsections/normal/subsec-density.ptx" />
+  </section>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="probmeaning" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>What does probability mean?</title>
+
+    <introduction>
+        <p>
+        Let's start with the first of these questions. What is "probability"? It might seem surprising to you, 
+        but while statisticians and mathematicians (mostly) agree on what the <em>rules</em> of probability are, there's much less of a consensus on what the word really <em>means</em>. 
+        It seems weird because we're all very comfortable using words like "chance", "likely", "possible" and "probable", 
+        and it doesn't seem like it should be a very difficult question to answer. If you had to explain "probability" to a five year old, you could do a pretty good job. 
+        But if you've ever had that experience in real life, you might walk away from the conversation feeling like you didn't quite get it right, 
+        and that (like many everyday concepts) it turns out that you don't <em>really</em> know what it's all about.
+        </p>
+        <p>
+        So I'll have a go at it. Let's suppose I want to bet on a soccer game between two teams of robots, <em>Arduino Arsenal</em> and <em>C Milan</em>. 
+        After thinking about it, I decide that there is an 80% probability that <em>Arduino Arsenal</em> winning. What do I mean by that? Here are three possibilities...
+        <ul>
+            <li>
+            <p>
+                They're robot teams, so I can make them play over and over again, and if I did that, <em>Arduino Arsenal</em> would win 8 out of every 10 games on average.
+            </p>
+            </li>
+            <li>
+            <p>
+                For any given game, I would only agree that betting on this game is only "fair" if a $1 bet on <em>C Milan</em> gives a $5 payoff (i.e. 
+                I get my $1 back plus a $4 reward for being correct), as would a $4 bet on <em>Arduino Arsenal</em> (i.e., my $4 bet plus a $1 reward). 
+            </p>
+            </li>
+            <li>
+            <p>
+                My subjective "belief" or "confidence" in an <em>Arduino Arsenal</em> victory is four times as strong as my belief in a <em>C Milan</em> victory.
+            </p>
+            </li>
+        </ul>
+        </p>
+        
+        <p>
+        Each of these seems sensible. However they're not identical, and not every statistician would endorse all of them. 
+        The reason is that there are different statistical ideologies (yes, really!) and depending on which one you subscribe to, 
+        you might say that some of those statements are meaningless or irrelevant. In this section, I give a brief introduction the two main approaches that exist in the literature. 
+        These are by no means the only approaches, but they're the two big ones.
+        </p>
+    </introduction>
+    
+    <xi:include href="subsections/probmeaning/subsec-frequentist.ptx" />
+    <xi:include href="subsections/probmeaning/subsec-bayesian.ptx" />
+    <xi:include href="subsections/probmeaning/subsec-comparison.ptx" />
+
+  </section>

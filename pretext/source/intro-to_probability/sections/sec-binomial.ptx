@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="binomial" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>The binomial distribution</title>
+    <introduction>
+        <p>
+            As you might imagine, probability distributions vary enormously, and there's an enormous range of distributions out there. However, they aren't all equally important. 
+            In fact, the vast majority of the content in this book relies on one of five distributions: the binomial distribution, the normal distribution, 
+            the <m>t</m> distribution, the <m>\chi^2</m> ("chi-square") distribution and the <m>F</m> distribution. Given this, 
+            what I'll do over the next few sections is provide a brief introduction to all five of these, paying special attention to the binomial and the normal. 
+            I'll start with the binomial distribution, since it's the simplest of the five.
+        </p>
+    </introduction>
+
+    <xi:include href="subsections/binomial/subsec-binomial-intro.ptx" />
+    <xi:include href="subsections/binomial/subsec-binomial-in-R-Instat.ptx" />
+</section>
