@@ -121,8 +121,7 @@
         </image>
       </sidebyside>
     </figure>
-
-=======
+  </section>
     <p>In this chapter I'll discuss how to get started in R. I'll briefly talk about how to download and install R, but most of the chapter will be focused on getting you started with finding your way around the
 R graphical user interface (GUI). Our goal in this chapter is not to learn any statistical concepts: we're just trying to learn the basics of how R works and get comfortable interacting with the system.
 To do this we'll spend a bit of time looking at data sets and variables. In doing so, you'll get something of a feel for what it's like to work in R.</p>

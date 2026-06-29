@@ -55,20 +55,8 @@
           </row>
         </tabular>
       </table>
-      <console>
-        <output>
-          <![CDATA[
-            # Dialog: Show Model
-
-            speed <- data_book$get_columns_from_data(data_name="cars", col_names="speed")
-            last_graph <- mosaic::pdist(q=speed, return="plot", dist="binom", size=36, prob=0.5) %>% ggformula::gf_labs(title="Binomial Distribution Test: Car Speed", subtitle="Car speed probabilities (mean<=36)(SD=0.5)", caption="Data: Classic 'cars' dataset (n=50) |", x="Speed", y="Probability Mass P(X=k)") %>% ggformula::gf_theme(theme=theme_minimal())
-            data_book$add_object(data_name="cars", object_name="last_graph", object_type_label="graph", object_format="image", object=instatExtras::check_graph(graph_object=last_graph))
-            data_book$get_object_data(data_name="cars", object_name="last_graph", as_file=TRUE)
-            rm(list=c("last_graph", "speed"))
-          ]]>
-        </output>
-      </console>
-      <figure xml:id="fig-Binomial">
+    
+      <figure xml:id="fig-binomial1">
         <caption>The binomial distribution with size parameter N=20 and probability parameter theta=1/6.
           Each vertical bar depicts the probability of one specific outcome (i.e., one possible value of
           X). Because this is a probability distribution, each of the probabilities must be a number between 0 and

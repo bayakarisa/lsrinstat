@@ -1536,7 +1536,7 @@ we get the "title" information, and a short "description" of what the function d
 
 
   <!-- The following sections were moved from Chapter 3 (old base R content) to preserve cross-references -->
-  <section xml:id="assign">
+  <section xml:id="assigned">
     <title>Storing a number as a variable</title>
     <p>
       One of the most important things to be able to do in R (or any programming language, for that matter) is to store information in <term>variables</term>. Variables in R aren't exactly the same thing as the variables we talked about in the last chapter on research methods, but they are similar. At a conceptual level you can think of a variable as <em>label</em> for a certain piece of information, or even several different pieces of information. When doing statistical analysis in R all of your data (the variables you measured in your study) will be stored as variables in R, but as well see later in the book you'll find that you end up creating variables for other things too. However, before we delve into all the messy details of data sets and statistical analysis, let's look at the very basics for how we create variables and work with them.
@@ -1917,7 +1917,7 @@ we get the "title" information, and a short "description" of what the function d
   </section>
 
 
-  <section xml:id="usingfunctions">
+  <section xml:id="using_functions">
     <title>Using functions to do calculations</title>
     <p>
       The symbols <c>+</c>, <c>-</c>, <c>*</c> and so on are examples of operators. As we've seen, you can do quite a lot of calculations just by using these operators. However, in order to do more advanced calculations (and later on, to do actual statistics), you're going to need to start using <term>functions</term>.<fn>A side note for students with a programming background. Technically speaking, operators <em>are</em> functions in R: the addition operator <c>+</c> is actually a convenient way of calling the addition function <c>+()</c>. Thus <c>10+20</c> is equivalent to the function call <c>+(20, 30)</c>. Not surprisingly, no-one ever uses this version. Because that would be stupid.</fn> I'll talk in more detail about functions and how they work in <xref ref="functions" />, but for now let's just dive in and use a few. To get started, suppose I wanted to take the square root of 225. The  square root, in case your high school maths is a bit rusty, is just the opposite of squaring a number. So, for instance, since "5 squared is 25" I can say that "5 is the square root of 25". The usual notation for this is
@@ -2017,7 +2017,7 @@ we get the "title" information, and a short "description" of what the function d
     <p>
       When R executes this command, starts out by calculating the value of <c>abs(-8)</c>, which produces an intermediate value of <c>8</c>. Having done so, the command simplifies to <c>sqrt( 1 + 8 )</c>. To solve the square root<fn>A note for the mathematically inclined: R does support complex numbers, but unless you explicitly specify that you want them it assumes all calculations must be real valued. By default, the square root of a negative number is treated as undefined: <c>sqrt(-9)</c> will produce <c>NaN</c> (not a number) as its output. To get complex numbers, you would type <c>sqrt(-9+0i)</c>  and R would now return <c>0+3i</c>. However, since we won't have any need for complex numbers in this book, I won't refer to them again.</fn> it first needs to add <c>1 + 8</c> to get <c>9</c>, at which point it evaluates <c>sqrt(9)</c>, and so it finally outputs a value of <c>3</c>.
     </p>
-    <subsection xml:id="functionarguments">
+    <subsection xml:id="function_arguments">
       <title>Function arguments, their names and their defaults</title>
       <p>
         There's two more fairly important things that you need to understand about how functions work in R, and that's the use of "named" arguments, and default values" for arguments. Not surprisingly, that's not to say that this is the last we'll hear about how functions work, but they are the last things we desperately need to discuss in order to get you started. To understand what these two concepts are all about, I'll introduce another function. The <c>round()</c> function can be used to round some value to the nearest whole number. For example, I could type this:
