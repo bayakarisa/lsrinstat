@@ -16,9 +16,16 @@ generated-assets/*
 # don't track node packages
 node_modules
 
+# don't track local Python environments/caches
+.venv/
+__pycache__/
+*.py[cod]
+.cache/
+
 # don't track error logs
 .error_schema.log
 cli.log
+logs/
 
 assets/generated/
 logs/
@@ -97,4 +104,3 @@ GitHub.sublime-settings
 .dropbox
 .dropbox.attr
 .dropbox.cache
-

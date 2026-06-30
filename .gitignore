@@ -52,3 +52,7 @@ rsconnect/
 # Files that pop up from dev
 .quarto
 _old
+
+# Python cache files
+__pycache__/
+*.py[cod]

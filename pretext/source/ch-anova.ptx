@@ -369,8 +369,8 @@ width <- 7
     <me><![CDATA[F = \frac{\mbox{MS}_b }{ \mbox{MS}_w }]]></me>
     <p>At a very general level, the intuition behind the <m><![CDATA[F]]></m> statistic is straightforward: bigger values of <m><![CDATA[F]]></m> means that the between-groups variation is large, relative to the within-groups variation. As a consequence, the larger the value of <m><![CDATA[F]]></m>, the more evidence we have against the null hypothesis. But how large does <m><![CDATA[F]]></m> have to be in order to actually <em>reject</em> <m><![CDATA[H_0]]></m>? In order to understand this, you need a slightly deeper understanding of what ANOVA is and what the mean squares values actually are.</p>
     <p>The next section discusses that in a bit of detail, but for readers that aren't interested in the details of what the test is actually measuring, I'll cut to the chase. In order to complete our hypothesis test, we need to know the sampling distribution for <m><![CDATA[F]]></m> if the null hypothesis is true. Not surprisingly, the sampling distribution for the <m><![CDATA[F]]></m> <em>statistic</em> under the null hypothesis is an <m><![CDATA[F]]></m> <em>distribution</em>. If you recall back to our discussion of the <m><![CDATA[F]]></m> distribution in Chapter \@ref(probability, the <m><![CDATA[F]]></m> distribution has two parameters, corresponding to the two degrees of freedom involved: the first one df<m><![CDATA[_1]]></m> is the between groups degrees of freedom df<m><![CDATA[_b]]></m>, and the second one df<m><![CDATA[_2]]></m> is the within groups degrees of freedom df<m><![CDATA[_w]]></m>.</p>
-    <p>A summary of all the key quantities involved in a one-way ANOVA, including the formulas showing how they are calculated, is shown in <xref ref="table-chanova-43"/>.</p>
-        <table xml:id="table-chanova-43">
+    <p>A summary of all the key quantities involved in a one-way ANOVA, including the formulas showing how they are calculated, is shown in <xref ref="tab-anovatable"/>.</p>
+        <table xml:id="tab-anovatable">
       <title>All of the key quantities involved in an ANOVA, organised into a "standard" ANOVA table. The formulas for all quantities (except the <m>p</m>-value, which has a very ugly formula and would be nightmarishly hard to calculate without a computer) are shown.</title>
       <tabular halign="center">
         <row header="yes" bottom="minor">
@@ -741,7 +741,7 @@ pf( 18.6, df1 = 2, df2 = 15, lower.tail = FALSE)]]></input>
     </console>
     </remark>
     <p>Therefore, our <m><![CDATA[p]]></m>-value comes to 0.0000867, or <m><![CDATA[8.67 \times 10^{-5}]]></m> in scientific notation. So, unless we're being <em>extremely</em> conservative about our Type I error rate, we're pretty much guaranteed to reject the null hypothesis.</p>
-    <p>At this point, we're basically done. Having completed our calculations, it's traditional to organise all these numbers into an ANOVA table like the one in <xref ref = "table-chanova-43"/>. For our clinical trial data, the ANOVA table would look like this:</p>
+    <p>At this point, we're basically done. Having completed our calculations, it's traditional to organise all these numbers into an ANOVA table like the one in <xref ref = "tab-anovatable"/>. For our clinical trial data, the ANOVA table would look like this:</p>
         <table xml:id="table-chanova-37">
       <tabular halign="center">
         <row header="yes" bottom="minor">
@@ -895,7 +895,7 @@ summary( my.anova )]]></input>
 ]]></output>
     </console>
     </remark>
-    <p>... we get all of the key numbers that we calculated earlier. We get the sums of squares, the degrees of freedom, the mean squares, the <m><![CDATA[F]]></m>-statistic, and the <m><![CDATA[p]]></m>-value itself. These are all identical to the numbers that we calculated ourselves when doing it the long and tedious way, and it's even organised into the same kind of ANOVA table that I showed in <xref ref="table-chanova-43"/>, and then filled out by hand in <xref ref="anovacalc"/>. The only things that are even slightly different is that some of the row and column names are a bit different.</p>
+    <p>... we get all of the key numbers that we calculated earlier. We get the sums of squares, the degrees of freedom, the mean squares, the <m><![CDATA[F]]></m>-statistic, and the <m><![CDATA[p]]></m>-value itself. These are all identical to the numbers that we calculated ourselves when doing it the long and tedious way, and it's even organised into the same kind of ANOVA table that I showed in <xref ref="tab-anovatable"/>, and then filled out by hand in <xref ref="anovacalc"/>. The only things that are even slightly different is that some of the row and column names are a bit different.</p>
     </subsection>
   </section>
   <section xml:id="etasquared">

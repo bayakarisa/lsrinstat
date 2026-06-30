@@ -62,6 +62,11 @@
     <!-- and associated with a Google account via CX number    -->
     <!-- <search google-cx=""/> -->
     <!-- ***************************************************** -->
+    <!-- HTML theme colors for modern PreTeXt styling         -->
+    <css theme="default-modern"
+      primary-color="#44575E"
+      secondary-color="#F37021"
+      primary-color-dark="#649BA3" />
     <!-- Enable interactive code blocks and code highlighting -->
     <calculator model="none"/>
   </html>
