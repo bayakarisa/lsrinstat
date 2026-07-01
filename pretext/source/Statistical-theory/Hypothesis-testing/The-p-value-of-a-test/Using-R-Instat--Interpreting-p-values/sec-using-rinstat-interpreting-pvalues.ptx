@@ -1,0 +1,28 @@
+<subsection xml:id="subsec-Using_RInstat_Interpreting_pvalues">
+  <title>Using R-Instat: Interpreting p-values</title>
+  <p>
+     In R-Instat, the p-value is displayed directly in the output.
+  </p>
+  <p>
+    To interpret it:
+    <ul>
+      <li>
+        <p>
+          If p <m> &lt; 0.05 </m> , the result is statistically significant and the null hypothesis is rejected.
+        </p>
+      </li>
+      <li>
+        <p>
+          If p <m>\ge 0.05</m>, the result is not statistically significant and the null hypothesis is retained.
+        </p>
+      </li>
+    </ul>
+  </p>
+  <p>
+    It is important to remember that the p-value does not measure the probability that the null hypothesis is true. Instead, it measures how extreme the observed data are under the assumption that the null hypothesis is correct.
+  </p>
+  <figure xml:id="General_Hypothesis_Tests_dialog">
+    <caption>The Hypothesis Tests dialog in R-Instat providing direct access to a range of statistical tests including t-tests, chi-square tests, and non-parametric tests.</caption>
+    <image source="images/HypothesisTesting/interpreting-p-values.png"/>
+  </figure>
+</subsection>

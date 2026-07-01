@@ -1,0 +1,19 @@
+<section xml:id="nhstmess" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Some issues to consider</title>
+
+  <introduction>
+    <p>
+      What I've described to you in this chapter is the orthodox framework for null hypothesis significance testing (NHST).
+      Understanding how NHST works is an absolute necessity, since it has been the dominant approach to inferential statistics ever since it came to prominence in the early 20th century.
+      It's what the vast majority of working scientists rely on for their data analysis, so even if you hate it you need to know it.
+      However, the approach is not without problems.
+      There are a number of quirks in the framework, historical oddities in how it came to be, theoretical disputes over whether or not the framework is right, and a lot of practical traps for the unwary.
+      I'm not going to go into a lot of detail on this topic, but I think it's worth briefly discussing a few of these issues.
+    </p>
+  </introduction>
+
+  <xi:include href="./Some-issues-to-consider/Neyman-versus-Fisher/sec-neyman-vs-fisher.ptx" />
+  <xi:include href="./Some-issues-to-consider/Bayesians-versus-frequentists/sec-bayesians-vs-frequentists.ptx" />
+  <xi:include href="./Some-issues-to-consider/Traps/sec-traps.ptx" />
+
+</section>

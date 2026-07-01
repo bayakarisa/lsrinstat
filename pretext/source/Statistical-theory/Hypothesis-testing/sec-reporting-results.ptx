@@ -1,0 +1,21 @@
+<section xml:id="writeup" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Reporting the results of a hypothesis test</title>
+
+  <introduction>
+    <p>
+    When writing up the results of a hypothesis test, there's usually several pieces of information that you need to report, but it varies a fair bit from test to test.
+    Throughout the rest of the book I'll spend a little time talking about how to report the results of different tests (see <xref ref="chisqreport"/> for a particularly detailed example), so that you can get a feel for how it's usually done.
+    However, regardless of what test you're doing, the one thing that you always have to do is say something about the <m>p</m> value, and whether or not the outcome was significant.
+    </p>
+
+    <p>
+    The fact that you have to do this is unsurprising; it's the whole point of doing the test.
+    What might be surprising is the fact that there is some contention over exactly how you're supposed to do it.
+    Leaving aside those people who completely disagree with the entire framework underpinning null hypothesis testing, there's a certain amount of tension that exists regarding whether or not to report the exact <m>p</m> value that you obtained, or if you should state only that <m><![CDATA[p < \alpha]]></m> for a significance level that you chose in advance (e.g., <m><![CDATA[p<.05]]></m>).
+    </p>
+  </introduction>
+
+  <xi:include href="./Reporting-the-results-of-a-hypothesis-test/The-issue/sec-the-issue.ptx" />
+  <xi:include href="./Reporting-the-results-of-a-hypothesis-test/Two-proposed-solutions/sec-two-proposed-solutions.ptx" />
+
+</section>

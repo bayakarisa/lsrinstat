@@ -1,0 +1,80 @@
+<subsection xml:id="sec-UsingR-Instat-Reusing-a-fitted-model-with-Use-Model-Keyboards">
+  <title>Using R-Instat: Reusing a fitted model with Use Model Keyboards</title>
+
+  <p>
+    So far, every time we've wanted a new piece of output, we've fitted a model from scratch. That's wasteful. Once a model exists, R-Instat keeps it in memory, and there's a dedicated dialog for interrogating a model you've already built rather than rebuilding it. It's found under <term>Model &#8594; Use Model &#8594; Use Model Keyboards...</term>, and it's the tool you'll reach for whenever you want a different view of a model you've already fitted: a summary table, an ANOVA table, a diagnostic test, or anything in between.
+  </p>
+
+  <p>
+    The dialog has three parts that matter. The <term>Models</term> list on the left shows every model currently stored, by default, your most recent one is saved as <term>last_model</term>. Selecting a model and clicking <term>Add</term> places it in the <term>Expression</term> box at the top, which is where R-Instat is quietly building an actual line of R code for you. And the <term>General</term> panel of buttons on the right is a set of shortcuts: each one wraps the model in a different function and writes the result straight into the Expression box.
+  </p>
+
+  <p>To try it on the <c>pay ~ hours + tasks</c> model fitted earlier:</p>
+
+  <p>
+    <ol>
+      <li><p>Open <term>Use Model Keyboards</term>.</p></li>
+      <li><p>Set <term>Data Frame</term> to <c>work</c>.</p></li>
+      <li><p>Select <term>last_model</term> and click <term>Add</term>. The Expression box now reads <term>last_model</term>.</p></li>
+      <li><p>Click <term>Try</term>. A green "Model runs ok" message confirms the model is valid.</p></li>
+      <li><p>Click <term>summary</term>. The Expression box updates to <term>summary(last_model)</term>.</p></li>
+      <li><p>Click <term>OK</term>.</p></li>
+    </ol>
+  </p>
+
+  <figure xml:id="Summary-keyboard-dialog-try">
+    <caption></caption>
+    <image source="images/HypothesisTesting/Summary-keyboard-dialog-try.png"/>
+  </figure>
+
+  <p>The Output Window returns:</p>
+
+  <figure xml:id="Summary-keyboard-output">
+    <caption></caption>
+    <image source="images/HypothesisTesting/Summary-keyboard-output.png"/>
+  </figure>
+
+  <p>
+    Reopen the dialog, add <term>last_model</term> again, and click <term>anova</term> instead. The Expression box now reads <term>anova(last_model)</term>, and clicking <term>OK</term> returns:
+  </p>
+
+  <figure xml:id="Anova-keyboard-dialog">
+    <caption></caption>
+    <image source="images/HypothesisTesting/Anova-keyboard-dialog.png"/>
+  </figure>
+
+  <figure xml:id="Anova-keyboard-output">
+    <caption></caption>
+    <image source="images/HypothesisTesting/Anova-keyboard-output.png"/>
+  </figure>
+
+  <p>
+    Both results describe the same fitted model, but answer different questions. 
+    The summary table tells you about each predictor individually: <term>hours</term> has a strong, highly significant effect on <term>pay</term> (<m>t = 3.35</m>, <m>p = 0.0016</m>), 
+    and <term>tasks</term> has a smaller but still significant effect (<m>t = 2.03</m>, <m>p = 0.048</m>). 
+    The ANOVA table instead partitions the total variation in <term>pay</term> and tests each term's contribution as it's added to the model here, 
+    both <term>hours</term> and <term>tasks</term> contribute significantly, and together the full model explains 61.3% of the variance in <term>pay</term> (<m>R^2 = 0.613</m>).
+  </p>
+
+  <p>
+    The rest of the buttons in the <term>General</term> panel follow the same pattern each one wraps <term>last_model</term> in a different function:
+  </p>
+
+  <p>
+    <ul>
+      <li><p><term>print</term> returns the bare model formula and coefficients, with nothing else.</p></li>
+      <li><p><term>residuals</term> and <term>coefficient</term> extract single components of the model.</p></li>
+      <li><p><term>AIC</term> and <term>BIC</term> return a single number for comparing this model against others.</p></li>
+      <li>
+        <p>
+          <term>outlierTest</term>, <term>ncvTest</term>, and <term>durbinWatsonTest</term> check specific assumptions behind the regression respectively, whether any one observation is an outlier, whether the residuals' spread is constant, and whether residuals are correlated with each other (relevant here, since the <term>work</term> data frame is ordered by day).
+        </p>
+      </li>
+    </ul>
+  </p>
+
+  <p>
+    You'll meet these diagnostic tests properly in later chapters. For now, the main thing to take away is the workflow itself: fit a model once, then use <term>Use Model Keyboards</term> to ask it as many questions as you need.
+  </p>
+
+</subsection>

@@ -1,0 +1,58 @@
+<subsection>
+  <title>Effect size</title>
+
+  <blockquote>
+    <p>
+      <em>Since all models are wrong the scientist must be alert to what is importantly wrong. It is inappropriate to be concerned with mice when there are tigers abroad</em> -- George Box 1976
+    </p>
+  </blockquote>
+
+  <p>
+    The plot shown in <xref ref="fig-powerfunction"/> captures a fairly basic point about hypothesis testing.
+    If the true state of the world is very different from what the null hypothesis predicts, then your power will be very high; but if the true state of the world is similar to the null (but not identical) then the power of the test is going to be very low.
+    Therefore, it's useful to be able to have some way of quantifying how "similar" the true state of the world is to the null hypothesis.
+    A statistic that does this is called a measure of <em>effect size</em> (e.g.
+    <xref ref="biblio-Cohen1988">Cohen, 1988</xref>; <xref ref="biblio-Ellis2010">Ellis, 2010</xref>).
+    Effect size is defined slightly differently in different contexts, <fn>There's an R package called <c>compute.es</c> that can be used for calculating a very broad range of effect size measures; but for the purposes of the current book we won't need it: all of the effect size measures that I'll talk about here have functions in the <c>lsr</c> package</fn> (and so this section just talks in general terms) but the qualitative idea that it tries to capture is always the same: how big is the difference between the <em>true</em> population parameters, and the parameter values that are assumed by the null hypothesis? In our ESP example, if we let <m>\theta_0 = 0.5</m> denote the value assumed by the null hypothesis, and let <m>\theta</m> denote the true value, then a simple measure of effect size could be something like the difference between the true value and null (i.e., <m>\theta - \theta_0</m>), or possibly just the magnitude of this difference, <m>\mbox{abs}(\theta - \theta_0)</m>.
+  </p>
+
+  <table xml:id="table-ht-effectsize">
+    <title>A crude guide to understanding the relationship between statistical significance and effect sizes. Basically, if you don't have a significant result, then the effect size is pretty meaningless; because you don't have any evidence that it's even real. On the other hand, if you do have a significant effect but your effect size is small, then there's a pretty good chance that your result (although real) isn't all that interesting. However, this guide is very crude: it depends a lot on what exactly you're studying. Small effects can be of massive practical importance in some situations. So don't take this table too seriously. It's a rough guide at best.</title>
+
+    <tabular halign="center">
+      <row header="yes" bottom="minor">
+        <cell halign="left"></cell>
+        <cell>big effect size</cell>
+        <cell>small effect size</cell>
+      </row>
+
+      <row>
+        <cell halign="left">significant result</cell>
+        <cell>difference is real, and of practical importance</cell>
+        <cell>difference is real, but might not be interesting</cell>
+      </row>
+
+      <row>
+        <cell halign="left">non-significant result</cell>
+        <cell>no effect observed</cell>
+        <cell>no effect observed</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>
+    Why calculate effect size? Let's assume that you've run your experiment, collected the data, and gotten a significant effect when you ran your hypothesis test.
+    Isn't it enough just to say that you've gotten a significant effect? Surely that's the <em>point</em> of hypothesis testing? Well, sort of.
+    Yes, the point of doing a hypothesis test is to try to demonstrate that the null hypothesis is wrong, but that's hardly the only thing we're interested in.
+    If the null hypothesis claimed that <m>\theta = .5</m>, and we show that it's wrong, we've only really told half of the story.
+    Rejecting the null hypothesis implies that we believe that <m>\theta \neq .5</m>, but there's a big difference between <m>\theta = .51</m> and <m>\theta = .8</m>.
+    If we find that <m>\theta = .8</m>, then not only have we found that the null hypothesis is wrong, it appears to be <em>very</em> wrong.
+    On the other hand, suppose we've successfully rejected the null hypothesis, but it looks like the true value of <m>\theta</m> is only .51 (this would only be possible with a large study).
+    Sure, the null hypothesis is wrong, but it's not at all clear that we actually <em>care</em>, because the effect size is so small.
+    In the context of my ESP study we might still care, since any demonstration of real psychic powers would actually be pretty cool <fn>Although in practice a very small effect size is worrying, because even very minor methodological flaws might be responsible for the effect; and in practice no experiment is perfect, so there are always methodological issues to worry about.</fn>, but in other contexts a 1% difference isn't very interesting, even if it is a real difference.
+    For instance, suppose we're looking at differences in high school exam scores between males and females, and it turns out that the female scores are 1% higher on average than the males.
+    If I've got data from thousands of students, then this difference will almost certainly be <em>statistically significant</em>, but regardless of how small the <m>p</m> value is it's just not very interesting.
+    You'd hardly want to go around proclaiming a crisis in boys education on the basis of such a tiny difference would you? It's for this reason that it is becoming more standard (slowly, but surely) to report some kind of standard measure of effect size along with the the results of the hypothesis test.
+    The hypothesis test itself tells you whether you should believe that the effect you have observed is real (i.e., not just due to chance); the effect size tells you whether or not you should care.
+  </p>
+</subsection>

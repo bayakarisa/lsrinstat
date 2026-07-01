@@ -1,0 +1,38 @@
+<chapter xml:id="hypothesistesting" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Hypothesis testing</title>
+
+  <introduction>
+    <blockquote>
+      <p>
+        <em>The process of induction is the process of assuming the simplest law that can be made to harmonize with our experience. This process, however, has no logical foundation but only a psychological one. It is clear that there are no grounds for believing that the simplest course of events will really happen. It is an hypothesis that the sun will rise tomorrow: and this means that we do not know whether it will rise.</em> -- Ludwig Wittgenstein <fn>The quote comes from Wittgenstein's (1922) text, <em>Tractatus Logico-Philosphicus</em>.</fn>
+      </p>
+    </blockquote>
+
+    <p>
+      In the last chapter, I discussed the ideas behind estimation, which is one of the two "big ideas" in inferential statistics.
+      It's now time to turn out attention to the other big idea, which is <em>hypothesis testing</em>.
+      In its most abstract form, hypothesis testing really a very simple idea: the researcher has some theory about the world, and wants to determine whether or not the data actually support that theory.
+      However, the details are messy, and most people find the theory of hypothesis testing to be the most frustrating part of statistics.
+      The structure of the chapter is as follows.
+      Firstly, I'll describe how hypothesis testing works, in a fair amount of detail, using a simple running example to show you how a hypothesis test is "built".
+      I'll try to avoid being too dogmatic while doing so, and focus instead on the underlying logic of the testing procedure.
+      <fn>A technical note.
+      The description below differs subtly from the standard description given in a lot of introductory texts.
+      The orthodox theory of null hypothesis testing emerged from the work of Sir Ronald Fisher and Jerzy Neyman in the early 20th century; but Fisher and Neyman actually had very different views about how it should work.
+      The standard treatment of hypothesis testing that most texts use is a hybrid of the two approaches.
+      The treatment here is a little more Neyman-style than the orthodox view, especially as regards the meaning of the <m>p</m> value.</fn> Afterwards, I'll spend a bit of time talking about the various dogmas, rules and heresies that surround the theory of hypothesis testing.
+    </p>
+  </introduction>
+
+  <xi:include href="./Hypothesis-testing/sec-menagerie-of-hypotheses.ptx" />
+  <xi:include href="./Hypothesis-testing/sec-two-types-of-errors.ptx" />
+  <xi:include href="./Hypothesis-testing/sec-test-statistics-and-sampling-distributions.ptx" />
+  <xi:include href="./Hypothesis-testing/sec-making-decisions.ptx" />
+  <xi:include href="./Hypothesis-testing/sec-pvalue.ptx" />
+  <xi:include href="./Hypothesis-testing/sec-reporting-results.ptx" />
+  <xi:include href="./Hypothesis-testing/sec-running-hypothesis-test-in-practice.ptx" />
+  <xi:include href="./Hypothesis-testing/sec-effect-size-sample-size-power.ptx" />
+  <xi:include href="./Hypothesis-testing/sec-some-issues-to-consider.ptx" />
+  <xi:include href="./Hypothesis-testing/sec-summary.ptx" />
+
+</chapter>

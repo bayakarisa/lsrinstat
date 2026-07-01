@@ -76,7 +76,7 @@
       <xi:include href="./ch-estimation.ptx" />
 
       <!-- Hypothesis Testing -->
-      <xi:include href="./ch-hypothesistesting.ptx" />
+      <xi:include href="./Statistical-theory/ch-hypothesistesting.ptx" />
     </part>
 
     <!-- Part V: Statistical tools -->

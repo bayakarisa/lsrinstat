@@ -1,0 +1,62 @@
+<section xml:id="pvalue" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>The <m>p</m> value of a test</title>
+
+  <introduction>
+  <p>
+  In one sense, our hypothesis test is complete; we've constructed a test statistic, figured out its sampling distribution if the null hypothesis is true, and then constructed the critical region for the test.
+  Nevertheless, I've actually omitted the most important number of all: <em>the <m>p</m> value</em>.
+  It is to this topic that we now turn.
+  There are two somewhat different ways of interpreting a <m>p</m> value, one proposed by Sir Ronald Fisher and the other by Jerzy Neyman.
+  Both versions are legitimate, though they reflect very different ways of thinking about hypothesis tests.
+  Most introductory textbooks tend to give Fisher's version only, but I think that's a bit of a shame.
+  To my mind, Neyman's version is cleaner, and actually better reflects the logic of the null hypothesis test.
+  You might disagree though, so I've included both.
+  I'll start with Neyman's version...
+  </p>
+  </introduction>
+
+  <xi:include href="./The-p-value-of-a-test/A-softer-view-of-decision-making/sec-softer-view-of-decision-making.ptx" />
+  <xi:include href="./The-p-value-of-a-test/The-probability-of-extreme-data/sec-probability-of-extreme-data.ptx" />
+  <xi:include href="./The-p-value-of-a-test/A-common-mistake/sec-common-mistake.ptx" />
+  <xi:include href="./The-p-value-of-a-test/Using-R-Instat--Interpreting-p-values/sec-using-rinstat-interpreting-pvalues.ptx" />
+
+  <conclusion>
+    <table xml:id="tab-pvaltable">
+    <title>Conventional p-value thresholds</title>
+
+    <tabular>
+    <row header="yes">
+      <cell>Usual notation</cell>
+      <cell>English translation</cell>
+      <cell>The null is?</cell>
+    </row>
+
+    <row>
+      <cell>p &gt; .05</cell>
+      <cell>The test wasn't significant</cell>
+      <cell>Retained</cell>
+    </row>
+
+    <row>
+      <cell>p &lt; .05</cell>
+      <cell>The test was significant at <m>\alpha = 0.05</m>, but not at <m>\alpha = 0.01</m> or <m>\alpha = 0.001</m></cell>
+      <cell>Rejected</cell>
+    </row>
+
+    <row>
+      <cell>p &lt; .01</cell>
+      <cell>The test was significant at <m>\alpha = 0.05</m> and <m>\alpha = 0.01</m>, but not at <m>\alpha = 0.001</m></cell>
+      <cell>Rejected</cell>
+    </row>
+
+    <row>
+      <cell>p &lt; .001</cell>
+      <cell>The test was significant at all levels</cell>
+      <cell>Rejected</cell>
+    </row>
+    </tabular>
+    </table>
+  </conclusion>
+</section>
+
+

@@ -1,0 +1,57 @@
+<subsection>
+  <title>The power function</title>
+
+  <p>
+  Let's take a moment to think about what a Type II error actually is.
+  A Type II error occurs when the alternative hypothesis is true, but we are nevertheless unable to reject the null hypothesis.
+  Ideally, we'd be able to calculate a single number <m>\beta</m> that tells us the Type II error rate, in the same way that we can set <m>\alpha = .05</m> for the Type I error rate.
+  Unfortunately, this is a lot trickier to do.
+  To see this, notice that in my ESP study the alternative hypothesis actually corresponds to lots of possible values of <m>\theta</m>.
+  In fact, the alternative hypothesis corresponds to every value of <m>\theta</m> <em>except</em> 0.5.
+  Let's suppose that the true probability of someone choosing the correct response is 55% (i.e., <m>\theta = .55</m>).
+  If so, then the <em>true</em> sampling distribution for <m>X</m> is not the same one that the null hypothesis predicts: the most likely value for <m>X</m> is now 55 out of 100.
+  Not only that, the whole sampling distribution has now shifted, as shown in <xref ref="fig-crit3"/>.
+  The critical regions, of course, do not change: by definition, the critical regions are based on what the null hypothesis predicts.
+  What we're seeing in this figure is the fact that when the null hypothesis is wrong, a much larger proportion of the sampling distribution distribution falls in the critical region.
+  And of course that's what should happen: the probability of rejecting the null hypothesis is larger when the null hypothesis is actually false! However <m>\theta = .55</m> is not the only possibility consistent with the alternative hypothesis.
+  Let's instead suppose that the true value of <m>\theta</m> is actually 0.7.
+  What happens to the sampling distribution when this occurs? The answer, shown in <xref ref="fig-crit4"/>, is that almost the entirety of the sampling distribution has now moved into the critical region.
+  Therefore, if <m>\theta = 0.7</m> the probability of us correctly rejecting the null hypothesis (i.e., the power of the test) is much larger than if <m>\theta = 0.55</m>.
+  In short, while <m>\theta = .55</m> and <m>\theta = .70</m> are both part of the alternative hypothesis, the Type II error rate is different.
+  </p>
+
+  <console>
+  <input><![CDATA[	setUpPlot() y <- dbinom(x,100,.55) z <- x<=40 | x>=60 addDistPlot(x,y,z) h <- .06 addArrow(c(40,20),h) addArrow(c(60,80),h) text(22,h+.013,"lower critical region") text(22,h+.007,"(2.5% of the distribution)") text(75,h+.013,"upper critical region") text(75,h+.007,"(2.5% of the distribution)") title(main=expression(paste("Sampling Distribution for X if ",theta,"=.55")),font.main=1)]]></input>
+  </console>
+
+  <figure xml:id="fig-crit3">
+  <caption>Effect of the true parameter value on test power when theta=0.55.</caption>
+  <image source="images/crit3.png"/>
+  </figure>
+
+  <console>
+    <input><![CDATA[	setUpPlot() y <- dbinom(x,100,.7) z <- x<=40 | x>=60 addDistPlot(x,y,z) h <- .06 addArrow(c(40,20),h) addArrow(c(60,80),h) text(22,h+.013,"lower critical region") text(22,h+.007,"(2.5% of the distribution)") text(75,h+.013,"upper critical region") text(75,h+.007,"(2.5% of the distribution)") title(main=expression(paste("Sampling Distribution for X if ",theta,"=.70")),font.main=1)]]></input>
+  </console>
+
+  <figure xml:id="fig-crit4">
+    <caption>Effect of the true parameter value on test power when theta=0.7.</caption>
+    <image source="images/crit4.png"/>
+  </figure>
+
+  <p>
+    What all this means is that the power of a test (i.e., <m>1-\beta</m>) depends on the true value of <m>\theta</m>.
+    To illustrate this, I've calculated the expected probability of rejecting the null hypothesis for all values of <m>\theta</m>, and plotted it in <xref ref="fig-powerfunction"/>.
+    This plot describes what is usually called the <em>power function</em> of the test.
+    It's a nice summary of how good the test is, because it actually tells you the power (<m>1-\beta</m>) for all possible values of <m>\theta</m>.
+    As you can see, when the true value of <m>\theta</m> is very close to 0.5, the power of the test drops very sharply, but when it is further away, the power is large.
+  </p>
+
+  <console>
+    <input><![CDATA[	width <- 8 height <- 6 # distribution N <- 1:100 pow <- vector("numeric",length(N)) theta <- .7 for( i in seq_along(N) ) { crit.lo <- qbinom(.025,N[i],.5)-1 crit.hi <- qbinom(.975,N[i],.5) pow[i] <- 	pbinom(crit.lo,N[i],theta,lower.tail=TRUE) + pbinom(crit.hi,N[i],theta,lower.tail=FALSE) } print(pow) # plot plot(N,pow,type="l",lwd=3, col=ifelse(colour,emphCol,"black"), xlab="Sample Size, N", ylab="Probability of Rejecting the Null", #	main="Power Function for the Test (N=100)", font.main=1, frame.plot=FALSE, ylim=c(0,1) )]]></input>
+  </console>
+
+  <figure xml:id="fig-powerfunction">
+    <caption> The power function of the test showing the probability of correctly rejecting the null hypothesis for each value of theta. </caption>
+    <image source="images/powerfunction.png"/>
+  </figure>
+</subsection>

@@ -1,0 +1,75 @@
+<section xml:id="teststatistics">
+  <title>Test statistics and sampling distributions</title>
+
+  <p>
+    At this point we need to start talking specifics about how a hypothesis test is constructed.
+    To that end, let's return to the ESP example.
+    Let's ignore the actual data that we obtained, for the moment, and think about the structure of the experiment.
+    Regardless of what the actual numbers are, the <em>form</em> of the data is that <m>X</m> out of <m>N</m> people correctly identified the colour of the hidden card.
+    Moreover, let's suppose for the moment that the null hypothesis really is true: ESP doesn't exist, and the true probability that anyone picks the correct colour is exactly <m>\theta = 0.5</m>.
+    What would we <em>expect</em> the data to look like? Well, obviously, we'd expect the proportion of people who make the correct response to be pretty close to 50%.
+    Or, to phrase this in more mathematical terms, we'd say that <m>X/N</m> is approximately <m>0.5</m>.
+    Of course, we wouldn't expect this fraction to be <em>exactly</em> 0.5: if, for example we tested <m>N=100</m> people, and <m>X = 53</m> of them got the question right, we'd probably be forced to concede that the data are quite consistent with the null hypothesis.
+    On the other hand, if <m>X = 99</m> of our participants got the question right, then we'd feel pretty confident that the null hypothesis is wrong.
+    Similarly, if only <m>X=3</m> people got the answer right, we'd be similarly confident that the null was wrong.
+    Let's be a little more technical about this: we have a quantity <m>X</m> that we can calculate by looking at our data; after looking at the value of <m>X</m>, we make a decision about whether to believe that the null hypothesis is correct, or to reject the null hypothesis in favour of the alternative.
+    The name for this thing that we calculate to guide our choices is a <em>test statistic</em>.
+  </p>
+
+  <p>
+    Having chosen a test statistic, the next step is to state precisely which values of the test statistic would cause is to reject the null hypothesis, and which values would cause us to keep it.
+    In order to do so, we need to determine what the <em>sampling distribution of the test statistic</em> would be if the null hypothesis were actually true (we talked about sampling distributions earlier in <xref ref="samplingdists"/>).
+    Why do we need this? Because this distribution tells us exactly what values of <m>X</m> our null hypothesis would lead us to expect.
+    And therefore, we can use this distribution as a tool for assessing how closely the null hypothesis agrees with our data.
+  </p>
+
+  <console>
+    <input><![CDATA[ nhstImg <- list() emphCol <- rgb(0,0,1) emphColLight <- rgb(.5,.5,1) emphGrey <- grey(.5) eps <- TRUE colour <- TRUE width <- 8 height <- 5.5 # distribution x <- 0:100 y <- dbinom(x,100,.5) # plot plot(x,y,type="h",lwd=3, col=ifelse(colour,emphCol,"black"), xlab="Number of Correct Responses (X)", ylab="Probability", main="Sampling Distribution for X if the Null is True", font.main=1, frame.plot=FALSE )]]></input>
+  </console>
+
+  <figure xml:id="fig-samplingdist">
+    <caption> The sampling distribution for our test statistic X when the null hypothesis is true. For our ESP scenario, this is a binomial distribution. Not surprisingly, since the null hypothesis says that the probability of a correct response is <m>\theta = 0.5</m>, the sampling distribution says that the most likely value is 50 (out of 100) correct responses. Most of the probability mass lies between 40 and 60. </caption>
+    <image source="images/samplingdist.png"/>
+  </figure>
+
+  <p>
+    How do we actually determine the sampling distribution of the test statistic? For a lot of hypothesis tests this step is actually quite complicated, and later on in the book you'll see me being slightly evasive about it for some of the tests (some of them I don't even understand myself).
+    However, sometimes it's very easy.
+    And, fortunately for us, our ESP example provides us with one of the easiest cases.
+    Our population parameter <m>\theta</m> is just the overall probability that people respond correctly when asked the question, and our test statistic <m>X</m> is the <em>count</em> of the number of people who did so, out of a sample size of <m>N</m>.
+    We've seen a distribution like this before, in <xref ref="binomial"/>: that's exactly what the binomial distribution describes! So, to use the notation and terminology that I introduced in that section, we would say that the null hypothesis predicts that <m>X</m> is binomially distributed, which is written
+    <me>
+      X \sim \mbox{Binomial}(\theta,N)
+    </me>
+    Since the null hypothesis states that <m>\theta = 0.5</m> and our experiment has <m>N=100</m> people, we have the sampling distribution we need.
+    This sampling distribution is plotted in <xref ref="fig-samplingdist"/>.
+    No surprises really: the null hypothesis says that <m>X=50</m> is the most likely outcome, and it says that we're almost certain to see somewhere between 40 and 60 correct responses.
+  </p>
+  <!-- <p> <m>\textbf{Using R-Instat: Test statistics} </m></p> -->
+  <p>
+    In R-Instat, the test statistic is calculated automatically when a statistical test is selected.
+  </p>
+  <p>
+    For instance:
+    <ol>
+      <li>
+        <p>
+          Selecting a t-test produces a t-statistic.
+        </p>
+      </li>
+      <li>
+        <p>
+          Selecting a binomial test uses a binomial distribution.
+        </p>
+      </li>
+      <li>
+        <p>
+          Non-parametric tests such as the Wilcoxon test use rank-based statistics.
+        </p>
+      </li>
+    </ol>
+  </p>
+  <p>
+    The user does not need to compute these manually; instead, R-Instat displays them in the output window along with the corresponding p-value.
+  </p>
+</section>

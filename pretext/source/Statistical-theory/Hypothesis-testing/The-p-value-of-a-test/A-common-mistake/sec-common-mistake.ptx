@@ -1,0 +1,14 @@
+<subsection>
+  <title>A common mistake</title>
+
+  <p>
+  Okay, so you can see that there are two rather different but legitimate ways to interpret the <m>p</m> value, one based on Neyman's approach to hypothesis testing and the other based on Fisher's.
+  Unfortunately, there is a third explanation that people sometimes give, especially when they're first learning statistics, and it is <em>absolutely and completely wrong</em>.
+  This mistaken approach is to refer to the <m>p</m> value as "the probability that the null hypothesis is true".
+  It's an intuitively appealing way to think, but it's wrong in two key respects: (1) null hypothesis testing is a frequentist tool, and the frequentist approach to probability does <em>not</em> allow you to assign probabilities to the null hypothesis...
+  according to this view of probability, the null hypothesis is either true or it is not; it cannot have a "5% chance" of being true.
+  (2) even within the Bayesian approach, which does let you assign probabilities to hypotheses, the <m>p</m> value would not correspond to the probability that the null is true; this interpretation is entirely inconsistent with the mathematics of how the <m>p</m> value is calculated.
+  Put bluntly, despite the intuitive appeal of thinking this way, there is <em>no</em> justification for interpreting a <m>p</m> value this way.
+  Never do it.
+  </p>
+</subsection>

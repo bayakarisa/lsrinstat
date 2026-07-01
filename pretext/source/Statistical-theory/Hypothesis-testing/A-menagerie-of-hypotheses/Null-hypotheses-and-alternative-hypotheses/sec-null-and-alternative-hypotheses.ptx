@@ -1,0 +1,26 @@
+<subsection>
+  <title>Null hypotheses and alternative hypotheses</title>
+
+  <p>
+    So far, so good.
+    I have a research hypothesis that corresponds to what I want to believe about the world, and I can map it onto a statistical hypothesis that corresponds to what I want to believe about how the data were generated.
+    It's at this point that things get somewhat counterintuitive for a lot of people.
+    Because what I'm about to do is invent a new statistical hypothesis (the "null" hypothesis, <m>H_0</m>) that corresponds to the exact opposite of what I want to believe, and then focus exclusively on that, almost to the neglect of the thing I'm actually interested in (which is now called the "alternative" hypothesis, <m>H_1</m>).
+    In our ESP example, the null hypothesis is that <m>\theta = 0.5</m>, since that's what we'd expect if ESP <em>didn't</em> exist.
+    My hope, of course, is that ESP is totally real, and so the <em>alternative</em> to this null hypothesis is <m>\theta \neq 0.5</m>.
+    In essence, what we're doing here is dividing up the possible values of <m>\theta</m> into two groups: those values that I really hope aren't true (the null), and those values that I'd be happy with if they turn out to be right (the alternative).
+    Having done so, the important thing to recognise is that the goal of a hypothesis test is <em>not</em> to show that the alternative hypothesis is (probably) true; the goal is to show that the null hypothesis is (probably) false.
+    Most people find this pretty weird.
+  </p>
+
+  <p>
+    The best way to think about it, in my experience, is to imagine that a hypothesis test is a criminal trial <fn>This analogy only works if you're from an adversarial legal system like UK/US/Australia.
+    As I understand these things, the French inquisitorial system is quite different.</fn> <em>the trial of the null hypothesis</em>.
+    The null hypothesis is the defendant, the researcher is the prosecutor, and the statistical test itself is the judge.
+    Just like a criminal trial, there is a presumption of innocence: the null hypothesis is <em>deemed</em> to be true unless you, the researcher, can prove beyond a reasonable doubt that it is false.
+    You are free to design your experiment however you like (within reason, obviously!), and your goal when doing so is to maximise the chance that the data will yield a conviction for the crime of being false.
+    The catch is that the statistical test sets the rules of the trial, and those rules are designed to protect the null hypothesis, specifically to ensure that if the null hypothesis is actually true, the chances of a false conviction are guaranteed to be low.
+    This is pretty important: after all, the null hypothesis doesn't get a lawyer.
+    And given that the researcher is trying desperately to prove it to be false, <em>someone</em> has to protect it.
+  </p>
+</subsection>

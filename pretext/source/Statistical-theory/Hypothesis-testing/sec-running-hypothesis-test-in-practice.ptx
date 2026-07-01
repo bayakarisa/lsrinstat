@@ -1,0 +1,113 @@
+<section xml:id="sec-running-hypothesis-test-in-practice" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <title>Running the hypothesis test in practice</title>
+
+  <p>
+  At this point some of you might be wondering if this is a "real" hypothesis test, or just a toy example that I made up.
+  It's real.
+  In the previous discussion I built the test from first principles, thinking that it was the simplest possible problem that you might ever encounter in real life.
+  However, this test already exists: it's called the <em>binomial test</em>, and it's implemented by an R function called <c>binom.test()</c>. To test the null 
+  hypothesis that the response probability is one half, <c>p = .5</c><fn>Note that the <c>p</c> here has nothing to do with a p value. The <c>p</c> argument in
+  the <c>binom.test()</c> function corresponds to the probability of making a correct response, according to the null hypothesis. In other words, it's the <c>\theta</c> value.</fn>,
+  using data in which <c>x = 62</c> of <c>n = 100</c> people made the correct response, here's how to do it in R:
+  </p>
+
+  <remark>
+  <title>Using R-Instat</title>
+  <p>
+  This test can be performed directly in R-Instat without writing any code.
+  </p>
+
+  <p><em>Steps:</em>
+  <ol>
+  <li>Enter your data into a column (e.g. 1 = correct, 0 = incorrect)</li>
+  <li>Go to <em>model → fit model</em></li>
+  <li>Select the variable</li>
+  <li>Enter hypothesised proportion = 0.5</li>
+  <li>Click <em>OK</em></li>
+  </ol>
+  </p>
+
+  <p>
+  The output will include the p-value and confidence interval, which you use
+  to decide whether to reject the null hypothesis.
+  </p>
+  </remark>
+
+  <remark>
+  <title>R Code</title>
+
+  <console>
+  <input><![CDATA[binom.test( x=62, n=100, p=.5 )]]></input>
+  <output>
+  </output>
+  </console>
+
+  <console>
+  <input/>
+  <output>
+    <![CDATA[
+      ## 
+      ##  Exact binomial test
+      ## 
+      ## data:  62 and 100
+      ## number of successes = 62, number of trials = 100, p-value =
+      ## 0.02098
+      ## alternative hypothesis: true probability of success is not equal to 0.5
+      ## 95 percent confidence interval:
+      ##  0.5174607 0.7152325
+      ## sample estimates:
+      ## probability of success 
+      ##                   0.62
+    ]]>
+  </output>
+  </console>
+  </remark>
+
+  <p>
+  Right now, this output looks pretty unfamiliar to you, but you can see that it's telling you more or less the right things.
+  Specifically, the <m>p</m>-value of 0.02 is less than the usual choice of <m>\alpha = .05</m>, so you can reject the null.
+  We'll talk a lot more about how to read this sort of output as we go along; and after a while you'll hopefully find it quite easy to read and understand.
+  For now, however, I just wanted to make the point that R contains a whole lot of functions corresponding to different kinds of hypothesis test.
+  And while I'll usually spend quite a lot of time explaining the logic behind how the tests are built, every time I discuss a hypothesis test the discussion will end with me showing you a fairly simple R command that you can use to run the test in practice.
+  </p>
+  <p>
+    <m>\textbf{Running the binomial test in R-Instat}</m>
+  </p>
+
+  <figure xml:id="fig-binomial-test">
+     <caption>Binomial test configuration in R-Instat, including confidence interval methods such as Clopper-Pearson and Wilson. These options control how the interval estimates are computed; the choice of method can slightly change the width of the interval, though for large samples like this one (<m>n = 100</m>) the differences between methods are typically small.</caption>
+    <image source="images/HypothesisTesting/binomail-test-agpp-dialog.png" width="80%"/>
+  </figure>
+
+  <p>To perform a binomial test in R-Instat:</p>
+  <p>
+    <ol>
+      <li><p>Open the <term>One Variable Fit Model</term> dialog and select the <term>Test</term> tab.</p></li>
+      <li><p>Under <term>Data Frame</term>, choose the data frame containing your variable (e.g., <m>\textbf{agpp}</m>).</p></li>
+      <li><p>From the <term>Variables</term> list, select the variable of interest (e.g., <term>response_before</term>) and click <term>Add</term> so it appears in the <term>Variable</term> box.</p></li>
+      <li><p>Set the <term>Confidence Level</term> (default 0.950).</p></li>
+      <li><p>Enter the <term>Null Hypothesis</term> value to test against (e.g., 0.5).</p></li>
+      <li><p>Choose a <term>C.I. Method</term> from the dropdown options include Clopper-Pearson, binom.test, Score, Wilson, prop.test, Plus4, Agresti-Coull, and Wald (see <xref ref="fig-binomial-test"/>).</p></li>
+      <li><p>Under <term>Test</term>, confirm "binomial" is selected.</p></li>
+      <li><p>Specify which value of the variable counts as <term>Success</term> (e.g., "no").</p></li>
+      <li><p>Click <term>OK</term>.</p></li>
+    </ol>
+  </p>
+  <p>
+    The output reports the number of successes, the number of trials, the p-value, and the confidence interval for the estimated probability of success. For example, testing <term>response_before </term> against a null hypothesis of 0.5, with "no" defined as success and using the Score interval method, R-Instat returns:
+  </p>
+
+  <figure xml:id="fig-binomial-test-config">
+    <caption></caption>
+    <image source="images/HypothesisTesting/binomial-test-agpp-output.png"></image>
+  </figure>
+
+  <p>
+    Here, 70 out of 100 responses were coded "no," giving a sample proportion of 0.7. The p-value of 8e-05 is far below the 0.05 threshold, so we reject the null hypothesis that the true probability of success is 0.5, there is strong evidence that the proportion differs from 50%. The 95% confidence interval (0.604 to 0.781) does not contain 0.5, which confirms this conclusion.
+  </p>
+
+    <xi:include href="./Running-the-hypothesis-test-in-practice/Using-R-Instat-Reusing-a-fitted-model-with-Use-Model-Keyboards/sec-Using-R-Instat-Reusing-a-fitted-model-with-Use-Model-Keyboards.ptx" />
+
+
+</section>

@@ -1,0 +1,261 @@
+<subsection xml:id="subsec-Using_RInstat_Running_a_hypothesis_test">
+  <title>Using R-Instat: Running a hypothesis test</title>
+  <p>
+    The steps below walk through the process using a real example  testing whether pay significantly predicts hours worked.
+  </p>
+  <p>
+    To run a hypothesis test in R-Instat:
+  </p>
+  <p> 
+    <ol>
+      <li>
+        <p>
+          <m>\textbf{Step 1: Open the Appropriate Dialog}</m>
+          <p>
+            Navigate to <em>Model</em> <m>\rightarrow</m> <em>Fit Models</em> and choose the model
+            that matches your data:
+          </p>
+        </p>
+        <ul>
+          <li>
+            <p>
+              <m>\text{One Variable Fit Model}</m> - this is used when analysing a single variable
+                (example: testing if the mean hours worked equals a specific value).
+            </p>
+          </li>
+          <li>
+            <p>
+                <m>\text{Two Variable Fit Model}</m> - this is used when examining the relationship between
+                two variables, such as whether pay predicts hours.
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>\text{Hypothesis Tests}</m> - this gives direct access to specific statistical tests
+                without fitting a full model.
+            </p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>
+          <m>\textbf{Step 2: Select the Variables}</m>
+          <p>
+            In the Two Variable Fit Model dialog
+          </p>
+          <ul>
+            <li>
+              <p>
+                <m>\text{Response Variable:}</m> <m>\textbf{hours}</m> this is the outcome you are trying to explain.
+              </p>
+            </li>
+            <li>
+              <p>
+                <m>\text{Explanatory Variable:}</m> <m>\textbf{pay}</m> this is the predictor you believe
+                influences hours.
+              </p>
+            </li>
+            <li>
+              <p>
+                <m>\text{Distribution:}</m> Normal, this is appropriate because <m>\textbf{hours}</m> is a
+                continuous, roughly symmetric variable.
+              </p>
+            </li>
+          </ul>
+          <p>
+            The Model Preview confirmed the formula:
+            <me>
+              \texttt{hours} \sim \texttt{pay}
+            </me>
+          </p>
+        </p>
+        <figure xml:id="Two_Variable_Fit_Model_dialog">
+          <caption>Two Variable Fit Model in R-Instat used for comparing two variables or testing relationships.</caption>
+          <image source="images/Two-Variable-Fit-Model-in-R-Instat-used-for-comparing-hours-and-pay.png"/>
+        </figure>
+      </li>
+      <li>
+        <p>
+          <m>\textbf{Step 3: Choose the Test}</m>
+          <p>
+            R-Instat automatically runs a linear regression t-test on each coefficient
+            when using the Two Variable Fit Model with a Normal distribution. This tests whether
+            each predictor has a statistically significant relationship with the response variable.
+          </p>
+          <p>
+            there are also other available tests in R-Instat
+          </p>
+        </p>
+      </li>
+      <li>
+        <p>
+          <m>\textbf{Step 4: Specify the Null Hypothesis and Confidence Level}</m>
+          <p>
+            For the <m>\texttt{hours} \sim \texttt{pay}</m> model, the hypotheses being tested are:
+          </p>
+          <ul>
+            <li>
+              <p>
+                <m>\text{Null Hypothesis (<m>H_0</m>):}</m> Pay has no effect on hours worked
+                (slope <m>= 0</m>).
+              </p>
+            </li>
+            <li>
+              <p>
+                <m>\text{Alternative Hypothesis (<m>H_1</m>):}</m> Pay does have a significant
+                effect on hours worked (slope <m>\neq 0</m>).
+              </p>
+            </li>
+            <li>
+              <p>
+                <m>\text{Confidence Level:}</m> 95% (the standard default, equivalent to
+                <m>\alpha = 0.05</m>).
+              </p>
+            </li>
+          </ul>
+        </p>
+      </li>
+      <li>
+        <p>
+          <m>\textbf{Step 5: Click OK — Reading the Output}</m>
+        </p>
+        <p>  
+          After clicking OK, the Output Window displayed the following results.
+          
+          <figure xml:id="Two-Variable-Fit-Model-in-R-Instat-used-for-comparing-hours-and-pay-output1">
+            <caption></caption>
+            <image source="images/Two-Variable-Fit-Model-in-R-Instat-used-for-comparing-hours-and-pay-output1.png"/>
+          </figure>
+          <figure xml:id="Two-Variable-Fit-Model-in-R-Instat-used-for-comparing-hours-and-pay-output2">
+            <caption></caption>
+            <image source="images/Two-Variable-Fit-Model-in-R-Instat-used-for-comparing-hours-and-pay-output2.png"/>
+          </figure>
+        </p>
+        <p>
+          <ul>
+            <li>
+              <p>
+                The Model Equation
+                <p>
+                  <me>
+                    \texttt{hours} = 2.4951 + 0.0975 \times \texttt{pay}
+                  </me>
+                  This means for every 1 unit increase in pay, hours worked is predicted to increase
+                  by <m>0.0975</m> hours.
+                </p>
+              </p>
+            </li>
+            <li>
+              <p>
+                Coefficients Table
+                <p>
+                  The <m>t</m>-value of <m>8.03</m> for <m>\textbf{pay}</m> is large, indicating a strong
+                  effect. The <m>p</m>-value of <m>2.3 \times 10^{-10}</m> is far below <m>0.05</m>,
+                  meaning the result is highly statistically significant.
+                </p>
+              </p>
+            </li>
+            <li>
+              <p>
+                Model Fit Statistics
+                <p>
+                  The <m>\text{Residual Standard Error}</m> is <m>1.19</m>, meaning the average
+                  prediction error is approximately <m>1.19</m> hours — reasonably small given the
+                  scale of the data.
+                </p>
+              </p>
+            </li>
+            <li>
+              <p>
+                Decision: Reject or Retain the Null Hypothesis?
+                <p>
+                  Since the <m>p</m>-value (<m>2.3 \times 10^{-10}</m>) is much less than <m>0.05</m>,
+                  we <m>\text{reject the null hypothesis}</m>.
+                </p>
+                <p>
+                  There is strong statistical evidence that pay significantly predicts hours worked.
+                  The relationship is positive: workers with higher pay tend to work more hours.
+                </p>
+              </p>
+              <p>
+                This example demonstrates how R-Instat makes hypothesis testing accessible by
+                guiding users through variable selection, model setup, and automatic output
+                interpretation all without writing R code manually.
+              </p>
+            </li>
+          </ul>
+        </p>
+      </li>
+    </ol>
+  </p>
+  <!-- <p>
+    <ol>
+      <li>
+        <p>
+          Open the appropriate dialog Got to Model -<m>&gt;</m> Fit Models then select the appropriate model:
+          <ul>
+            <li>One Variable Fit Model for a single variable</li>
+            <li>Two Variable Fit Model for comparing variables</li>
+            <li>Hypothesis Tests for direct access to statistical tests</li>
+          </ul>
+        </p>
+      </li>
+      <li>
+        <p>
+          Select the variable(s)
+        </p>
+      </li>
+      <li>
+        <p>
+          Choose the test (e.g., t-test, binomial, Wilcoxon)
+        </p>
+      </li>
+      <li>
+        <p>
+          Specify:
+          <ul>
+            <li>
+              <p>
+                Null hypothesis
+              </p>
+            </li>
+            <li>
+              <p>
+                Confidence Level
+              </p>
+            </li>
+          </ul>
+        </p>
+      </li>
+      <li>
+        <p>
+          Click OK to run the test
+        </p>
+      </li>
+    </ol>
+  </p>
+  <p>
+    The output window then displays:
+    <ul>
+      <li>
+        <p>
+          the test statistic
+        </p>
+      </li>
+      <li>
+        <p>
+          the p-value
+        </p>
+      </li>
+      <li>
+        <p>
+          confidence intervals
+        </p>
+      </li>
+    </ul>
+  </p>
+  <p>
+    These results are used to decide whether to reject or retain the null hypothesis.
+  </p>
+  -->
+</subsection>

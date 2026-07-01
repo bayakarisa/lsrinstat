@@ -1,0 +1,36 @@
+<section xml:id="hypotheses" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>A menagerie of hypotheses</title>
+
+  <introduction>
+    <p>
+      Eventually we all succumb to madness.
+      For me, that day will arrive once I'm finally promoted to full professor.
+      Safely ensconced in my ivory tower, happily protected by tenure, I will finally be able to take leave of my senses (so to speak), and indulge in that most thoroughly unproductive line of psychological research: the search for extrasensory perception (ESP).
+      <fn>My apologies to anyone who actually believes in this stuff, but on my reading of the literature on ESP, it's just not reasonable to think this is real.
+      To be fair, though, some of the studies are rigorously designed; so it's actually an interesting area for thinking about psychological research design.
+      And of course it's a free country, so you can spend your own time and effort proving me wrong if you like, but I wouldn't think that's a terribly practical use of your intellect.</fn>
+    </p>
+
+    <p>
+      Let's suppose that this glorious day has come.
+      My first study is a simple one, in which I seek to test whether clairvoyance exists.
+      Each participant sits down at a table, and is shown a card by an experimenter.
+      The card is black on one side and white on the other.
+      The experimenter takes the card away, and places it on a table in an adjacent room.
+      The card is placed black side up or white side up completely at random, with the randomisation occurring only after the experimenter has left the room with the participant.
+      A second experimenter comes in and asks the participant which side of the card is now facing upwards.
+      It's purely a one-shot experiment.
+      Each person sees only one card, and gives only one answer; and at no stage is the participant actually in contact with someone who knows the right answer.
+      My data set, therefore, is very simple.
+      I have asked the question of <m>N</m> people, and some number <m>X</m> of these people have given the correct response.
+      To make things concrete, let's suppose that I have tested <m>N = 100</m> people, and <m>X = 62</m> of these got the answer right...
+      a surprisingly large number, sure, but is it large enough for me to feel safe in claiming I've found evidence for ESP? This is the situation where hypothesis testing comes in useful.
+      However, before we talk about how to <em>test</em> hypotheses, we need to be clear about what we mean by hypotheses.
+    </p>
+  </introduction>
+
+  <xi:include href="./A-menagerie-of-hypotheses/Research-hypotheses-versus-statistical-hypotheses/sec-research-vs-statistical-hypotheses.ptx" />
+  <xi:include href="./A-menagerie-of-hypotheses/Null-hypotheses-and-alternative-hypotheses/sec-null-and-alternative-hypotheses.ptx" />
+  <xi:include href="./A-menagerie-of-hypotheses/Using-R-Instat--Specifying-hypotheses/sec-using-rinstat-specifying-hypotheses.ptx" />
+
+</section>

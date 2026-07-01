@@ -1,0 +1,18 @@
+<section xml:id="decisionmaking" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Making decisions</title>
+
+  <introduction>
+    <p>
+      Okay, we're very close to being finished.
+      We've constructed a test statistic (<m>X</m>), and we chose this test statistic in such a way that we're pretty confident that if <m>X</m> is close to <m>N/2</m> then we should retain the null, and if not we should reject it.
+      The question that remains is this: exactly which values of the test statistic should we associate with the null hypothesis, and which exactly values go with the alternative hypothesis? In my ESP study, for example, I've observed a value of <m>X=62</m>.
+      What decision should I make? Should I choose to believe the null hypothesis, or the alternative hypothesis?
+    </p>
+  </introduction>
+
+  <xi:include href="./Making-decision/Critical-regions-and-critical-values/sec-critical-regions-and-values.ptx" />
+  <xi:include href="./Making-decision/A-note-on-statistical-significance/sec-note-on-statistical-significance.ptx" />
+  <xi:include href="./Making-decision/The-difference-between-one-sided-and-two-sided-tests/sec-one-sided-vs-two-sided-tests.ptx" />
+  <xi:include href="./Making-decision/Using-R-Instat--Running-a-hypothesis-test/sec-using-rinstat-running-hypothesis-test.ptx" />
+
+</section>

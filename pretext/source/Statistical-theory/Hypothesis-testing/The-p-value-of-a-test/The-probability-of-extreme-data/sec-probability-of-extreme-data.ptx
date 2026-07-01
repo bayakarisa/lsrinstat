@@ -1,0 +1,11 @@
+<subsection>
+  <title>The probability of extreme data</title>
+
+  <p>
+  The second definition of the <m>p</m>-value comes from Sir Ronald Fisher, and it's actually this one that you tend to see in most introductory statistics textbooks.
+  Notice how, when I constructed the critical region, it corresponded to the <em>tails</em> (i.e., extreme values) of the sampling distribution? That's not a coincidence: almost all "good" tests have this characteristic (good in the sense of minimising our type II error rate, <m>\beta</m>).
+  The reason for that is that a good critical region almost always corresponds to those values of the test statistic that are least likely to be observed if the null hypothesis is true.
+  If this rule is true, then we can define the <m>p</m>-value as the probability that we would have observed a test statistic that is at least as extreme as the one we actually did get.
+  In other words, if the data are extremely implausible according to the null hypothesis, then the null hypothesis is probably wrong.
+  </p>
+</subsection>

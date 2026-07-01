@@ -1,0 +1,84 @@
+<subsection>
+  <title>A softer view of decision making</title>
+
+  <p>
+  One problem with the hypothesis testing procedure that I've described is that it makes no distinction at all between a result this "barely significant" and those that are "highly significant".
+  For instance, in my ESP study the data I obtained only just fell inside the critical region - so I did get a significant effect, but was a pretty near thing.
+  In contrast, suppose that I'd run a study in which <m>X=97</m> out of my <m>N=100</m> participants got the answer right.
+  This would obviously be significant too, but my a much larger margin; there's really no ambiguity about this at all.
+  The procedure that I described makes no distinction between the two.
+  If I adopt the standard convention of allowing <m>\alpha = .05</m> as my acceptable Type I error rate, then both of these are significant results.
+  </p>
+
+  <p>
+  This is where the <m>p</m> value comes in handy.
+  To understand how it works, let's suppose that we ran lots of hypothesis tests on the same data set: but with a different value of <m>\alpha</m> in each case.
+  When we do that for my original ESP data, what we'd get is something like this
+  </p>
+
+  <table xml:id="table-ht-alpha-values">
+  <title>Hypothesis test outcomes at different significance levels</title>
+
+  <tabular halign="center">
+    <row header="yes" bottom="minor">
+      <cell halign="left">Value of <m>\alpha</m></cell>
+      <cell>Reject the null?</cell>
+    </row>
+
+    <row>
+      <cell halign="left">0.05</cell>
+      <cell>Yes</cell>
+    </row>
+
+    <row>
+      <cell halign="left">0.04</cell>
+      <cell>Yes</cell>
+    </row>
+
+    <row>
+      <cell halign="left">0.03</cell>
+      <cell>Yes</cell>
+    </row>
+
+    <row>
+      <cell halign="left">0.02</cell>
+      <cell>No</cell>
+    </row>
+
+    <row>
+      <cell halign="left">0.01</cell>
+      <cell>No</cell>
+    </row>
+  </tabular>
+  </table>
+
+  <p>
+  When we test ESP data (<m>X=62</m> successes out of <m>N=100</m> observations) using <m>\alpha</m> levels of .03 and above, we'd always find ourselves rejecting the null hypothesis.
+  For <m>\alpha</m> levels of .02 and below, we always end up retaining the null hypothesis.
+  Therefore, somewhere between .02 and .03 there must be a smallest value of <m>\alpha</m> that would allow us to reject the null hypothesis for this data.
+  This is the <m>p</m> value; as it turns out the ESP data has <m>p = .021</m>.
+  In short:
+  </p>
+
+  <blockquote>
+  <p>
+    <m>p</m> is defined to be the smallest Type I error rate (<m>\alpha</m>) that you have to be willing to tolerate if you want to reject the null hypothesis.
+  </p>
+  </blockquote>
+
+  <p>
+  If it turns out that <m>p</m> describes an error rate that you find intolerable, then you must retain the null.
+  If you're comfortable with an error rate equal to <m>p</m>, then it's okay to reject the null hypothesis in favour of your preferred alternative.
+  </p>
+
+  <p>
+  In effect, <m>p</m> is a summary of all the possible hypothesis tests that you could have run, taken across all possible <m>\alpha</m> values.
+  And as a consequence it has the effect of "softening" our decision process.
+  For those tests in which <m>p \leq \alpha</m> you would have rejected the null hypothesis, whereas for those tests in which <m><![CDATA[p > \alpha]]></m> you would have retained the null.
+  In my ESP study I obtained <m>X=62</m>, and as a consequence I've ended up with <m>p = .021</m>.
+  So the error rate I have to tolerate is 2.1%.
+  In contrast, suppose my experiment had yielded <m>X=97</m>.
+  What happens to my <m>p</m> value now? This time it's shrunk to <m>p = 1.36 \times 10^{-25}</m>, which is a tiny, tiny <fn>That's <m>p = .000000000000000000000000136</m> for folks that don't like scientific notation!</fn> Type I error rate.
+  For this second case I would be able to reject the null hypothesis with a lot more confidence, because I only have to be "willing" to tolerate a type I error rate of about 1 in 10 trillion trillion in order to justify my decision to reject.
+  </p>
+</subsection>

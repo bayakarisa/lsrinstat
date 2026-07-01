@@ -1,0 +1,35 @@
+<subsection xml:id="sec-The-difference-between-one-sided-and-two-sided-tests">
+  <title>The difference between one sided and two sided tests</title>
+
+  <p>
+    There's one more thing I want to point out about the hypothesis test that I've just constructed.
+    If we take a moment to think about the statistical hypotheses I've been using,
+    <me>
+      <![CDATA[\begin{array}{cc} H_0 : & \theta = .5 \\ H_1 : & \theta \neq .5 \end{array}]]>
+    </me>
+    we notice that the alternative hypothesis covers <em>both</em> the possibility that <m><![CDATA[\theta < .5]]></m> and the possibility that <m><![CDATA[\theta > .5]]></m>.
+    This makes sense if I really think that ESP could produce better-than-chance performance <em>or</em> worse-than-chance performance (and there are some people who think that).
+    In statistical language, this is an example of a <em>two-sided test</em>.
+    It's called this because the alternative hypothesis covers the area on both "sides" of the null hypothesis, and as a consequence the critical region of the test covers both tails of the sampling distribution (2.5% on either side if <m>\alpha =.05</m>), as illustrated earlier in <xref ref="fig-crit2"/>.
+  </p>
+
+  <p>
+    However, that's not the only possibility.
+    It might be the case, for example, that I'm only willing to believe in ESP if it produces better than chance performance.
+    If so, then my alternative hypothesis would only covers the possibility that <m><![CDATA[\theta > .5]]></m>, and as a consequence the null hypothesis now becomes <m>\theta \leq .5</m>:
+    <me>
+      <![CDATA[\begin{array}{cc} H_0 : & \theta \leq .5 \\ H_1 : & \theta > .5 \end{array}]]>
+    </me>
+    When this happens, we have what's called a <em>one-sided test</em>, and when this happens the critical region only covers one tail of the sampling distribution.
+    This is illustrated in <xref ref="fig-crit1"/>.
+  </p>
+
+  <console>
+    <input><![CDATA[setUpPlot() z <- x>=58 addDistPlot(x,y,z) h <- .03 addArrow(c(58,80),h) text(75,h+.013,"critical region") text(75,h+.007,"(5% of the distribution)") title(main="Critical Region for a One-Sided Test",font.main=1)]]></input>
+  </console>
+
+  <figure xml:id="fig-crit1">
+    <caption>One-sided critical region for a hypothesis test.</caption>
+    <image source="images/crit1.png"/>
+  </figure>
+</subsection>

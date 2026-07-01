@@ -1,0 +1,41 @@
+<subsection xml:id="subsec_Using_R_Instat_Specifying_hypothesis">
+  <title>Using R-Instat: Specifying hypotheses</title>
+  <p>
+      In R-Instat, the null and alternative hypotheses are specified through dialog boxes rather than written symbolically.
+  </p>
+  <p>
+    For example, when using the One Variable Fit Model:
+    <ul>
+      <li>
+        <p>
+          The null hypothesis is entered directly in the "Null Hypothesis" field.
+        </p>
+      </li>
+      <li>
+        <p>
+          The alternative hypothesis is determined by the type of test selected (e.g., two-sided or one-sided).
+        </p>
+      </li>
+    </ul>
+  </p>
+  <p>
+    The software then automatically constructs the appropriate statistical test based on these inputs.
+  </p>
+  <figure xml:id="fig-specifyhypotheses">
+    <caption> The One Variable Fit Model dialog in R-Instat. </caption>
+    <image source="images/HypothesisTesting/Model one variable General Case dialogue work pay data Normal.png"/>
+  </figure>
+
+
+  <figure xml:id="OneVariableTestOptions">
+    <caption>The user specifies the variable, selects the test type</caption>
+    <image source="images/HypothesisTesting/Model one variable Test dialogue work pay data T test.png"/>
+  </figure>
+
+
+
+  <figure xml:id="OneVariableDialoguetTest">
+    <caption>The user enters the null hypothesis value. The confidence level determines the significance level of the test.</caption>
+      <image source="images/HypothesisTesting/Model one variable Test dialogue work pay data T test 30 null hypothesis.png"/>
+  </figure>
+</subsection>

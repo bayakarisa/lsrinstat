@@ -1,0 +1,31 @@
+<subsection>
+  <title>Two proposed solutions</title>
+
+  <p>
+  In practice, it's pretty rare for a researcher to specify a single <m>\alpha</m> level ahead of time.
+  Instead, the convention is that scientists rely on three standard significance levels: .05, .01 and .001.
+  When reporting your results, you indicate which (if any) of these significance levels allow you to reject the null hypothesis.
+  This is summarised in <xref ref="tab-pvaltable"/>.
+  This allows us to soften the decision rule a little bit, since <m><![CDATA[p<.01]]></m> implies that the data meet a stronger evidentiary standard than <m><![CDATA[p<.05]]></m> would.
+  Nevertheless, since these levels are fixed in advance by convention, it does prevent people choosing their <m>\alpha</m> level after looking at the data.
+  </p>
+
+  <p>
+  Nevertheless, quite a lot of people still prefer to report exact <m>p</m> values.
+  To many people, the advantage of allowing the reader to make up their own mind about how to interpret <m>p = .06</m> outweighs any disadvantages.
+  In practice, however, even among those researchers who prefer exact <m>p</m> values it is quite common to just write <m><![CDATA[p<.001]]></m> instead of reporting an exact value for small <m>p</m>.
+  This is in part because a lot of software doesn't actually print out the <m>p</m> value when it's that small (e.g., SPSS just writes <m>p = .000</m> whenever <m><![CDATA[p<.001]]></m>), and in part because a very small <m>p</m> value can be kind of misleading.
+  The human mind sees a number like .0000000001 and it's hard to suppress the gut feeling that the evidence in favour of the alternative hypothesis is a near certainty.
+  In practice however, this is usually wrong.
+  Life is a big, messy, complicated thing: and every statistical test ever invented relies on simplifications, approximations and assumptions.
+  As a consequence, it's probably not reasonable to walk away from <em>any</em> statistical analysis with a feeling of confidence stronger than <m><![CDATA[p<.001]]></m> implies.
+  In other words, <m><![CDATA[p<.001]]>></m> is really code for "as far as <em>this test</em> is concerned, the evidence is overwhelming."
+  </p>
+
+  <p>
+  In light of all this, you might be wondering exactly what you should do.
+  There's a fair bit of contradictory advice on the topic, with some people arguing that you should report the exact <m>p</m> value, and other people arguing that you should use the tiered approach illustrated in <xref ref="tab-pvaltable"/>.
+  As a result, the best advice I can give is to suggest that you look at papers/reports written in your field and see what the convention seems to be.
+  If there doesn't seem to be any consistent pattern, then use whichever method you prefer.
+  </p>
+</subsection>

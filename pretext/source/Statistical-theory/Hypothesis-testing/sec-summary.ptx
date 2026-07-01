@@ -1,0 +1,102 @@
+<section>
+  <title>Summary</title>
+  <p>
+    Null hypothesis testing is one of the most ubiquitous elements to statistical theory.
+    The vast majority of scientific papers report the results of some hypothesis test or another.
+    As a consequence it is almost impossible to get by in science without having at least a cursory understanding of what a <m>p</m>-value means, making this one of the most important chapters in the book.
+    As usual, I'll end the chapter with a quick recap of the key ideas that we've talked about:
+  <ul>
+    <li>
+      <p>
+        Research hypotheses and statistical hypotheses.
+        Null and alternative hypotheses.
+        (<xref ref="hypotheses"/>).
+      </p>
+    </li>
+
+    <li>
+      <p>
+        Type 1 and Type 2 errors (<xref ref="errortypes"/>)
+      </p>
+    </li>
+
+    <li>
+      <p>
+        Test statistics and sampling distributions (<xref ref="teststatistics"/>)
+      </p>
+    </li>
+
+    <li>
+      <p>
+        Hypothesis testing as a decision making process (<xref ref="decisionmaking"/>)
+      </p>
+    </li>
+
+    <li>
+      <p>
+        <m>p</m>-values as "soft" decisions (<xref ref="pvalue"/>)
+      </p>
+    </li>
+
+    <li>
+      <p>
+        Writing up the results of a hypothesis test (<xref ref="writeup"/>)
+      </p>
+    </li>
+
+    <li>
+      <p>
+        Effect size and power (<xref ref="effectsize"/>)
+      </p>
+    </li>
+
+    <li>
+      <p>
+        A few issues to consider regarding hypothesis testing (<xref ref="nhstmess"/>)
+      </p>
+    </li>
+  </ul>
+  </p>
+
+    <p>
+    R-Instat provides a structured way to perform hypothesis testing without requiring direct coding.
+  </p>
+  <p>
+    The process follows the same logic as statistical theory:
+    <ul>
+      <li>
+        <p>
+          Define hypotheses
+        </p>
+      </li>
+      <li>
+        <p>
+          Choose a test
+        </p>
+      </li>
+      <li>
+        <p>
+          Compute a test statistic
+        </p>
+      </li>
+      <li>
+        <p>
+          Obtain a p-value
+        </p>
+      </li>
+      <li>
+        <p>
+          Make a decision
+        </p>
+      </li>
+    </ul>
+  </p>
+  <p>
+    By using dialog-based interfaces, R-Instat makes hypothesis testing accessible while still maintaining the underlying statistical principles.
+  </p>
+
+  <p>
+    Later in the book, in <xref ref="bayes"/>, I'll revisit the theory of null hypothesis tests from a Bayesian perspective, and introduce a number of new tools that you can use if you aren't particularly fond of the orthodox approach.
+    But for now, though, we're done with the abstract statistical theory, and we can start discussing specific data analysis tools.
+  </p>
+</section>
