@@ -6,7 +6,12 @@
 output
 
 # don't track assets generated from source
-generated-assets
+generated-assets/*
+!generated-assets/
+# except chapter 5 illustrations converted from original EPS files
+!generated-assets/histogram1.png
+!generated-assets/skewness.png
+!generated-assets/kurtosis.png
 
 # don't track node packages
 node_modules
