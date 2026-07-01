@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<subsection xml:id="bayesian">
+      <title>The Bayesian view</title>
+      <p>
+        The <em>Bayesian view</em> of probability is often called the subjectivist view, and it is a minority view among statisticians, 
+        but one that has been steadily gaining traction for the last several decades. There are many flavours of Bayesianism, making hard to say exactly what "the" Bayesian view is. 
+        The most common way of thinking about subjective probability is to define the probability of an event as the <em>degree of belief</em> that an intelligent and rational agent 
+        assigns to that truth of that event. From that perspective, probabilities don't exist in the world, but rather in the thoughts and assumptions of people and other intelligent beings. 
+        However, in order for this approach to work, we need some way of operationalising "degree of belief". One way that you can do this is to formalise it in terms of "rational gambling", 
+        though there are many other ways. Suppose that I believe that there's a 60% probability of rain tomorrow. If someone offers me a bet: if it rains tomorrow, then I win $5, 
+        but if it doesn't rain then I lose $5. Clearly, from my perspective, this is a pretty good bet. On the other hand, 
+        if I think that the probability of rain is only 40%, then it's a bad bet to take. 
+        Thus, we can operationalise the notion of a "subjective probability" in terms of what bets I'm willing to accept.
+      </p>
+      <p>
+        What are the advantages and disadvantages to the Bayesian approach? The main advantage is that it allows you to assign probabilities to any event you want to. 
+        You don't need to be limited to those events that are repeatable. 
+        The main disadvantage (to many people) is that we can't be purely objective -- specifying a probability requires us to specify an entity that has the relevant degree of belief. 
+        This entity might be a human, an alien, a robot, or even a statistician, but there has to be an intelligent agent out there that believes in things. 
+        To many people this is uncomfortable: it seems to make probability arbitrary. 
+        While the Bayesian approach does require that the agent in question be rational (i.e., obey the rules of probability), it does allow everyone to have their own beliefs; 
+        I can believe the coin is fair and you don't have to, even though we're both rational. 
+        The frequentist view doesn't allow any two observers to attribute different probabilities to the same event: when that happens, then at least one of them must be wrong. 
+        The Bayesian view does not prevent this from occurring. Two observers with different background knowledge can legitimately hold different beliefs about the same event. 
+        In short, where the frequentist view is sometimes considered to be too narrow (forbids lots of things that that we want to assign probabilities to), 
+        the Bayesian view is sometimes thought to be too broad (allows too many differences between observers).
+      </p>
+    </subsection>

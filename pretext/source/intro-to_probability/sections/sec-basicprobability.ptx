@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="basicprobability" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Basic probability theory</title>
+    <p>
+      Ideological arguments between Bayesians and frequentists notwithstanding, it turns out that people mostly agree on the rules that probabilities should obey. 
+      There are lots of different ways of arriving at these rules. 
+      The most commonly used approach is based on the work of Andrey Kolmogorov, one of the great Soviet mathematicians of the 20th century. 
+      I won't go into a lot of detail, but I'll try to give you a bit of a sense of how it works. And in order to do so, I'm going to have to talk about my pants.
+    </p>
+
+    <!-- Probability distributions  -->
+    <xi:include href="subsections/basicprobability/subsec-probability-distributions.ptx" />
+  </section>
