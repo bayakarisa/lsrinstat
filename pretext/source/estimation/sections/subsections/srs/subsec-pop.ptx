@@ -1,99 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <subsection xml:id="subsec-pop" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Defining a population</title>
+    <title>Defining a Population</title>
     <p>
-        A sample is a concrete thing. You can open up a data file, and there's the data from your sample. 
-        A <em>population</em>, on the other hand, is a more abstract idea. It refers to the set of all possible people, 
-        or all possible observations, that you want to draw conclusions about, and is generally <em>much</em> bigger than 
-        the sample. In an ideal world, the researcher would begin the study with a clear idea of what the population of 
-        interest is, since the process of designing a study and testing hypotheses about the data that it produces does 
-        depend on the population about which you want to make statements. However, that doesn't always happen in practice: 
-        usually the researcher has a fairly vague idea of what the population is and designs the study as best he/she can 
-        on that basis.
+        A <term><em>sample</em></term> is the set of observations that has been collected and is available for analysis. 
+        You can open a dataset in R-Instat and view every observation in the sample. A <term><em>population</em></term>, 
+        on the other hand, is the complete set of individuals, objects, or measurements about which we want to draw conclusions. 
+        In most studies, the population is much larger than the sample and may even be impossible to observe in its entirety.
     </p>
     <p>
-        Sometimes it's easy to state the population of interest. For instance, in the "polling company" example that opened 
-        the chapter, the population consisted of all  voters enrolled at the a time of the study -- millions of people. 
-        The sample was a set of 1000 people who all belong to that population. 
-        In most situations the situation is much less simple. In a typical a psychological experiment, 
-        determining the population of interest is a bit more complicated. 
-        Suppose I run an experiment using 100 undergraduate students as my participants. My goal, as a cognitive scientist, 
-        is to try to learn something about how the mind works. So, which of the following would count as "the population":
+        Before collecting or analysing data, it is important to clearly define the population of interest. 
+        The design of the study, the method used to select the sample, and the conclusions that can be drawn all depend on 
+        the population being investigated. In practice, however, the population may not always be precisely defined, 
+        particularly in observational studies where the available data determine the scope of the analysis.
+    </p>
+    <p>
+        In some situations, identifying the population is straightforward. For example, 
+        if a survey is conducted to estimate the proportion of registered voters who support a particular candidate, 
+        the population consists of all registered voters, while the sample is the group of voters who participated in the survey.
+    </p>
+    <p>
+        In other situations, defining the population requires more careful consideration. Suppose a researcher collects 
+        data from 100 maize farms in a district to study crop yield. Depending on the objective of the study, 
+        the population could be:
         <ul>
             <li>
                 <p>
-                    All of the undergraduate psychology students at the University of Adelaide?
+                    All maize farms in the district.
                 </p>
             </li>
             <li>
                 <p>
-                    Undergraduate psychology students in general, anywhere in the world?
+                    All maize farms in the country.
                 </p>
             </li>
             <li>
                 <p>
-                    Australians currently living?
+                    Small-scale maize farms only.
                 </p>
             </li>
             <li>
                 <p>
-                    Australians of similar ages to my sample?
-                </p>
-            </li>
-            <li>
-                <p>
-                    Anyone currently alive?
-                </p>
-            </li>
-            <li>
-                <p>
-                    Any human being, past, present or future?
-                </p>
-            </li>
-            <li>
-                <p>
-                    Any biological organism with a sufficient degree of intelligence operating in a terrestrial environment?
-                </p>
-            </li>
-            <li>
-                <p>
-                    Any intelligent being?
+                    Maize farms with similar climatic and soil conditions.
                 </p>
             </li>
         </ul>
     </p>
-    
     <p>
-        Each of these defines a real group of mind-possessing entities, all of which might be of interest to me as a 
-        cognitive scientist, and it's not at all clear which one ought to be the true population of interest. 
-        As another example, consider the Wellesley-Croker game that we discussed in the prelude. The sample here is a 
-        specific sequence of 12 wins and 0 losses for Wellesley. What is the population?
-        <ul>
-            <li>
-                <p>
-                    All outcomes until Wellesley and Croker arrived at their destination?
-                </p>
-            </li>
-            <li>
-                <p>
-                    All outcomes if Wellesley and Croker had played the game for the rest of their lives?
-                </p>
-            </li>
-            <li>
-                <p>
-                    All outcomes if Wellseley and Croker lived forever and played the game until the world ran out of hills?
-                </p>
-            </li>
-            <li>
-                <p>
-                    All outcomes if we created an infinite set of parallel universes and the 
-                    Wellesely/Croker pair made guesses about the same 12 hills in each universe?
-                </p>
-            </li>
-        </ul>
+        Each of these represents a different population, and the appropriate choice depends on the research question. 
+        The sample remains the same, but the conclusions that can be drawn differ according to the population to which the 
+        researcher intends to generalise the results.
     </p>
-    
     <p>
-        Again, it's not obvious what the population is.
+        Throughout this book, datasets analysed in R-Instat represent samples drawn from larger populations. 
+        Understanding the distinction between a sample and a population is essential because statistical inference uses 
+        information from the sample to estimate unknown characteristics of the population.
     </p>  
 </subsection>

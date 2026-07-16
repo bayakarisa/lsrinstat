@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<subsection xml:id="subsec-samplingdists">
+<subsection xml:id="subsec-samplingdists" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Sampling distribution of the mean</title>
     <p>With this in mind, let's abandon the idea that our studies will have sample sizes of 10000, and consider a very modest experiment indeed. This time around we'll sample <m>N=5</m> people and measure their IQ scores. As before, I can simulate this experiment in R using the <c>rnorm()</c> function:</p>
     <!-- <console>

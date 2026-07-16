@@ -1,70 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <subsection xml:id="subsec-simple-random-samples" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Simple random samples</title>
-    <figure xml:id="fig-srs1">
+     <figure xml:id="fig-srs1">
         <caption>
-            Simple random sampling without replacement. Each chip drawn is not replaced before the next draw.
+            Simple random sampling without replacement. Once a member of the population has been selected, it cannot be 
+            selected again.
         </caption>
         <image source="images/srs1.png"/>
     </figure>
     <p>
-        Irrespective of how I define the population, the critical point is that the sample is a subset of the population, 
-        and our goal is to use our knowledge of the sample to draw inferences about the properties of the population. 
-        The relationship between the two depends on the <em>procedure</em> by which the sample was selected. 
-        This procedure is referred to as a <em>sampling method</em>, and it is important to understand why it matters.
+        A sample is useful only if it represents the population from which it was selected. The method used to select the 
+        sample is known as the <em>sampling method</em>, and it plays a fundamental role in statistical inference.
     </p>
     <p>
-        To keep things simple, let's imagine that we have a bag containing 10 chips. Each chip has a unique letter printed on it, 
-        so we can distinguish between the 10 chips. The chips come in two colours, black and white. 
-        This set of chips is the population of interest, and it is depicted graphically on the left of <xref ref="fig-srs1"/>. 
-        As you can see from looking at the picture, there are 4 black chips and 6 white chips, 
-        but of course in real life we wouldn't know that unless we looked in the bag. Now imagine you run the following "experiment": 
-        you shake up the bag, close your eyes, and pull out 4 chips without putting any of them back into the bag. First out comes the 
-        <m>a</m> chip (black), then the <m>c</m> chip (white), then <m>j</m> (white) and then finally <m>b</m> (black). 
-        If you wanted, you could then put all the chips back in the bag and repeat the experiment, 
-        as depicted on the right hand side of <xref ref="fig-srs1"/>. Each time you get different results, 
-        but the procedure is identical in each case. The fact that the same procedure can lead to different results each time, 
-        we refer to it as a <em>random</em> process.<fn>The proper mathematical definition of randomness is extraordinarily technical, 
-        and way beyond the scope of this book. We'll be non-technical here and say that a process has an element of randomness 
-        to it whenever it is possible to repeat the process and get different answers each time.</fn> However, 
-        because we shook the bag before pulling any chips out, it seems reasonable to think that every chip has the same chance of 
-        being selected. A procedure in which every member of the population has the same chance of being selected is called a 
-        <em>simple random sample</em>. The fact that we did <em>not</em> put the chips back in the bag after pulling them out 
-        means that you can't observe the same thing twice, and in such cases the observations are said to have been sampled 
-        <em>without replacement</em>.
-    </p>
-    <p>
-        To help make sure you understand the importance of the sampling procedure, consider an alternative way in which 
-        the experiment could have been run. Suppose that my 5-year old son had opened the bag, and decided to pull out 
-        four black chips without putting any of them back in the bag. This <em>biased</em> sampling scheme is depicted in 
-        <xref ref="fig-brs"/>. Now consider the evidentiary value of seeing 4 black chips and 0 white chips. Clearly, 
-        it depends on the sampling scheme, does it not? If you know that the sampling scheme is biased to select only black chips, 
-        then a sample that consists of only black chips doesn't tell you very much about the population! For this reason, 
-        statisticians really like it when a data set can be considered a simple random sample, 
-        because it makes the data analysis <em>much</em> easier.
+        To illustrate the idea, consider a population consisting of ten chips labelled <m>a</m> to <m>j</m>, 
+        shown on the left of <xref ref="fig-srs1"/>. Four chips are selected at random without returning any chip to the 
+        population before the next draw. Because every chip has an equal chance of being selected, this procedure produces 
+        a <em>simple random sample without replacement</em>. Repeating the sampling process produces different samples, 
+        but every member of the population always has an equal probability of selection.
     </p>
     <figure xml:id="fig-brs">
-        <caption>Biased sampling. A sampling procedure in which certain groups are systematically over- or under-represented.</caption>
+        <caption>
+            Biased sampling. Some members of the population are systematically more likely to be selected than others.
+        </caption>
         <image source="images/brs.png"/>
     </figure>
+    <p>
+        Not every sampling method produces representative data. Suppose only the black chips are deliberately selected, 
+        as illustrated in <xref ref="fig-brs"/>. This is an example of <em>biased sampling</em>. 
+        Because some members of the population have little or no chance of being selected, the resulting sample does not accurately 
+        represent the population and may lead to misleading conclusions.
+    </p>
     <figure xml:id="fig-srs2">
-        <caption>Simple random sampling with replacement. Each chip drawn is replaced before the next draw.</caption>
+        <caption>
+            Simple random sampling with replacement. Each selected member is returned to the population before the next draw.
+        </caption>
         <image source="images/srs2.png"/>
     </figure>
     <p>
-        A third procedure is worth mentioning. This time around we close our eyes, shake the bag, 
-        and pull out a chip. This time, however, we record the observation and then put the chip back in the bag. 
-        Again we close our eyes, shake the bag, and pull out a chip. We then repeat this procedure until we have 4 chips. 
-        Data sets generated in this way are still simple random samples, but because we put the chips back in the bag immediately after 
-        drawing them it is referred to as a sample <em>with replacement</em>. The difference between this situation and the first one 
-        is that it is possible to observe the same population member multiple times, as illustrated in <xref ref="fig-srs2"/>.
+        Another common sampling method is <em>simple random sampling with replacement</em>. After each selection, 
+        the chosen chip is returned to the population before the next draw. As shown in <xref ref="fig-srs2"/>, 
+        the same member of the population may therefore be selected more than once.
     </p>
     <p>
-        In my experience, most psychology experiments tend to be sampling without replacement, 
-        because the same person is not allowed to participate in the experiment twice. However, 
-        most statistical theory is based on the assumption that the data arise from a simple random sample <em>with</em> replacement. 
-        In real life, this very rarely matters. If the population of interest is large (e.g., has more than 10 entities!) 
-        the difference between sampling with- and without- replacement is too small to be concerned with. The difference between 
-        simple random samples and biased samples, on the other hand, is not such an easy thing to dismiss.
+        In many practical studies, such as surveys and experiments involving people, sampling is usually carried out without 
+        replacement because the same individual is rarely included more than once. However, much of statistical theory assumes 
+        sampling with replacement because it simplifies the mathematical development. When the population is large, 
+        the difference between the two methods is usually negligible. In contrast, the difference between a simple random 
+        sample and a biased sample is often substantial and can have a major impact on the validity of statistical conclusions.
     </p>
 </subsection>
