@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <subsection xml:id="subsec-sampling-statistics">
-    <title>Sampling distributions exist for any sample statistic!</title>
-    <p>One thing to keep in mind when thinking about sampling distributions is that <em>any</em> sample statistic you might care to calculate has a sampling distribution. For example, suppose that each time I replicated the "five IQ scores" experiment I wrote down the largest IQ score in the experiment. This would give me a data set that started out like this:</p>
-    <!-- <console>
-    <output><![CDATA[                      110 117 122 119 113 ... ]]></output>
-    </console> -->
-    <p>Doing this over and over again would give me a very different sampling distribution, namely the <em>sampling distribution of the maximum</em>. The sampling distribution of the maximum of 5 IQ scores is shown in <xref ref="fig-sampdistmax"/>. Not surprisingly, if you pick 5 people at random and then find the person with the highest IQ score, they're going to have an above average IQ. Most of the time you'll end up with someone whose IQ is measured in the 100 to 140 range.</p>    
+    <title>Sampling Distributions for Other Statistics</title>
+    <p>
+        The concept of a sampling distribution is not limited to the sample mean. 
+        Every sample statistic has its own sampling distribution because its value varies from one random sample to another. 
+        Examples include the sample median, sample variance, sample standard deviation, sample proportion, 
+        and many other statistics commonly used in data analysis.
+    </p>
+    <p>
+        Each sampling distribution describes how a particular statistic behaves when repeated random samples of the same size are drawn from the same population. 
+        Some statistics exhibit greater variability than others, and their sampling distributions may have different shapes. 
+        Understanding these distributions allows statisticians to measure the precision of estimates and forms the basis for statistical inference.
+    </p>
+    <p>
+        In practice, the sampling distribution of the sample mean is the most widely used because many statistical methods are based on it. 
+        The next section introduces an important result known as the <em>Central Limit Theorem</em>, 
+        which explains why the sampling distribution of the sample mean plays such a central role in statistics.
+    </p>
 </subsection>

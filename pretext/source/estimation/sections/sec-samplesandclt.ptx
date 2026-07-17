@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section xml:id="sec-samplesandclt" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Sampling distributions and the central limit theorem</title>
-    <p>The law of large numbers is a very powerful tool, but it's not going to be good enough to answer all our questions. Among other things, all it gives us is a "long run guarantee". In the long run, if we were somehow able to collect an infinite amount of data, then the law of large numbers guarantees that our sample statistics will be correct. But as John Maynard Keynes famously argued in economics, a long run guarantee is of little use in real life:</p>
-    <blockquote>
-    <p><em>[The] long run is a misleading guide to current affairs. In the long run we are all dead. Economists set themselves too easy, too useless a task, if in tempestuous seasons they can only tell us, that when the storm is long past, the ocean is flat again.</em> <xref ref="biblio-Keynes1923"/></p>
-    </blockquote>
-    <p>As in economics, so too in psychology and statistics. It is not enough to know that we will <em>eventually</em> arrive at the right answer when calculating the sample mean. Knowing that an infinitely large data set will tell me the exact value of the population mean is cold comfort when my <em>actual</em> data set has a sample size of <m>N=100</m>. In real life, then, we must know something about the behaviour of the sample mean when it is calculated from a more modest data set!</p>
+    <p>
+        The law of large numbers provides an important theoretical result: as the sample size increases, 
+        sample statistics such as the sample mean tend to approach the corresponding population parameters. 
+        However, this result describes what happens as the sample size becomes very large and does not tell us how sample statistics 
+        behave for the finite samples encountered in practice.
+    </p>
+    <p>
+        In most real-world studies, researchers work with limited sample sizes. Consequently, 
+        sample statistics vary from one sample to another because of random sampling variation. 
+        To understand and quantify this variability, statisticians study the <em>sampling distribution</em> of a statistic. 
+        Sampling distributions provide the foundation for measuring the accuracy of estimates, constructing confidence intervals, 
+        and performing hypothesis tests.
+    </p>
+    <p>
+        One of the most important results in statistical inference is the <em>Central Limit Theorem</em>. 
+        This theorem describes the behaviour of the sampling distribution of the sample mean and explains why the normal distribution plays such a central role in statistical methods. 
+        The following sections introduce sampling distributions before presenting the Central Limit Theorem.
+    </p>
 
     <xi:include href="subsections/samplesandclt/subsec-samplingdists.ptx" />
     <xi:include href="subsections/samplesandclt/subsec-sampling-statistics.ptx" />

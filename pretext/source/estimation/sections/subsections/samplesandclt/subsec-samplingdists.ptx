@@ -1,53 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <subsection xml:id="subsec-samplingdists" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Sampling distribution of the mean</title>
-    <p>With this in mind, let's abandon the idea that our studies will have sample sizes of 10000, and consider a very modest experiment indeed. This time around we'll sample <m>N=5</m> people and measure their IQ scores. As before, I can simulate this experiment in R using the <c>rnorm()</c> function:</p>
-    <!-- <console>
-    <output><![CDATA[> IQ.1 <- round( rnorm(n=5, mean=100, sd=15 ))
-    > IQ.1
-    [1]  90  82  94  99 110]]></output>
-    </console> -->
-    <p>The mean IQ in this sample turns out to be exactly 95. Not surprisingly, this is much less accurate than the previous experiment. Now imagine that I decided to <em>replicate</em> the experiment. That is, I repeat the procedure as closely as possible: I randomly sample 5 new people and measure their IQ. Again, R allows me to simulate the results of this procedure:</p>
-    <!-- <console>
-    <output><![CDATA[> IQ.2 <- round( rnorm(n=5, mean=100, sd=15 ))
-    > IQ.2
-    [1]  78  88 111 111 117]]></output>
-    </console> -->
-    <p>This time around, the mean IQ in my sample is 101. If I repeat the experiment 10 times I obtain the results shown in <xref ref="tab-replications"/>, and as you can see the sample mean varies from one replication to the next.</p>
-    <table xml:id="tab-replications">
-    <title>Ten replications of the IQ experiment, each with a sample size of <m>N=5</m>.</title>
-    <tabular>
-        <row header="yes"><cell></cell><cell>Person 1</cell><cell>Person 2</cell><cell>Person 3</cell><cell>Person 4</cell><cell>Person 5</cell><cell>Sample Mean</cell></row>
-        <row><cell>Replication 1</cell><cell>90</cell><cell>82</cell><cell>94</cell><cell>99</cell><cell>110</cell><cell>95.0</cell></row>
-        <row><cell>Replication 2</cell><cell>78</cell><cell>88</cell><cell>111</cell><cell>111</cell><cell>117</cell><cell>101.0</cell></row>
-        <row><cell>Replication 3</cell><cell>111</cell><cell>122</cell><cell>91</cell><cell>98</cell><cell>86</cell><cell>101.6</cell></row>
-        <row><cell>Replication 4</cell><cell>98</cell><cell>96</cell><cell>119</cell><cell>99</cell><cell>107</cell><cell>103.8</cell></row>
-        <row><cell>Replication 5</cell><cell>105</cell><cell>113</cell><cell>103</cell><cell>103</cell><cell>98</cell><cell>104.4</cell></row>
-        <row><cell>Replication 6</cell><cell>81</cell><cell>89</cell><cell>93</cell><cell>85</cell><cell>114</cell><cell>92.4</cell></row>
-        <row><cell>Replication 7</cell><cell>100</cell><cell>93</cell><cell>108</cell><cell>98</cell><cell>133</cell><cell>106.4</cell></row>
-        <row><cell>Replication 8</cell><cell>107</cell><cell>100</cell><cell>105</cell><cell>117</cell><cell>85</cell><cell>102.8</cell></row>
-        <row><cell>Replication 9</cell><cell>86</cell><cell>119</cell><cell>108</cell><cell>73</cell><cell>116</cell><cell>100.4</cell></row>
-        <row><cell>Replication 10</cell><cell>95</cell><cell>126</cell><cell>112</cell><cell>120</cell><cell>76</cell><cell>105.8</cell></row>
-    </tabular>
-    </table>
-    <p>Now suppose that I decided to keep going in this fashion, replicating this "five IQ scores" experiment over and over again. Every time I replicate the experiment I write down the sample mean. Over time, I'd be amassing a new data set, in which every experiment generates a single data point. The first 10 observations from my data set are the sample means listed in <xref ref="tab-replications"/>, so my data set starts out like this:</p>
-    <!-- <console>
-    <output><![CDATA[                      95.0 101.0 101.6 103.8 104.4 ...]]></output>
-    </console> -->
-    <p>What if I continued like this for 10,000 replications, and then drew a histogram? Using the magical powers of R that's exactly what I did, and you can see the results in <xref ref="fig-sampdistmean"/>. As this picture illustrates, the average of 5 IQ scores is usually between 90 and 110. But more importantly, what it highlights is that if we replicate an experiment over and over again, what we end up with is a <em>distribution</em> of sample means! This distribution has a special name in statistics: it's called the <em>sampling distribution of the mean</em>.</p>
-    <p>Sampling distributions are another important theoretical idea in statistics, and they're crucial for understanding the behaviour of small samples. For instance, when I ran the very first "five IQ scores" experiment, the sample mean turned out to be 95. What the sampling distribution in <xref ref="fig-sampdistmean"/> tells us, though, is that the "five IQ scores" experiment is not very accurate. If I repeat the experiment, the sampling distribution tells me that I can expect to see a sample mean anywhere between 80 and 120.</p>
-    <figure xml:id="fig-sampdistmean">
-    <caption>
-    The sampling distribution of the mean for the "five IQ scores experiment". If you sample 5
-    people at random and calculate their average IQ, you'll almost certainly get a number between 80 and
-    120, even though there are quite a lot of individuals who have IQs above 120 or below 80. For comparison,
-    the black line plots the population distribution of IQ scores.
-    </caption>
-    <image source="images/sampdistmean.png"/>
-    </figure>
+    <title>Sampling Distribution of the Mean</title>
+    <p>
+        To understand how sample statistics vary, consider repeatedly drawing random samples of the same size from a population. 
+        Suppose that each sample consists of <m>N=5</m> individuals and that the sample mean is calculated for every sample. 
+        Because each sample is different, the sample mean is also likely to differ from one sample to another.
+    </p>
 
-    <figure xml:id="fig-sampdistmax">
-    <caption>The sampling distribution of the maximum IQ score in samples of N=5.</caption>
-    <image source="images/sampdistmax.png"/>
+    <p>
+        Table <xref ref="tab-replications"/> shows the results of ten independent samples, each containing five observations. 
+        Although every sample is drawn from the same population, the sample means are not identical because of random sampling variation.
+    </p>
+
+    <table xml:id="tab-replications">
+        <title>Ten independent samples, each with a sample size of <m>N=5</m>.</title>
+        <tabular>
+            <row header="yes">
+                <cell></cell>
+                <cell>Person 1</cell>
+                <cell>Person 2</cell>
+                <cell>Person 3</cell>
+                <cell>Person 4</cell>
+                <cell>Person 5</cell>
+                <cell>Sample Mean</cell>
+            </row>
+            <row><cell>Sample 1</cell><cell>90</cell><cell>82</cell><cell>94</cell><cell>99</cell><cell>110</cell><cell>95.0</cell></row>
+            <row><cell>Sample 2</cell><cell>78</cell><cell>88</cell><cell>111</cell><cell>111</cell><cell>117</cell><cell>101.0</cell></row>
+            <row><cell>Sample 3</cell><cell>111</cell><cell>122</cell><cell>91</cell><cell>98</cell><cell>86</cell><cell>101.6</cell></row>
+            <row><cell>Sample 4</cell><cell>98</cell><cell>96</cell><cell>119</cell><cell>99</cell><cell>107</cell><cell>103.8</cell></row>
+            <row><cell>Sample 5</cell><cell>105</cell><cell>113</cell><cell>103</cell><cell>103</cell><cell>98</cell><cell>104.4</cell></row>
+            <row><cell>Sample 6</cell><cell>81</cell><cell>89</cell><cell>93</cell><cell>85</cell><cell>114</cell><cell>92.4</cell></row>
+            <row><cell>Sample 7</cell><cell>100</cell><cell>93</cell><cell>108</cell><cell>98</cell><cell>133</cell><cell>106.4</cell></row>
+            <row><cell>Sample 8</cell><cell>107</cell><cell>100</cell><cell>105</cell><cell>117</cell><cell>85</cell><cell>102.8</cell></row>
+            <row><cell>Sample 9</cell><cell>86</cell><cell>119</cell><cell>108</cell><cell>73</cell><cell>116</cell><cell>100.4</cell></row>
+            <row><cell>Sample 10</cell><cell>95</cell><cell>126</cell><cell>112</cell><cell>120</cell><cell>76</cell><cell>105.8</cell></row>
+        </tabular>
+    </table>
+    <p>
+        Now suppose this sampling process is repeated thousands of times. Each sample produces a single value—the sample mean. 
+        Collecting these sample means produces a new distribution known as the <em>sampling distribution of the mean</em>. 
+        This distribution is illustrated in <xref ref="fig-sampdistmean"/>.
+    </p>
+    <figure xml:id="fig-sampdistmean">
+        <caption>
+            Sampling distribution of the sample mean based on repeated random samples of size <m>N=5</m>. 
+            The distribution shows how the sample mean varies from one sample to another, even though every sample is drawn from the same population. 
+            The black curve represents the population distribution.
+        </caption>
+        <image source="images/sampdistmean.png"/>
     </figure>
+    <p>
+        The sampling distribution of the mean describes the variability of the sample mean across repeated samples of the same size. 
+        Although individual sample means differ because of random sampling variation, they tend to cluster around the population mean. 
+        Understanding this distribution is fundamental to statistical inference because it forms the basis for estimating population parameters, 
+        constructing confidence intervals, and performing hypothesis tests.
+    </p>
 </subsection>

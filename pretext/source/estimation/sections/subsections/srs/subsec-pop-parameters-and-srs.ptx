@@ -1,94 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <subsection xml:id="subsec-pop-parameters-and-srs" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Population parameters and sample statistics</title>
+    <title>Population Parameters and Sample Statistics</title>
     <p>
-        Okay. Setting aside the thorny methodological issues associated with obtaining a random sample and my rather unfortunate tendency to 
-        rant about lazy methodological criticism, let's consider a slightly different issue. Up to this point we have been talking about 
-        populations the way a scientist might. To a psychologist, a population might be a group of people. To an ecologist, 
-        a population might be a group of bears. In most cases the populations that scientists care about are concrete things that actually 
-        exist in the real world. Statisticians, however, are a funny lot. On the one hand, they <em>are</em> interested in real world data 
-        and real science in the same way that scientists are. On the other hand, they also operate in the realm of pure abstraction in the 
-        way that mathematicians do. As a consequence, statistical theory tends to be a bit abstract in how a population is defined. 
-        In much the same way that psychological researchers operationalise our abstract theoretical ideas in terms of concrete measurements 
-        (<xref ref="measurement"/>, statisticians operationalise the concept of a "population" in terms of mathematical objects that they 
-        know how to work with. You've already come across these objects in <xref ref="probability"/>: they're called probability distributions.
+        In statistical inference, the concepts of a <em>population</em> and a <em>sample</em> are often described using probability distributions. 
+        Rather than thinking of a population simply as a collection of individuals or observations, 
+        statisticians represent it by a probability distribution that describes how the values of a variable are expected to occur. 
+        This mathematical representation provides the foundation for statistical inference.
     </p>
     <p>
-        The idea is quite simple. Let's say we're talking about IQ scores. To a psychologist, the population of interest is a group of 
-        actual humans who have IQ scores. A statistician "simplifies" this by operationally defining the population as the probability 
-        distribution depicted in <xref ref="fig-IQdista"/>. IQ tests are designed so that the average IQ is 100, 
-        the standard deviation of IQ scores is 15, and the distribution of IQ scores is normal. These values are referred to as the 
-        <em>population parameters</em> because they are characteristics of the entire population. That is, we say that the population 
-        mean <m>\mu</m> is 100, and the population standard deviation <m>\sigma</m> is 15.
+        As an example, consider IQ scores. IQ tests are designed so that scores follow approximately a normal distribution with a mean of 100 and a 
+        standard deviation of 15, as illustrated in <xref ref="fig-IQdista"/>. 
+        These values describe the entire population and are known as <em>population parameters</em>. 
+        The population mean is denoted by <m>\mu</m>, while the population standard deviation is denoted by <m>\sigma</m>.
     </p>
-    <!-- <console>
-    <output><![CDATA[estImg <- list()
-    emphCol <- rgb(0,0,1)
-    emphColLight <- rgb(.5,.5,1)
-    emphGrey <- grey(.5)
-
-    colour <- TRUE
-
-        width <- 4.5
-        height <- 4.5
-        
-        # plot
-        x <- 60:140
-        y <- dnorm(x,100,15)
-        plot(x,y,lwd=3,type="l",col=ifelse(colour,emphCol,"black"),
-            xlab="IQ Score", ylab="Probability Density",frame.plot=FALSE
-        )
-        
-        
-        # function to do all the work
-        plotSamples <- function( n ) {
-            
-            IQ <- rnorm(n, 100, 15)
-            hist( IQ, breaks=seq(10,180,5), border="white", 
-                col=ifelse(colour,emphColLight,emphGrey),
-                xlab="IQ Score", ylab="Frequency", xlim=c(60,140),
-                main=""
-            )
-            print( paste( "n=",n,"mean=",mean(IQ), "sd=",sd(IQ) ) )
-        }
-        
-        # plot two different sample sizes
-        plotSamples(100)
-        
-        plotSamples(10000)
-    ]]></output>
-    </console> -->
     <figure xml:id="fig-IQdista">
-    <caption>The population distribution of IQ scores: a normal distribution with mean 100 and standard deviation 15.</caption>
-    <image source="images/IQdista.png"/>
-    </figure>
-    <figure xml:id="fig-IQsample100">
-    <caption>Sample histogram of IQ scores for a sample of size <m>N=100</m>.</caption>
-    <image source="generated/IQsample100.png"/>
-    </figure>
-    <figure xml:id="fig-IQsample10000">
-        <caption>Sample histogram of IQ scores for a sample of size <m>N=10000</m>, showing how larger samples better approximate the population distribution.</caption>
-        <image source="generated/IQsample10000.png"/>
+        <caption>
+            The population distribution of IQ scores, modelled as a normal distribution with mean 100 and standard deviation 15.
+        </caption>
+        <image source="images/IQdista.png"/>
     </figure>
     <p>
-        Now suppose I run an experiment. I select 100 people at random and administer an IQ test, giving me a simple random sample from the 
-        population. My sample would consist of a collection of numbers like this:
+        Suppose we randomly select 100 individuals from this population and record their IQ scores. The resulting observations form a <em>sample</em>. 
+        From this sample, we can calculate quantities such as the sample mean and the sample standard deviation. 
+        These are called <em>sample statistics</em> because they are computed from the observed data.
     </p>
     <p>
-        <c>
-            <![CDATA[                          106 101 98 80 74 ... 107 72 100]]>
-        </c>
+        Sample statistics are usually close to, but not exactly the same as, the corresponding population parameters. 
+        This difference occurs because every random sample is slightly different. Consequently, 
+        different samples drawn from the same population generally produce different sample statistics.
     </p>
-    <p>Each of these IQ scores is sampled from a normal distribution with mean 100 and standard deviation 15. 
-        So if I  plot a histogram of the sample, I get something like the one shown in <xref ref="fig-IQsample100"/>. 
-        As you can see, the histogram is <em>roughly</em> the right shape, but it's a very crude approximation to the true population 
-        distribution shown in <xref ref="fig-IQdista"/>. When I calculate the mean of my sample, I get a number that is fairly close to the 
-        population mean 100 but not identical. In this case, it turns out that the people in my sample have a mean IQ of 98.5, and the 
-        standard deviation of their IQ scores is 15.9. These <em>sample statistics</em> are properties of my data set, and although they are 
-        fairly similar to the true population values, they are not the same. In general, sample statistics are the things you can calculate 
-        from your data set, and the population parameters are the things you want to learn about. Later on in this chapter I'll talk about 
-        how you can estimate population parameters using your sample statistics (<xref ref="sec-pointestimates"/> and how to work out how 
-        confident you are in your estimates (<xref ref="sec-ci"/> but before we get to that there's a few more ideas in sampling theory 
-        that you need to know about.
+    <p>
+        The distinction between population parameters and sample statistics is fundamental to statistical inference. 
+        Population parameters are usually unknown and are the quantities we wish to learn about, while sample statistics provide the information used to estimate them. 
+        In the following sections, we introduce methods for obtaining point estimates and confidence intervals, 
+        which allow us to estimate population parameters and quantify the uncertainty associated with those estimates.
     </p>
 </subsection>

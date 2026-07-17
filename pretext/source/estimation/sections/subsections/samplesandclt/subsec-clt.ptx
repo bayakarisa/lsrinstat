@@ -1,206 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <subsection xml:id="subsec-clt">
     <title>The central limit theorem</title>
-    <p>At this point I hope you have a pretty good sense of what sampling distributions are, and in particular what the sampling distribution of the mean is. In this section I want to talk about how the sampling distribution of the mean changes as a function of sample size. Intuitively, you already know part of the answer: if you only have a few observations, the sample mean is likely to be quite inaccurate: if you replicate a small experiment and recalculate the mean you'll get a very different answer. In other words, the sampling distribution is quite wide. If you replicate a large experiment and recalculate the sample mean you'll probably get the same answer you got last time, so the sampling distribution will be very narrow. You can see this visually in <xref ref="fig-IQsampa"/>, <xref ref="fig-IQsampb"/> and <xref ref="fig-IQsampc"/>: the bigger the sample size, the narrower the sampling distribution gets. We can quantify this effect by calculating the standard deviation of the sampling distribution, which is referred to as the <em>standard error</em>. The standard error of a statistic is often denoted SE, and since we're usually interested in the standard error of the sample <em>mean</em>, we often use the acronym SEM. As you can see just by looking at the picture, as the sample size <m>N</m> increases, the SEM decreases.</p>
-    <!-- <console>
-    <output><![CDATA[width <- 4.5
-        height <- 4.5
-        
-        # function to do all the work
-        plotSamples <- function( n, N) {
-            
-            IQ <- rnorm(n, 100,15/sqrt(N))
-            hist( IQ, breaks=seq(10,180,5), border="white", freq=FALSE,
-                col=ifelse(colour,emphColLight,emphGrey),
-                xlab="IQ Score", ylab="", xlim=c(60,140),
-                main=paste("Sample Size =",N), axes=FALSE,
-                font.main=1, ylim=c(0,.07)
-            )
-            axis(1)
-        }
-        
-        # population distribution
-        x <- 60:140
-        y <- dnorm(x,100,15)
-        
-        # plot two different sample sizes
-        plotSamples(10000,1)
-        lines(x,y,lwd=2,col="black",type="l")
-    ]]></output>
-    </console> -->
+    <p>
+        The sampling distribution of the mean depends on the sample size. As the sample size increases, 
+        the sample mean becomes more consistent from one sample to another. Consequently, 
+        the sampling distribution becomes increasingly concentrated around the population mean, 
+        indicating that larger samples generally provide more precise estimates of the population parameter.
+    </p>
     <figure xml:id="fig-IQsampa">
-    <caption>
-    An illustration of the how sampling distribution of the mean depends on sample size. I generated
-    10,000 samples of IQ data, and calculated the mean IQ observed within each of
-    these data sets. The histogram shows the distribution of these means (i.e., the sampling
-    distribution of the mean). The individual IQ score was drawn from a normal distribution with mean 100
-    and standard deviation 15, which is shown as the solid black line). In this plot, each data set contained
-    only a single observation, so the mean of each sample is just one person's IQ score. As a consequence,
-    the sampling distribution of the mean is of course identical to the population distribution of IQ scores.
-    <xref ref="fig-IQsampb"/> illustrates when the sample size at 2, and <xref ref="fig-IQsampc"/> for a sample size of 10.
-    </caption>
-    <image source="images/IQsampa.png"/>
+        <caption>
+            An illustration of the how sampling distribution of the mean depends on sample size. I generated
+            10,000 samples of IQ data, and calculated the mean IQ observed within each of
+            these data sets. The histogram shows the distribution of these means (i.e., the sampling
+            distribution of the mean). The individual IQ score was drawn from a normal distribution with mean 100
+            and standard deviation 15, which is shown as the solid black line). In this plot, each data set contained
+            only a single observation, so the mean of each sample is just one person's IQ score. As a consequence,
+            the sampling distribution of the mean is of course identical to the population distribution of IQ scores.
+            <xref ref="fig-IQsampb"/> illustrates when the sample size at 2, and <xref ref="fig-IQsampc"/> for a sample size of 10.
+        </caption>
+        <image source="images/IQsampa.png"/>
     </figure>
-    <!-- <console>
-    <output><![CDATA[width <- 4.5
-        height <- 4.5
-
-            # plot two different sample sizes
-        plotSamples(1000,2)
-        lines(x,y,lwd=2,col="black",type="l")
-    ]]></output>
-    </console> -->
     <figure xml:id="fig-IQsampb">
-    <caption>
-        An illustration of the how sampling distribution of the mean depends on sample size. I generated
-        10,000 samples of IQ data, and calculated the mean IQ observed within each of
-        these data sets. The histogram shows the distribution of these means (i.e., the sampling
-        distribution of the mean). The individual IQ score was drawn from a normal distribution with mean 100
-        and standard deviation 15, which is shown as the solid black line). In this plot, each data set contained
-        two observations. The mean of any one sample tends to be closer to the
-        population mean than a one person's IQ score, and so the histogram (i.e., the sampling distribution)
-        is a bit narrower than the population distribution.
-    </caption>
-    <image source="images/IQsampb.png"/>
+        <caption>
+            An illustration of the how sampling distribution of the mean depends on sample size. I generated
+            10,000 samples of IQ data, and calculated the mean IQ observed within each of
+            these data sets. The histogram shows the distribution of these means (i.e., the sampling
+            distribution of the mean). The individual IQ score was drawn from a normal distribution with mean 100
+            and standard deviation 15, which is shown as the solid black line). In this plot, each data set contained
+            two observations. The mean of any one sample tends to be closer to the
+            population mean than a one person's IQ score, and so the histogram (i.e., the sampling distribution)
+            is a bit narrower than the population distribution.
+        </caption>
+        <image source="images/IQsampb.png"/>
     </figure>
-    <!-- <console>
-    <output><![CDATA[width <- 4.5
-        height <- 4.5
-
-            # plot two different sample sizes
-        plotSamples(1000,10)
-        lines(x,y,lwd=2,col="black",type="l")
-    ]]></output>
-    </console> -->
     <figure xml:id="fig-IQsampc">
-    <caption>
-    An illustration of the how sampling distribution of the mean depends on sample size. I generated
-    10,000 samples of IQ data, and calculated the mean IQ observed within each of
-    these data sets. The histogram shows the distribution of these means (i.e., the sampling
-    distribution of the mean). The individual IQ score was drawn from a normal distribution with mean 100
-    and standard deviation 15, which is shown as the solid black line). In this plot, each data set contained
-    ten observations. The distribution of sample means tend to be fairly tightly clustered around the true
-    population mean.
-    </caption>
-    <image source="images/IQsampc.png"/>
+        <caption>
+            An illustration of the how sampling distribution of the mean depends on sample size. I generated
+            10,000 samples of IQ data, and calculated the mean IQ observed within each of
+            these data sets. The histogram shows the distribution of these means (i.e., the sampling
+            distribution of the mean). The individual IQ score was drawn from a normal distribution with mean 100
+            and standard deviation 15, which is shown as the solid black line. In this plot, each data set contained
+            ten observations. The distribution of sample means tend to be fairly tightly clustered around the true
+            population mean.
+        </caption>
+        <image source="images/IQsampc.png"/>
     </figure>
+    <p>
+        Figures <xref ref="fig-IQsampa"/>, <xref ref="fig-IQsampb"/>, and <xref ref="fig-IQsampc"/> illustrate this effect for 
+        increasing sample sizes. As the sample size increases, the spread of the sampling distribution decreases. 
+        The standard deviation of the sampling distribution is known as the <em>standard error</em> (SE). 
+        When referring specifically to the sample mean, it is called the <em>standard error of the mean</em> (SEM). 
+        A smaller standard error indicates that sample means are more tightly clustered around the population mean and therefore 
+        provide more precise estimates.
+    </p>
 
-    <p>Okay, so that's one part of the story. However, there's something I've been glossing over so far. All my examples up to this point have been based on the "IQ scores" experiments, and because IQ scores are roughly normally distributed, I've assumed that the population distribution is normal. What if it isn't normal? What happens to the sampling distribution of the mean? The remarkable thing is this: no matter what shape your population distribution is, as <m>N</m> increases the sampling distribution of the mean starts to look more like a normal distribution. To give you a sense of this, I ran some simulations using R. To do this, I started with the "ramped" distribution shown in the histogram in <xref ref="fig-cltdemo"/>. As you can see by comparing the triangular shaped histogram to the bell curve plotted by the black line, the population distribution doesn't look very much like a normal distribution at all. Next, I used R to simulate the results of a large number of experiments. In each experiment I took <m>N=2</m> samples from this distribution, and then calculated the sample mean. <xref ref="fig-cltdemob"/> plots the histogram of these sample means (i.e., the sampling distribution of the mean for <m>N=2</m>). This time, the histogram produces a <m>\cap</m>-shaped distribution: it's still not normal, but it's a lot closer to the black line than the population distribution in <xref ref="fig-cltdemoa"/>. When I increase the sample size to <m>N=4</m>, the sampling distribution of the mean is very close to normal (<xref ref="fig-cltdemoc"/>), and by the time we reach a sample size of <m>N=8</m> it's almost perfectly normal. In other words, as long as your sample size isn't tiny, the sampling distribution of the mean will be approximately normal no matter what your population distribution looks like!</p>
-    <!-- <remark>
-    <title>R Code</title>
-    <program language="r">
-    <input><![CDATA[	# needed for printing
-        width <- 6
-        height <- 6	
-        
-        # parameters of the beta
-        a <- 2
-        b <- 1
-        
-        # mean and standard deviation of the beta
-        s <- sqrt( a*b / (a+b)^2 / (a+b+1) )
-        m <- a / (a+b)
-        
-        # define function to draw a plot
-        plotOne <- function(n,N=50000) {
-            
-            # generate N random sample means of size n
-            X <- matrix(rbeta(n*N,a,b),n,N)
-            X <- colMeans(X)
-            
-            # plot the data
-            hist( X, breaks=seq(0,1,.025), border="white", freq=FALSE,
-                col=ifelse(colour,emphColLight,emphGrey),
-                xlab="Sample Mean", ylab="", xlim=c(0,1.2),
-                main=paste("Sample Size =",n), axes=FALSE,
-                font.main=1, ylim=c(0,5)
-            )
-            box()
-            axis(1)
-            #axis(2)
-            
-            # plot the theoretical distribution
-            lines( x <- seq(0,1.2,.01), dnorm(x,m,s/sqrt(n)), 
-                lwd=2, col="black", type="l"
-            )
-        }
-        
-        for( i in c(1,2,4,8)) {
-            plotOne(i)}]]></input>
-    </program>
-    </remark> -->
-    <figure xml:id="fig-cltdemo">
-    <caption>
-    A demonstration of the central limit theorem. Here, we have a non-normal population
-    distribution; and <xref ref = "fig-cltdemoa"/>-<xref ref = "fig-cltdemoc"/> show the sampling
-    distribution of the mean for samples of size 2,4 and 8, for data drawn from the
-    distribution in panel a. As you can see, even though the original population
-    distribution is non-normal, the sampling distribution of the mean becomes pretty
-    close to normal by the time you have a sample of even 4 observations.
-    </caption>
-    <image source="images/cltdemo.png"/>
-    </figure>
-    <figure xml:id="fig-cltdemoa">
-    <caption>
-    A demonstration of the central limit theorem.
-    Here we see the sampling distribution of the mean for samples of size 2 for data drawn from the
-    distribution in <xref ref = "fig-cltdemo"/>. As you can see, even though the original population
-    distribution is non-normal, the sampling distribution of the mean becomes pretty
-    close to normal as the sample size increases.
-    </caption>
-    <image source="images/cltdemoa.png"/>
-    </figure>
-    <figure xml:id="fig-cltdemob">
-    <caption>
-    A demonstration of the central limit theorem.
-    Here we see the sampling distribution of the mean for samples of size 4 for data drawn from the
-    distribution in <xref ref = "fig-cltdemo"/>. As you can see, even though the original population
-    distribution is non-normal, the sampling distribution of the mean becomes pretty
-    close to normal as the sample size increases.
-    </caption>
-    <image source="images/cltdemob.png"/>
-    </figure>
-    <figure xml:id="fig-cltdemoc">
-    <caption>
-    A demonstration of the central limit theorem.
-    Here we see the sampling distribution of the mean for samples of size 8 for data drawn from the
-    distribution in <xref ref = "fig-cltdemo"/>. As you can see, even though the original population
-    distribution is non-normal, the sampling distribution of the mean becomes pretty
-    close to normal as the sample size increases.
-    </caption>
-    <image source="images/cltdemoc.png"/>
-    </figure>
-    <p>On the basis of these figures, it seems like we have evidence for all of the following claims 
-        about the sampling distribution of the mean:
-        <ul>
-            <li><p>The mean of the sampling distribution is the same as the mean of the population</p></li>
-            <li><p>The standard deviation of the sampling distribution (i.e., the standard error) gets smaller as the sample size increases</p></li>
-            <li><p>The shape of the sampling distribution becomes normal as the sample size increases</p></li>
-        </ul>
+    <p>
+        So far, the examples have assumed that the population follows a normal distribution. 
+        An important question is whether these results still hold when the population distribution is not normal. 
+        The answer is provided by one of the most important results in statistics: the <em>Central Limit Theorem</em>.
+    </p>
+
+    <p>
+        The Central Limit Theorem states that, regardless of the shape of the population distribution, 
+        the sampling distribution of the sample mean becomes approximately normal as the sample size increases, 
+        provided that the observations are independent and the sample size is sufficiently large. 
+        Figures <xref ref="fig-cltdemo"/>, <xref ref="fig-cltdemoa"/>, <xref ref="fig-cltdemob"/>, 
+        and <xref ref="fig-cltdemoc"/> illustrate this principle. Although the original population distribution is clearly 
+        non-normal, the sampling distribution of the mean becomes increasingly bell-shaped as the sample size grows.
     </p>
     
-    <p>As it happens, not only are all of these statements true, there is a very famous theorem in statistics that proves all three of them, 
-        known as the <em>central limit theorem</em>. Among other things, the central limit theorem tells us that if the population distribution 
-        has mean <m>\mu</m> and standard deviation <m>\sigma</m>, then the sampling distribution of the mean also has mean <m>\mu</m>, 
-        and the standard error of the mean is 
+    <figure xml:id="fig-cltdemo">
+        <caption>
+            A demonstration of the central limit theorem. Here, we have a non-normal population
+            distribution; and <xref ref = "fig-cltdemoa"/>-<xref ref = "fig-cltdemoc"/> show the sampling
+            distribution of the mean for samples of size 2,4 and 8, for data drawn from the
+            distribution in panel a. As you can see, even though the original population
+            distribution is non-normal, the sampling distribution of the mean becomes pretty
+            close to normal by the time you have a sample of even 4 observations.
+        </caption>
+        <image source="images/cltdemo.png"/>
+    </figure>
+    <figure xml:id="fig-cltdemoa">
+        <caption>
+            A demonstration of the central limit theorem.
+            Here we see the sampling distribution of the mean for samples of size 2 for data drawn from the
+            distribution in <xref ref = "fig-cltdemo"/>. As you can see, even though the original population
+            distribution is non-normal, the sampling distribution of the mean becomes pretty
+            close to normal as the sample size increases.
+        </caption>
+        <image source="images/cltdemoa.png"/>
+    </figure>
+    <figure xml:id="fig-cltdemob">
+        <caption>
+            A demonstration of the central limit theorem.
+            Here we see the sampling distribution of the mean for samples of size 4 for data drawn from the
+            distribution in <xref ref = "fig-cltdemo"/>. As you can see, even though the original population
+            distribution is non-normal, the sampling distribution of the mean becomes pretty
+            close to normal as the sample size increases.
+        </caption>
+        <image source="images/cltdemob.png"/>
+    </figure>
+    <figure xml:id="fig-cltdemoc">
+        <caption>
+            A demonstration of the central limit theorem.
+            Here we see the sampling distribution of the mean for samples of size 8 for data drawn from the
+            distribution in <xref ref = "fig-cltdemo"/>. As you can see, even though the original population
+            distribution is non-normal, the sampling distribution of the mean becomes pretty
+            close to normal as the sample size increases.
+        </caption>
+        <image source="images/cltdemoc.png"/>
+    </figure>
+    <p>
+        The Central Limit Theorem establishes three important properties of the sampling distribution of the mean:
+        <ul>
+            <li>
+                <p>
+                    The mean of the sampling distribution is equal to the population mean (<m>\mu</m>).
+                </p>
+            </li>
+            <li>
+                <p>
+                    The standard deviation of the sampling distribution, known as the standard error, 
+                    decreases as the sample size increases.
+                </p>
+            </li>
+            <li>
+                <p>
+                    For sufficiently large samples, the sampling distribution of the mean is approximately normal, 
+                    regardless of the shape of the population distribution.
+                </p>
+            </li>
+        </ul>
+    </p>
+
+    <p>
+        More formally, if a population has mean <m>\mu</m> and standard deviation <m>\sigma</m>, 
+        then the sampling distribution of the sample mean also has mean <m>\mu</m>, 
+        and the standard error of the mean is given by
         <md>
-            \mbox{SEM} = \frac{\sigma}{ \sqrt{N} }
+            \mbox{SEM}=\frac{\sigma}{\sqrt{N}}
         </md>
-        Because we divide the population standard 
-        devation <m>\sigma</m> by the square root of the sample size <m>N</m>, the SEM gets smaller as the sample size increases. 
-        It also tells us that the shape of the sampling distribution becomes normal.<fn>As usual, I'm being a bit sloppy here. 
-        The central limit theorem is a bit more general than this section implies. Like most introductory stats texts, 
-        I've discussed one situation where the central limit theorem holds: when you're taking an average across lots of independent 
-        events drawn from the same distribution. However, the central limit theorem is much broader than this. There's a whole class of 
-        things called "<m>U</m>-statistics" for instance, all of which satisfy the central limit theorem and therefore become normally 
-        distributed for large sample sizes. The mean is one such statistic, but it's not the only one.</fn>
-        </p>
-    <p>This result is useful for all sorts of things. It tells us why large experiments are more reliable than small ones, 
-        and because it gives us an explicit formula for the standard error it tells us <em>how much</em> more reliable a large experiment is. 
-        It tells us why the normal distribution is, well, <em>normal</em>. In real experiments, 
-        many of the things that we want to measure are actually averages of lots of different quantities (e.g., arguably, 
-        "general" intelligence as measured by IQ is an average of a large number of "specific" skills and abilities), 
-        and when that happens, the averaged quantity should follow a normal distribution. Because of this mathematical law, 
-        the normal distribution pops up over and over again in real data.
+    </p>
+    <p>
+        This relationship shows that the standard error decreases as the sample size increases because the population standard 
+        deviation is divided by the square root of the sample size.
+    </p>
+    <p>
+        The Central Limit Theorem is one of the cornerstones of statistical inference. 
+        It explains why larger samples generally produce more reliable estimates of population parameters and why the normal 
+        distribution appears so frequently in statistical methods. The theorem also provides the theoretical foundation for confidence intervals, 
+        hypothesis tests, and many other inferential procedures introduced later in this book.
     </p>
 </subsection>    
